@@ -4,15 +4,8 @@ import { Facebook, Instagram, Twitter } from "lucide-react";
 export const Contact = () => {
   return (
     <section className="relative bg-gradient-to-r from-manamind to-manamind-light py-20 px-4">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-        <div className="relative">
-          <img
-            src="/lovable-uploads/96007a48-77b2-49ce-88fc-5555726c80c5.png"
-            alt="Contact workspace"
-            className="rounded-lg shadow-xl"
-          />
-        </div>
-        <div className="space-y-8 animate-fadeIn">
+      <div className="max-w-7xl mx-auto">
+        <div className="space-y-8 animate-fadeIn text-center">
           <h2 className="text-5xl font-bold text-black">Contactez-nous</h2>
           <div className="space-y-4">
             <p className="text-2xl text-black">contact@mana.fr</p>
@@ -22,7 +15,7 @@ export const Contact = () => {
               <p className="text-xl text-black">PARIS</p>
             </div>
           </div>
-          <div className="flex space-x-4">
+          <div className="flex justify-center space-x-4">
             <Button
               variant="ghost"
               size="icon"
@@ -53,7 +46,7 @@ export const Contact = () => {
             <img
               src="/lovable-uploads/bc1e3af7-9f0b-4866-b704-e6c4486c8500.png"
               alt="Mana Logo"
-              className="h-12"
+              className="h-12 mx-auto"
             />
           </div>
         </div>
