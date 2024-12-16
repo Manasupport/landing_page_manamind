@@ -4,6 +4,7 @@ import { Input } from "./ui/input";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Label } from "./ui/label";
 import { toast } from "./ui/use-toast";
+import { GraduationCap, BookOpen, User, Home } from "lucide-react";
 
 export const CreateAccount = () => {
   const [accountType, setAccountType] = useState("");
@@ -12,6 +13,13 @@ export const CreateAccount = () => {
     lastName: "",
     email: "",
   });
+
+  const accountTypes = [
+    { id: "Enseignant", icon: GraduationCap },
+    { id: "Directeur de Master", icon: BookOpen },
+    { id: "Étudiant", icon: User },
+    { id: "Famille", icon: Home },
+  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,7 +32,6 @@ export const CreateAccount = () => {
       return;
     }
     
-    // Here you would typically handle the account creation
     toast({
       title: "Compte créé avec succès",
       description: "Vous allez être redirigé vers la page d'accueil",
@@ -33,14 +40,13 @@ export const CreateAccount = () => {
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
-      {/* Left side - Form */}
       <div className="w-full md:w-1/2 bg-manamind p-8 md:p-12 flex items-center justify-center">
-        <form onSubmit={handleSubmit} className="w-full max-w-md space-y-6">
-          <h2 className="text-3xl font-bold text-white mb-8">Créer votre compte</h2>
+        <form onSubmit={handleSubmit} className="w-full max-w-md space-y-8">
+          <h2 className="text-4xl font-bold text-black mb-12">Créez et animez vos parcours</h2>
           
-          <div className="space-y-4">
+          <div className="space-y-6">
             <div>
-              <Label htmlFor="lastName" className="text-white">
+              <Label htmlFor="lastName" className="text-black text-lg uppercase">
                 Nom
               </Label>
               <Input
@@ -48,12 +54,13 @@ export const CreateAccount = () => {
                 value={formData.lastName}
                 onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                 required
-                className="bg-white"
+                className="bg-white/90 backdrop-blur-sm border-0 h-12 text-lg"
+                placeholder="OTMANI"
               />
             </div>
             
             <div>
-              <Label htmlFor="firstName" className="text-white">
+              <Label htmlFor="firstName" className="text-black text-lg uppercase">
                 Prénom
               </Label>
               <Input
@@ -61,12 +68,13 @@ export const CreateAccount = () => {
                 value={formData.firstName}
                 onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                 required
-                className="bg-white"
+                className="bg-white/90 backdrop-blur-sm border-0 h-12 text-lg"
+                placeholder="Yanis"
               />
             </div>
             
             <div>
-              <Label htmlFor="email" className="text-white">
+              <Label htmlFor="email" className="text-black text-lg uppercase">
                 Email
               </Label>
               <Input
@@ -75,35 +83,45 @@ export const CreateAccount = () => {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 required
-                className="bg-white"
+                className="bg-white/90 backdrop-blur-sm border-0 h-12 text-lg"
+                placeholder="hello@reallygreatsite.com"
               />
             </div>
           </div>
 
-          <Button type="submit" className="w-full bg-white text-black hover:bg-gray-100">
+          <Button type="submit" className="w-full bg-white text-black hover:bg-gray-100 h-12 text-lg font-medium">
             Je crée mon compte
           </Button>
         </form>
       </div>
 
-      {/* Right side - Account Type Selection */}
       <div className="w-full md:w-1/2 bg-black p-8 md:p-12 flex items-center justify-center">
         <div className="w-full max-w-md">
-          <h2 className="text-3xl font-bold text-white mb-8">Type de compte</h2>
+          <h2 className="text-4xl font-bold text-white mb-12">
+            Choisis le type de compte qui te correspond
+          </h2>
           
           <RadioGroup
             value={accountType}
             onValueChange={setAccountType}
-            className="space-y-4"
+            className="grid grid-cols-2 gap-4"
           >
-            {["Enseignant", "Directeur de Master", "Étudiant", "Famille"].map((type) => (
+            {accountTypes.map(({ id, icon: Icon }) => (
               <div
-                key={type}
-                className="flex items-center space-x-2 bg-gray-900 p-4 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors"
+                key={id}
+                className="relative"
               >
-                <RadioGroupItem value={type} id={type} className="text-white" />
-                <Label htmlFor={type} className="text-white cursor-pointer">
-                  {type}
+                <RadioGroupItem
+                  value={id}
+                  id={id}
+                  className="peer sr-only"
+                />
+                <Label
+                  htmlFor={id}
+                  className="flex flex-col items-center justify-center p-4 bg-manamind/20 hover:bg-manamind/30 rounded-lg cursor-pointer transition-all peer-checked:bg-manamind peer-checked:text-black"
+                >
+                  <Icon className="h-12 w-12 mb-2" />
+                  <span className="text-center font-medium">{id}</span>
                 </Label>
               </div>
             ))}

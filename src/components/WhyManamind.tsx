@@ -6,56 +6,58 @@ export const WhyManamind = () => {
       title: "Pilotage par les encadrants",
       icon: Lightbulb,
       points: [
-        "Concevoir des parcours d'apprentissage sur mesure",
-        "Mesurer l'acquisition des compétences",
-        "Exploiter les données des parcours",
+        { key: "Concevoir", text: "et personnaliser des parcours d'apprentissage sur mesure." },
+        { key: "Mesurer", text: "l'acquisition des compétences et suivre les parcours en temps réel." },
+        { key: "Exploiter", text: "les données des parcours pour des livrables pertinents." },
       ],
     },
     {
       title: "Expérience pour les apprenants",
       icon: Users,
       points: [
-        "Offrir un cadre d'apprentissage aligné aux standards professionnels",
-        "Impliquer les apprenants dans des parcours engageants",
-        "Faciliter l'évaluation individuelle et collective",
+        { key: "Offrir", text: "un cadre d'apprentissage aligné aux standards professionnels." },
+        { key: "Impliquer", text: "les apprenants dans des parcours engageants et collaboratifs." },
+        { key: "Faciliter", text: "l'évaluation individuelle et collective tout au long du parcours" },
       ],
     },
     {
       title: "Auditabilité des acquis pour l'organisation",
       icon: BarChart,
       points: [
-        "Intégrer des référentiels de compétences",
-        "Automatiser l'évaluation des compétences",
-        "Simplifier les processus d'audit",
+        { key: "Intégrer", text: "des référentiels de compétences (ex. RNCP, référentiels métiers) aux parcours d'apprentissage." },
+        { key: "Automatiser", text: "l'évaluation des compétences acquises." },
+        { key: "Simplifier", text: "les processus d'audit." },
       ],
     },
   ];
 
   return (
-    <section className="py-20 px-4 bg-gray-50">
+    <section className="py-20 px-4 bg-black text-white">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-800 tracking-tight">
-          Pourquoi Manamind ?
-        </h2>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-12">
           {features.map((feature, index) => (
             <div
               key={index}
-              className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] animate-fadeIn"
+              className="space-y-8 animate-fadeIn"
               style={{ animationDelay: `${index * 200}ms` }}
             >
-              <div className="bg-manamind/10 w-16 h-16 rounded-xl flex items-center justify-center mb-6">
-                <feature.icon className="w-8 h-8 text-manamind" />
+              <div className="flex flex-col items-center text-center space-y-6">
+                <div className="w-24 h-24 rounded-full bg-manamind/20 flex items-center justify-center mb-6">
+                  <feature.icon className="w-12 h-12 text-manamind" />
+                </div>
+                <h3 className="text-2xl font-semibold leading-tight">
+                  <span className="text-manamind">{feature.title.split(" ")[0]}</span>
+                  {" " + feature.title.split(" ").slice(1).join(" ")}
+                </h3>
+                <ul className="space-y-6 text-left">
+                  {feature.points.map((point, pointIndex) => (
+                    <li key={pointIndex} className="flex items-start space-x-2">
+                      <span className="text-manamind font-semibold">{point.key}</span>
+                      <span className="text-gray-300">{point.text}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <h3 className="text-xl font-semibold mb-6 text-gray-800">{feature.title}</h3>
-              <ul className="space-y-4">
-                {feature.points.map((point, pointIndex) => (
-                  <li key={pointIndex} className="flex items-start space-x-3">
-                    <span className="w-2 h-2 mt-2 bg-manamind rounded-full flex-shrink-0" />
-                    <span className="text-gray-600">{point}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
           ))}
         </div>
