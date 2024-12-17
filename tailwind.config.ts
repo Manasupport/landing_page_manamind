@@ -19,7 +19,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        quattrocento: ['Quattrocento', 'serif'],
+        telegraph: ['Telegraph', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
