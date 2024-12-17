@@ -6,13 +6,13 @@ export const Contact = () => {
     <section className="relative bg-gradient-to-r from-manamind to-manamind-light py-20 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="space-y-8 animate-fadeIn text-center">
-          <h2 className="text-5xl font-bold text-black">Contactez-nous</h2>
+          <h2 className="text-5xl font-bold text-black font-quattrocento">Contactez-nous</h2>
           <div className="space-y-4">
-            <p className="text-2xl text-black">contact@mana.fr</p>
+            <p className="text-2xl text-black font-quattrocento">contact@mana.fr</p>
             <div className="space-y-1">
-              <p className="text-xl text-black">24 rue Pierre Semard,</p>
-              <p className="text-xl text-black">75009</p>
-              <p className="text-xl text-black">PARIS</p>
+              <p className="text-xl text-black font-quattrocento">24 rue Pierre Semard,</p>
+              <p className="text-xl text-black font-quattrocento">75009</p>
+              <p className="text-xl text-black font-quattrocento">PARIS</p>
             </div>
           </div>
           <div className="flex justify-center space-x-4">
@@ -42,11 +42,11 @@ export const Contact = () => {
             </Button>
           </div>
           <div className="pt-8">
-            <p className="text-sm text-black">Une solution originale par</p>
+            <p className="text-sm text-black font-quattrocento">Une solution originale par</p>
             <img
-              src="/lovable-uploads/bc1e3af7-9f0b-4866-b704-e6c4486c8500.png"
+              src="/lovable-uploads/8a236523-7325-450e-af98-859d2716368d.png"
               alt="Mana Logo"
-              className="h-12 mx-auto"
+              className="h-12 mx-auto mt-2 hover:scale-105 transition-all duration-300"
             />
           </div>
         </div>
