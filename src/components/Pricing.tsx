@@ -1,5 +1,6 @@
 import { PricingCard } from "./PricingCard";
 import { toast } from "./ui/use-toast";
+import { useNavigate } from "react-router-dom";
 
 const pricingData = [
   {
@@ -58,12 +59,11 @@ const pricingData = [
 ];
 
 export const Pricing = () => {
+  const navigate = useNavigate();
+
   const handleSubscribe = (plan: string) => {
     if (plan === "Starter") {
-      toast({
-        title: "Création de compte",
-        description: "Redirection vers le formulaire d'inscription...",
-      });
+      navigate("/create-account");
     } else if (plan === "Institution") {
       toast({
         title: "Demande de contact",
@@ -74,16 +74,18 @@ export const Pricing = () => {
         title: "Paiement",
         description: "Redirection vers la page de paiement...",
       });
+      // After successful payment, redirect to /success
+      // This should be handled in your payment flow
     }
   };
 
   return (
-    <section id="pricing" className="py-20 px-4 bg-gray-50">
+    <section id="pricing" className="py-20 px-4 bg-gradient-to-br from-slate-50 to-white">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-slate-800">
           Découvrez nos offres
         </h2>
-        <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+        <p className="text-center text-slate-600 mb-12 max-w-2xl mx-auto">
           Choisissez l'offre qui correspond le mieux à vos besoins et commencez à transformer
           l'apprentissage dans votre organisation.
         </p>
