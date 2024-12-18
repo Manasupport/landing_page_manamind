@@ -30,7 +30,7 @@ export const Hero = () => {
             Nos offres
           </button>
           <button
-            onClick={() => scrollToSection("consultationsection")}
+            onClick={() => scrollToSection("contact")}
             className="text-white text-lg font-bold hover:text-[#71c088] transition duration-300"
           >
             Contactez-nous
