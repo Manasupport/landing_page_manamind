@@ -19,7 +19,7 @@ const pricingData = [
   {
     title: "Essential",
     price: "10 € / mois / parcours",
-    description: "Pour les équipes en croissance",
+    description: "Pour les professeurs",
     features: [
       { text: "1 à 5 parcours simultanés", included: true },
       { text: "Jusqu'à 100 joueurs par parcours", included: true },
@@ -33,7 +33,7 @@ const pricingData = [
   {
     title: "Professional",
     price: "130 € / mois",
-    description: "Solution complète pour entreprise",
+    description: "Solution complète pour directeur de master",
     features: [
       { text: "Jusqu'à 15 parcours simultanés", included: true },
       { text: "Jusqu'à 200 joueurs par parcours", included: true },

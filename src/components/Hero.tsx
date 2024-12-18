@@ -18,11 +18,11 @@ export const Hero = () => {
             <span>Des parcours interactifs pour des </span>
             <TypeAnimation
               sequence={[
-                'recrutements mémorables',
+                'recrutements mémorables.',
                 2000,
-                'formations mémorables',
+                'formations mémorables.',
                 2000,
-                'projets mémorables',
+                'projets mémorables.',
                 2000,
               ]}
               wrapper="span"
