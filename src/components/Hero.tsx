@@ -45,7 +45,7 @@ export const Hero = () => {
             <span>Des parcours interactifs pour des </span>
             <TypeAnimation
               sequence={[
-                "experiences engageantes.",
+                "expériences engageantes.",
                 1500,
                 "compétences boostées.",
                 1500,
@@ -65,7 +65,8 @@ export const Hero = () => {
           <Button
             onClick={() => scrollToSection("about")}
             size="lg"
-            className="bg-white text-black hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-lg px-8 py-6 h-auto font-telegraph"
+            className="bg-white text-black hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-lg px-8 py-6 h-auto font-telegraph mt-16" 
+            // Augmentation de la marge supérieure
           >
             J'en apprends plus !
           </Button>
