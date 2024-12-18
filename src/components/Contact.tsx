@@ -1,7 +1,7 @@
 import { Button } from "./ui/button";
 import { Facebook, Instagram, Twitter } from "lucide-react";
 
-export const About = () => {
+export const Contact = () => {
   return (
     <>
       {/* Section Qui sommes-nous */}
@@ -19,8 +19,8 @@ export const About = () => {
 
       {/* Section Contactez-nous */}
       <section
-        className="relative py-16 px-4" // Réduction de l'espacement
-        style={{ backgroundColor: "#182234" }} // Fond uniforme en #182234
+        className="relative py-16 px-4"
+        style={{ backgroundColor: "#182234" }}
       >
         <div className="max-w-7xl mx-auto">
           <div className="space-y-6 animate-fadeIn text-center">
