@@ -3,12 +3,15 @@ import { TypeAnimation } from "react-type-animation";
 
 export const Hero = () => {
   const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    const target = document.getElementById(id);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
     <section
-      className="min-h-screen flex flex-col justify-between relative overflow-hidden"
+      className="min-h-screen flex flex-col relative overflow-hidden"
       style={{ backgroundColor: "#182234" }}
     >
       {/* Barre de navigation */}
@@ -21,7 +24,7 @@ export const Hero = () => {
             Qui sommes-nous
           </button>
           <button
-            onClick={() => scrollToSection("offers")}
+            onClick={() => scrollToSection("pricing")} // Redirection vers les offres
             className="text-white text-lg font-bold hover:text-[#71c088] transition duration-300"
           >
             Nos offres
@@ -41,7 +44,7 @@ export const Hero = () => {
           <h1 className="text-6xl md:text-7xl font-bold text-white mb-4 font-telegraph">
             Manamind
           </h1>
-          <div className="text-3xl md:text-4xl text-white/90 leading-relaxed font-telegraph mb-8">
+          <div className="text-3xl md:text-4xl text-white/90 leading-relaxed font-telegraph mb-12">
             <span>Des parcours interactifs pour des </span>
             <TypeAnimation
               sequence={[
@@ -62,18 +65,14 @@ export const Hero = () => {
               cursor={true}
             />
           </div>
+          <Button
+            onClick={() => scrollToSection("about")}
+            size="lg"
+            className="bg-white text-black hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-lg px-8 py-6 h-auto font-telegraph mt-24"
+          >
+            J'en apprends plus !
+          </Button>
         </div>
-      </div>
-
-      {/* Bouton fixe en bas */}
-      <div className="w-full flex justify-center pb-12">
-        <Button
-          onClick={() => scrollToSection("about")}
-          size="lg"
-          className="bg-white text-black hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-lg px-8 py-6 h-auto font-telegraph"
-        >
-          J'en apprends plus !
-        </Button>
       </div>
     </section>
   );
