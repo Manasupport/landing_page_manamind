@@ -92,8 +92,6 @@ export const Pricing = () => {
 
     if (title === "Essential") {
       price = numericPrice * essentialCourses[0];
-    } else if (title === "Professional") {
-      price = numericPrice;
     }
 
     if (isAnnual) {
@@ -109,11 +107,6 @@ export const Pricing = () => {
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-slate-800">
           Découvrez nos offres
         </h2>
-        <p className="text-center text-slate-600 mb-6 max-w-2xl mx-auto">
-          Choisissez l'offre qui correspond le mieux à vos besoins et commencez à transformer
-          l'apprentissage dans votre organisation.
-        </p>
-
         <div className="flex items-center justify-center gap-4 mb-12">
           <Label htmlFor="pricing-toggle" className={!isAnnual ? "font-bold" : ""}>
             Mensuel
@@ -133,7 +126,7 @@ export const Pricing = () => {
               onSubscribe={() => handleSubscribe(plan.title)}
             >
               {plan.title === "Essential" && (
-                <div className="flex flex-col items-center mt-4">
+                <div className="flex flex-col items-center mb-6">
                   <Label className="text-sm text-gray-600 mb-2">
                     Nombre de parcours ({essentialCourses[0]})
                   </Label>
@@ -143,7 +136,7 @@ export const Pricing = () => {
                     max={5}
                     min={1}
                     step={1}
-                    className="w-full"
+                    className="w-3/4"
                   />
                 </div>
               )}

@@ -14,6 +14,7 @@ interface PricingCardProps {
   buttonText: string;
   popular?: boolean;
   onSubscribe: () => void;
+  children?: React.ReactNode; // Ajout pour intégrer du contenu dynamique (curseur)
 }
 
 export const PricingCard = ({
@@ -24,6 +25,7 @@ export const PricingCard = ({
   buttonText,
   popular,
   onSubscribe,
+  children,
 }: PricingCardProps) => {
   return (
     <Card
@@ -42,6 +44,10 @@ export const PricingCard = ({
       </CardHeader>
       <CardContent>
         <p className="text-gray-600 mb-6">{description}</p>
+        
+        {/* Contenu dynamique */}
+        {children}
+
         <ul className="space-y-3 mb-6">
           {features.map((feature, index) => (
             <li key={index} className="flex items-center space-x-3">
@@ -58,6 +64,7 @@ export const PricingCard = ({
             </li>
           ))}
         </ul>
+        
         <Button
           onClick={onSubscribe}
           className={`w-full ${
