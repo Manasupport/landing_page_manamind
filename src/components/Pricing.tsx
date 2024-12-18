@@ -1,11 +1,14 @@
 import { PricingCard } from "./PricingCard";
 import { toast } from "./ui/use-toast";
 import { useNavigate } from "react-router-dom";
+import { Switch } from "./ui/switch";
+import { useState } from "react";
+import { Label } from "./ui/label";
 
-const pricingData = [
+const basePricingData = [
   {
     title: "Starter",
-    price: "0 €",
+    monthlyPrice: "0 €",
     description: "Parfait pour commencer",
     features: [
       { text: "1 parcours", included: true },
@@ -18,7 +21,7 @@ const pricingData = [
   },
   {
     title: "Essential",
-    price: "10 € / mois / parcours",
+    monthlyPrice: "10 €",
     description: "Pour les professeurs",
     features: [
       { text: "1 à 5 parcours simultanés", included: true },
@@ -32,7 +35,7 @@ const pricingData = [
   },
   {
     title: "Professional",
-    price: "130 € / mois",
+    monthlyPrice: "130 €",
     description: "Solution complète pour directeur de master",
     features: [
       { text: "Jusqu'à 15 parcours simultanés", included: true },
@@ -45,7 +48,7 @@ const pricingData = [
   },
   {
     title: "Institution",
-    price: "Modulable",
+    monthlyPrice: "Modulable",
     description: "Solution sur mesure",
     features: [
       { text: "100% modulable", included: true },
@@ -60,6 +63,7 @@ const pricingData = [
 
 export const Pricing = () => {
   const navigate = useNavigate();
+  const [isAnnual, setIsAnnual] = useState(false);
 
   const handleSubscribe = (plan: string) => {
     if (plan === "Starter") {
@@ -74,9 +78,16 @@ export const Pricing = () => {
         title: "Paiement",
         description: "Redirection vers la page de paiement...",
       });
-      // After successful payment, redirect to /success
-      // This should be handled in your payment flow
     }
+  };
+
+  const getPriceDisplay = (monthlyPrice: string) => {
+    if (monthlyPrice === "Modulable" || monthlyPrice === "0 €") return monthlyPrice;
+    const numericPrice = parseInt(monthlyPrice);
+    if (isNaN(numericPrice)) return monthlyPrice;
+    
+    const price = isAnnual ? numericPrice * 12 * 0.9 : numericPrice;
+    return `${price} € / ${isAnnual ? 'an' : 'mois'}${!isAnnual ? ' / parcours' : ''}`;
   };
 
   return (
@@ -85,15 +96,29 @@ export const Pricing = () => {
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-slate-800">
           Découvrez nos offres
         </h2>
-        <p className="text-center text-slate-600 mb-12 max-w-2xl mx-auto">
+        <p className="text-center text-slate-600 mb-6 max-w-2xl mx-auto">
           Choisissez l'offre qui correspond le mieux à vos besoins et commencez à transformer
           l'apprentissage dans votre organisation.
         </p>
+        
+        <div className="flex items-center justify-center gap-4 mb-12">
+          <Label htmlFor="pricing-toggle" className={!isAnnual ? "font-bold" : ""}>Mensuel</Label>
+          <Switch
+            id="pricing-toggle"
+            checked={isAnnual}
+            onCheckedChange={setIsAnnual}
+          />
+          <Label htmlFor="pricing-toggle" className={isAnnual ? "font-bold" : ""}>
+            Annuel (-10%)
+          </Label>
+        </div>
+
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {pricingData.map((plan) => (
+          {basePricingData.map((plan) => (
             <PricingCard
               key={plan.title}
               {...plan}
+              price={getPriceDisplay(plan.monthlyPrice)}
               onSubscribe={() => handleSubscribe(plan.title)}
             />
           ))}

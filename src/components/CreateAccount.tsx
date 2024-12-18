@@ -5,8 +5,10 @@ import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Label } from "./ui/label";
 import { toast } from "./ui/use-toast";
 import { GraduationCap, BookOpen, User, Home } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export const CreateAccount = () => {
+  const navigate = useNavigate();
   const [accountType, setAccountType] = useState("");
   const [formData, setFormData] = useState({
     firstName: "",
@@ -32,10 +34,21 @@ export const CreateAccount = () => {
       return;
     }
     
+    if (!formData.firstName || !formData.lastName || !formData.email) {
+      toast({
+        title: "Champs requis",
+        description: "Veuillez remplir tous les champs",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     toast({
       title: "Compte créé avec succès",
       description: "Vous allez être redirigé vers la page d'accueil",
     });
+    
+    navigate("/success");
   };
 
   return (
@@ -120,8 +133,8 @@ export const CreateAccount = () => {
                   htmlFor={id}
                   className="flex flex-col items-center justify-center p-4 bg-manamind/20 hover:bg-manamind/30 rounded-lg cursor-pointer transition-all peer-checked:bg-manamind peer-checked:text-black"
                 >
-                  <Icon className="h-12 w-12 mb-2" />
-                  <span className="text-center font-medium">{id}</span>
+                  <Icon className="h-12 w-12 mb-2 text-white peer-checked:text-black" />
+                  <span className="text-center font-medium text-white peer-checked:text-black">{id}</span>
                 </Label>
               </div>
             ))}

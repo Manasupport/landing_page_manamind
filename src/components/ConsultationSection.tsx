@@ -2,25 +2,27 @@ import { Button } from "./ui/button";
 
 export const ConsultationSection = () => {
   return (
-    <section className="bg-black text-white py-12 px-4">
+    <section className="py-20 px-4 bg-gradient-to-br from-slate-50 to-white">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row items-center gap-8 p-6 rounded-xl">
-          <div className="flex-shrink-0">
+        <div className="flex flex-col md:flex-row items-center gap-8">
+          <div className="w-full md:w-1/2">
             <img
-              src="/lovable-uploads/d1cbed4e-b6fa-4d42-8080-b8b3867786c7.png"
-              alt="Yanis"
-              className="w-24 h-24 rounded-full object-cover"
+              src="/lovable-uploads/96007a48-77b2-49ce-88fc-5555726c80c5.png"
+              alt="Yanis from Manamind"
+              className="rounded-full w-48 h-48 object-cover mx-auto md:mx-0"
             />
           </div>
-          <div className="flex-grow space-y-4">
-            <h3 className="text-2xl font-bold">Besoin d'aide pour choisir votre offre ?</h3>
-            <p className="text-gray-300 max-w-3xl">
-              Hello, c'est Yanis, Growth Hacker chez Mana. Discutons ensemble pour explorer vos besoins, répondre à vos questions et vous aider à choisir l'offre idéale. Notre consultation rapide et gratuite est adaptée à vos objectifs – sans aucune obligation !
+          <div className="w-full md:w-1/2 space-y-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
+              Besoin d'aide pour choisir votre offre ?
+            </h2>
+            <p className="text-lg text-slate-600">
+              Réservez un point avec Yanis pour discuter de vos besoins et trouver l'offre qui vous correspond le mieux.
             </p>
-          </div>
-          <div className="flex-shrink-0">
             <Button
-              className="bg-white text-black hover:bg-gray-100 px-6 py-3 rounded-full font-medium"
+              size="lg"
+              className="bg-manamind hover:bg-manamind/90"
+              onClick={() => window.open('https://calendar.app.google/8PzSHhTa8sLE9XWf7', '_blank')}
             >
               Je réserve un point
             </Button>

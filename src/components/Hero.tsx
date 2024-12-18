@@ -14,20 +14,20 @@ export const Hero = () => {
           <h1 className="text-6xl md:text-7xl font-bold text-white mb-4 font-telegraph">
             Manamind
           </h1>
-          <div className="text-3xl md:text-4xl text-white leading-relaxed font-telegraph opacity-90 mb-8">
+          <div className="text-3xl md:text-4xl text-white/90 leading-relaxed font-telegraph mb-8">
             <span>Des parcours interactifs pour des </span>
             <TypeAnimation
               sequence={[
                 'recrutements mémorables.',
-                2000,
+                1500,
                 'formations mémorables.',
-                2000,
+                1500,
                 'projets mémorables.',
-                2000,
+                1500,
               ]}
               wrapper="span"
-              speed={50}
-              className="font-bold text-white"
+              speed={40}
+              className="font-bold text-[#33C3F0]"
               repeat={Infinity}
               cursor={true}
             />
