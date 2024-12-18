@@ -1,4 +1,5 @@
 import { Button } from "./ui/button";
+import { TypeAnimation } from 'react-type-animation';
 
 export const Hero = () => {
   const scrollToAbout = () => {
@@ -13,9 +14,24 @@ export const Hero = () => {
           <h1 className="text-6xl md:text-7xl font-bold text-white mb-4 font-telegraph">
             Manamind
           </h1>
-          <p className="text-3xl md:text-4xl text-white leading-relaxed font-telegraph opacity-90 mb-8">
-            L'expérience d'apprentissage innovante qui booste l'engagement et les compétences
-          </p>
+          <div className="text-3xl md:text-4xl text-white leading-relaxed font-telegraph opacity-90 mb-8">
+            <span>Des parcours interactifs pour des </span>
+            <TypeAnimation
+              sequence={[
+                'recrutements mémorables',
+                2000,
+                'formations mémorables',
+                2000,
+                'projets mémorables',
+                2000,
+              ]}
+              wrapper="span"
+              speed={50}
+              className="font-bold text-white"
+              repeat={Infinity}
+              cursor={true}
+            />
+          </div>
           <Button
             onClick={scrollToAbout}
             size="lg"
