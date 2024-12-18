@@ -45,11 +45,13 @@ export const Hero = () => {
             <span>Des parcours interactifs pour des </span>
             <TypeAnimation
               sequence={[
-                "rc mémorables.",
+                "experiences engageantes.",
                 1500,
-                "formations mémorables.",
+                "compétences boostées.",
                 1500,
                 "projets mémorables.",
+                1500,
+                "formations ludique.",
                 1500,
               ]}
               wrapper="span"
