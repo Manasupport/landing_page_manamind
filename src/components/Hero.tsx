@@ -51,7 +51,7 @@ export const Hero = () => {
                 1500,
                 "projets mémorables.",
                 1500,
-                "formations ludique.",
+                "formations ludiques.",
                 1500,
               ]}
               wrapper="span"
