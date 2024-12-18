@@ -45,7 +45,7 @@ export const Hero = () => {
               sequence={[
                 "compétences boostées.",
                 1500,
-                "experiences engageante.",
+                "experiences engageantes.",
                 1500,
                 "projets mémorables.",
                 1500,
