@@ -11,23 +11,23 @@ export const Hero = () => {
       className="min-h-screen flex flex-col relative overflow-hidden"
       style={{ backgroundColor: "#182234" }}
     >
-      {/* Barre de navigation centrée */}
-      <nav className="absolute top-6 left-1/2 transform -translate-x-1/2 flex space-x-12">
+      {/* Barre de navigation */}
+      <nav className="w-full py-4 px-8 bg-[#182234] flex justify-end space-x-6">
         <button
           onClick={() => scrollToSection("about")}
-          className="text-[#71c088] text-lg font-bold hover:underline transition-all duration-300"
+          className="text-white text-sm hover:underline"
         >
           Qui sommes-nous
         </button>
         <button
           onClick={() => scrollToSection("offers")}
-          className="text-[#71c088] text-lg font-bold hover:underline transition-all duration-300"
+          className="text-white text-sm hover:underline"
         >
           Nos offres
         </button>
         <button
           onClick={() => scrollToSection("contact")}
-          className="text-[#71c088] text-lg font-bold hover:underline transition-all duration-300"
+          className="text-white text-sm hover:underline"
         >
           Contactez-nous
         </button>
@@ -40,16 +40,14 @@ export const Hero = () => {
             Manamind
           </h1>
           <div className="text-3xl md:text-4xl text-white/90 leading-relaxed font-telegraph mb-8">
-            <span>Des parcours d'apprentissage sur mesure pour des </span>
+            <span>Des parcours interactifs pour des </span>
             <TypeAnimation
               sequence={[
-                "compétences boostées.",
+                "recrutements mémorables.",
                 1500,
-                "experiences engageantes.",
+                "formations mémorables.",
                 1500,
                 "projets mémorables.",
-                1500,
-                "formation intéractives.",
                 1500,
               ]}
               wrapper="span"
