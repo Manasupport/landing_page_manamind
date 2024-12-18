@@ -2,7 +2,10 @@ import { Button } from "./ui/button";
 
 export const ConsultationSection = () => {
   return (
-    <section className="py-20 px-4 bg-gradient-to-br from-slate-50 to-white">
+    <section
+      id="help-offer" // Ajout de l'ID pour redirection
+      className="py-20 px-4 bg-gradient-to-br from-slate-50 to-white"
+    >
       <div className="max-w-6xl mx-auto flex flex-col items-center text-center md:text-left md:flex-row md:items-center gap-12">
         {/* Image centrée */}
         <div className="flex-shrink-0">
