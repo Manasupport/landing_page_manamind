@@ -28,7 +28,7 @@ export const Contact = () => {
               variant="ghost"
               size="icon"
               className="hover:bg-black/10"
-              onClick={() => window.open("https://instagram.com/manamind", "_blank")}
+              onClick={() => window.open("https://instagram.com/manadvise", "_blank")}
             >
               <Instagram className="h-6 w-6" />
             </Button>
