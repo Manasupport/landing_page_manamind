@@ -12,28 +12,28 @@ export const Hero = () => {
       style={{ backgroundColor: "#182234" }}
     >
       {/* Barre de navigation centrée */}
-      <nav className="absolute top-8 left-1/2 transform -translate-x-1/2 w-full flex justify-center space-x-12">
+      <nav className="absolute top-6 left-1/2 transform -translate-x-1/2 flex space-x-12">
         <button
           onClick={() => scrollToSection("about")}
-          className="text-white text-lg font-bold hover:text-[#71c088] transition duration-300"
+          className="text-[#71c088] text-lg font-bold hover:underline transition-all duration-300"
         >
           Qui sommes-nous
         </button>
         <button
           onClick={() => scrollToSection("offers")}
-          className="text-white text-lg font-bold hover:text-[#71c088] transition duration-300"
+          className="text-[#71c088] text-lg font-bold hover:underline transition-all duration-300"
         >
           Nos offres
         </button>
         <button
           onClick={() => scrollToSection("contact")}
-          className="text-white text-lg font-bold hover:text-[#71c088] transition duration-300"
+          className="text-[#71c088] text-lg font-bold hover:underline transition-all duration-300"
         >
           Contactez-nous
         </button>
       </nav>
 
-      {/* Contenu principal */}
+      {/* Contenu principal de Hero Page */}
       <div className="container mx-auto px-4 flex-1 flex items-center justify-center">
         <div className="max-w-3xl mx-auto text-center space-y-8 animate-fadeIn">
           <h1 className="text-6xl md:text-7xl font-bold text-white mb-4 font-telegraph">
