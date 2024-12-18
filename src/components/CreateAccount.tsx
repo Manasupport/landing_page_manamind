@@ -18,9 +18,9 @@ export const CreateAccount = () => {
 
   const accountTypes = [
     { id: "Professeur permanent", icon: GraduationCap },
-    { id: "Institution", icon: Home },
     { id: "Professeur vacataire", icon: User },
     { id: "Directeur de Master", icon: BookOpen },
+    { id: "Institution", icon: Home },
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -33,7 +33,7 @@ export const CreateAccount = () => {
       });
       return;
     }
-    
+
     if (!formData.firstName || !formData.lastName || !formData.email) {
       toast({
         title: "Champs requis",
@@ -42,99 +42,126 @@ export const CreateAccount = () => {
       });
       return;
     }
-    
+
     toast({
       title: "Compte créé avec succès",
       description: "Vous allez être redirigé vers la page d'accueil",
     });
-    
+
     navigate("/success");
   };
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
-      <div className="w-full md:w-1/2 bg-[#71C088] p-8 md:p-12 flex items-center justify-center">
+      {/* Section Formulaire */}
+      <div
+        className="w-full md:w-1/2 p-8 md:p-12 flex items-center justify-center"
+        style={{ backgroundColor: "#182234" }}
+      >
         <form onSubmit={handleSubmit} className="w-full max-w-md space-y-8">
-          <h2 className="text-4xl font-bold text-black mb-12">Créez et animez vos parcours</h2>
-          
+          <h2 className="text-4xl font-bold text-white mb-8">
+            Créez et animez vos parcours
+          </h2>
+
           <div className="space-y-6">
             <div>
-              <Label htmlFor="lastName" className="text-black text-lg uppercase">
+              <Label
+                htmlFor="lastName"
+                className="text-white text-sm uppercase tracking-wide"
+              >
                 Nom
               </Label>
               <Input
                 id="lastName"
                 value={formData.lastName}
-                onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, lastName: e.target.value })
+                }
                 required
-                className="bg-white/90 backdrop-blur-sm border-0 h-12 text-lg"
-                placeholder="OTMANI"
+                className="bg-white/90 backdrop-blur-sm border-b border-gray-300 h-12 text-lg"
+                placeholder="Otmany"
               />
             </div>
-            
+
             <div>
-              <Label htmlFor="firstName" className="text-black text-lg uppercase">
+              <Label
+                htmlFor="firstName"
+                className="text-white text-sm uppercase tracking-wide"
+              >
                 Prénom
               </Label>
               <Input
                 id="firstName"
                 value={formData.firstName}
-                onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, firstName: e.target.value })
+                }
                 required
-                className="bg-white/90 backdrop-blur-sm border-0 h-12 text-lg"
+                className="bg-white/90 backdrop-blur-sm border-b border-gray-300 h-12 text-lg"
                 placeholder="Yanis"
               />
             </div>
-            
+
             <div>
-              <Label htmlFor="email" className="text-black text-lg uppercase">
+              <Label
+                htmlFor="email"
+                className="text-white text-sm uppercase tracking-wide"
+              >
                 Email
               </Label>
               <Input
                 id="email"
                 type="email"
                 value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
                 required
-                className="bg-white/90 backdrop-blur-sm border-0 h-12 text-lg"
+                className="bg-white/90 backdrop-blur-sm border-b border-gray-300 h-12 text-lg"
                 placeholder="hello@reallygreatsite.com"
               />
             </div>
           </div>
 
-          <Button type="submit" className="w-full bg-white text-black hover:bg-gray-100 h-12 text-lg font-bold">
+          <Button
+            type="submit"
+            className="w-full bg-white text-black hover:bg-gray-100 h-12 text-lg font-bold"
+          >
             Je crée mon compte
           </Button>
+
+          {/* Ligne ajoutée */}
+          <div className="text-center mt-4 text-white text-sm">
+            <a
+              href="https://app.manamind.fr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline"
+            >
+              J'ai déjà un compte, je me connecte
+            </a>
+          </div>
         </form>
       </div>
 
-      <div
-        className="w-full md:w-1/2 p-8 md:p-12 flex items-center justify-center"
-        style={{ backgroundColor: "#182234" }} // Fond changé en #182234
-      >
+      {/* Section Sélection Type Compte */}
+      <div className="w-full md:w-1/2 bg-black p-8 md:p-12 flex items-center justify-center">
         <div className="w-full max-w-md">
-          <h2 className="text-4xl font-bold text-white mb-12">
+          <h2 className="text-4xl font-bold text-white mb-8">
             Choisis le type de compte qui te correspond
           </h2>
-          
+
           <RadioGroup
             value={accountType}
             onValueChange={setAccountType}
             className="grid grid-cols-2 gap-4"
           >
             {accountTypes.map(({ id, icon: Icon }) => (
-              <div
-                key={id}
-                className="relative"
-              >
-                <RadioGroupItem
-                  value={id}
-                  id={id}
-                  className="peer sr-only"
-                />
+              <div key={id} className="relative">
+                <RadioGroupItem value={id} id={id} className="peer sr-only" />
                 <Label
                   htmlFor={id}
-                  className="flex flex-col items-center justify-center p-4 bg-white/10 hover:bg-white/20 rounded-lg cursor-pointer transition-all peer-checked:bg-[#71C088] peer-checked:text-black"
+                  className="flex flex-col items-center justify-center p-4 bg-white/10 hover:bg-white/20 rounded-lg cursor-pointer transition-all peer-checked:bg-manamind peer-checked:text-black"
                 >
                   <Icon className="h-12 w-12 mb-2 text-white peer-checked:text-black" />
                   <span className="text-center font-medium text-white peer-checked:text-black">
