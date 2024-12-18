@@ -7,20 +7,24 @@ export const About = () => {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const item = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 }
+    show: { opacity: 1, y: 0 },
   };
 
   return (
-    <section id="about" className="py-20 px-4 bg-gradient-to-br from-slate-900 to-slate-800">
+    <section
+      id="about"
+      className="py-20 px-4"
+      style={{ backgroundColor: "#182234" }} // Couleur de fond uniforme
+    >
       <div className="max-w-6xl mx-auto">
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -28,13 +32,16 @@ export const About = () => {
         >
           À propos de Manamind
         </motion.h2>
-        <motion.div 
+        <motion.div
           variants={container}
           initial="hidden"
           whileInView="show"
           className="grid md:grid-cols-2 gap-16 items-start"
         >
-          <motion.div variants={item} className="space-y-8 bg-white/5 p-8 rounded-2xl backdrop-blur-sm">
+          <motion.div
+            variants={item}
+            className="space-y-8 bg-white/5 p-8 rounded-2xl backdrop-blur-sm"
+          >
             <h3 className="text-3xl font-semibold text-manamind font-telegraph">Notre Mission</h3>
             <p className="text-gray-300 leading-relaxed text-lg font-telegraph">
               Manamind s'engage à transformer l'apprentissage en entreprise en créant des expériences
