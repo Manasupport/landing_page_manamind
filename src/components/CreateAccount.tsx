@@ -17,10 +17,10 @@ export const CreateAccount = () => {
   });
 
   const accountTypes = [
-    { id: "Enseignant", icon: GraduationCap },
+    { id: "Professeur permanent", icon: GraduationCap },
+    { id: "Institution", icon: Home },
+    { id: "Professeur vacataire", icon: User },
     { id: "Directeur de Master", icon: BookOpen },
-    { id: "Étudiant", icon: User },
-    { id: "Famille", icon: Home },
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -53,7 +53,7 @@ export const CreateAccount = () => {
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
-      <div className="w-full md:w-1/2 bg-manamind p-8 md:p-12 flex items-center justify-center">
+      <div className="w-full md:w-1/2 bg-[#71C088] p-8 md:p-12 flex items-center justify-center">
         <form onSubmit={handleSubmit} className="w-full max-w-md space-y-8">
           <h2 className="text-4xl font-bold text-black mb-12">Créez et animez vos parcours</h2>
           
@@ -102,13 +102,16 @@ export const CreateAccount = () => {
             </div>
           </div>
 
-          <Button type="submit" className="w-full bg-white text-black hover:bg-gray-100 h-12 text-lg font-medium">
+          <Button type="submit" className="w-full bg-white text-black hover:bg-gray-100 h-12 text-lg font-bold">
             Je crée mon compte
           </Button>
         </form>
       </div>
 
-      <div className="w-full md:w-1/2 bg-black p-8 md:p-12 flex items-center justify-center">
+      <div
+        className="w-full md:w-1/2 p-8 md:p-12 flex items-center justify-center"
+        style={{ backgroundColor: "#182234" }} // Fond changé en #182234
+      >
         <div className="w-full max-w-md">
           <h2 className="text-4xl font-bold text-white mb-12">
             Choisis le type de compte qui te correspond
@@ -131,10 +134,12 @@ export const CreateAccount = () => {
                 />
                 <Label
                   htmlFor={id}
-                  className="flex flex-col items-center justify-center p-4 bg-white/10 hover:bg-white/20 rounded-lg cursor-pointer transition-all peer-checked:bg-manamind peer-checked:text-black"
+                  className="flex flex-col items-center justify-center p-4 bg-white/10 hover:bg-white/20 rounded-lg cursor-pointer transition-all peer-checked:bg-[#71C088] peer-checked:text-black"
                 >
                   <Icon className="h-12 w-12 mb-2 text-white peer-checked:text-black" />
-                  <span className="text-center font-medium text-white peer-checked:text-black">{id}</span>
+                  <span className="text-center font-medium text-white peer-checked:text-black">
+                    {id}
+                  </span>
                 </Label>
               </div>
             ))}
