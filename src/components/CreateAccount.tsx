@@ -16,11 +16,12 @@ export const CreateAccount = () => {
     email: "",
   });
 
+  // Inversion des positions : Institution & Directeur de Master
   const accountTypes = [
     { id: "Professeur permanent", icon: GraduationCap },
     { id: "Professeur vacataire", icon: User },
-    { id: "Directeur de Master", icon: BookOpen },
     { id: "Institution", icon: Home },
+    { id: "Directeur de Master", icon: BookOpen },
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -56,7 +57,7 @@ export const CreateAccount = () => {
       {/* Section Formulaire */}
       <div
         className="w-full md:w-1/2 p-8 md:p-12 flex items-center justify-center"
-        style={{ backgroundColor: "#182234" }}
+        style={{ backgroundColor: "#71c088" }}
       >
         <form onSubmit={handleSubmit} className="w-full max-w-md space-y-8">
           <h2 className="text-4xl font-bold text-white mb-8">
@@ -67,7 +68,7 @@ export const CreateAccount = () => {
             <div>
               <Label
                 htmlFor="lastName"
-                className="text-white text-sm uppercase tracking-wide"
+                className="text-white text-xs capitalize"
               >
                 Nom
               </Label>
@@ -78,7 +79,7 @@ export const CreateAccount = () => {
                   setFormData({ ...formData, lastName: e.target.value })
                 }
                 required
-                className="bg-white/90 backdrop-blur-sm border-b border-gray-300 h-12 text-lg"
+                className="bg-white/90 backdrop-blur-sm border-b border-gray-300 h-12 text-sm"
                 placeholder="Otmany"
               />
             </div>
@@ -86,7 +87,7 @@ export const CreateAccount = () => {
             <div>
               <Label
                 htmlFor="firstName"
-                className="text-white text-sm uppercase tracking-wide"
+                className="text-white text-xs capitalize"
               >
                 Prénom
               </Label>
@@ -97,7 +98,7 @@ export const CreateAccount = () => {
                   setFormData({ ...formData, firstName: e.target.value })
                 }
                 required
-                className="bg-white/90 backdrop-blur-sm border-b border-gray-300 h-12 text-lg"
+                className="bg-white/90 backdrop-blur-sm border-b border-gray-300 h-12 text-sm"
                 placeholder="Yanis"
               />
             </div>
@@ -105,7 +106,7 @@ export const CreateAccount = () => {
             <div>
               <Label
                 htmlFor="email"
-                className="text-white text-sm uppercase tracking-wide"
+                className="text-white text-xs capitalize"
               >
                 Email
               </Label>
@@ -117,7 +118,7 @@ export const CreateAccount = () => {
                   setFormData({ ...formData, email: e.target.value })
                 }
                 required
-                className="bg-white/90 backdrop-blur-sm border-b border-gray-300 h-12 text-lg"
+                className="bg-white/90 backdrop-blur-sm border-b border-gray-300 h-12 text-sm"
                 placeholder="hello@reallygreatsite.com"
               />
             </div>
@@ -145,7 +146,10 @@ export const CreateAccount = () => {
       </div>
 
       {/* Section Sélection Type Compte */}
-      <div className="w-full md:w-1/2 bg-black p-8 md:p-12 flex items-center justify-center">
+      <div
+        className="w-full md:w-1/2 p-8 md:p-12 flex items-center justify-center"
+        style={{ backgroundColor: "#182234" }}
+      >
         <div className="w-full max-w-md">
           <h2 className="text-4xl font-bold text-white mb-8">
             Choisis le type de compte qui te correspond
