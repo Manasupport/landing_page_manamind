@@ -8,7 +8,7 @@ const pricingData = [
     price: "0 €",
     description: "Parfait pour commencer",
     features: [
-      { text: "1 parcours simultané", included: true },
+      { text: "1 parcours", included: true },
       { text: "Jusqu'à 50 joueurs", included: true },
       { text: "Fonctionnalités d'édition et d'exécution", included: true },
       { text: "Centre de ressources générique", included: true },
