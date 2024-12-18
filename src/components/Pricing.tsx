@@ -87,23 +87,20 @@ export const Pricing = () => {
     if (monthlyPrice === "Modulable" || monthlyPrice === "0 €") return monthlyPrice;
     const numericPrice = parseInt(monthlyPrice);
     if (isNaN(numericPrice)) return monthlyPrice;
-    
+
     let price = numericPrice;
 
-    // Logique pour "Essential" : multiplier par le nombre de parcours
     if (title === "Essential") {
       price = numericPrice * essentialCourses[0];
-    } 
-    // Logique pour "Professional" : prix fixe
-    else if (title === "Professional") {
-      price = numericPrice; // Prix fixe, pas par parcours
+    } else if (title === "Professional") {
+      price = numericPrice;
     }
 
     if (isAnnual) {
-      price = price * 12 * 0.9; // Réduction annuelle
+      price = price * 12 * 0.9;
     }
 
-    return `${price} € / ${isAnnual ? 'an' : 'mois'}${!isAnnual && title === "Essential" ? ' / parcours' : ''}`;
+    return `${price} € / ${isAnnual ? "an" : "mois"}${!isAnnual && title === "Essential" ? " / parcours" : ""}`;
   };
 
   return (
@@ -116,14 +113,12 @@ export const Pricing = () => {
           Choisissez l'offre qui correspond le mieux à vos besoins et commencez à transformer
           l'apprentissage dans votre organisation.
         </p>
-        
+
         <div className="flex items-center justify-center gap-4 mb-12">
-          <Label htmlFor="pricing-toggle" className={!isAnnual ? "font-bold" : ""}>Mensuel</Label>
-          <Switch
-            id="pricing-toggle"
-            checked={isAnnual}
-            onCheckedChange={setIsAnnual}
-          />
+          <Label htmlFor="pricing-toggle" className={!isAnnual ? "font-bold" : ""}>
+            Mensuel
+          </Label>
+          <Switch id="pricing-toggle" checked={isAnnual} onCheckedChange={setIsAnnual} />
           <Label htmlFor="pricing-toggle" className={isAnnual ? "font-bold" : ""}>
             Annuel (-10%)
           </Label>
@@ -131,10 +126,15 @@ export const Pricing = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {basePricingData.map((plan) => (
-            <div key={plan.title} className="space-y-4">
+            <PricingCard
+              key={plan.title}
+              {...plan}
+              price={getPriceDisplay(plan.monthlyPrice, plan.title)}
+              onSubscribe={() => handleSubscribe(plan.title)}
+            >
               {plan.title === "Essential" && (
-                <div className="px-4 py-2 bg-white rounded-lg shadow-sm">
-                  <Label className="text-sm text-gray-600 mb-2 block">
+                <div className="flex flex-col items-center mt-4">
+                  <Label className="text-sm text-gray-600 mb-2">
                     Nombre de parcours ({essentialCourses[0]})
                   </Label>
                   <Slider
@@ -147,12 +147,7 @@ export const Pricing = () => {
                   />
                 </div>
               )}
-              <PricingCard
-                {...plan}
-                price={getPriceDisplay(plan.monthlyPrice, plan.title)}
-                onSubscribe={() => handleSubscribe(plan.title)}
-              />
-            </div>
+            </PricingCard>
           ))}
         </div>
       </div>
