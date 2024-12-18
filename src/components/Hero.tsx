@@ -41,7 +41,9 @@ export const Hero = () => {
           <h1 className="text-6xl md:text-7xl font-bold text-white mb-4 font-telegraph">
             Manamind
           </h1>
-          <div className="text-3xl md:text-4xl text-white/90 leading-relaxed font-telegraph mb-12">
+
+          {/* Texte dynamique avec hauteur fixe */}
+          <div className="text-3xl md:text-4xl text-white/90 leading-relaxed font-telegraph mb-16 min-h-[3.5rem]">
             <span>Des parcours interactifs pour des </span>
             <TypeAnimation
               sequence={[
@@ -62,10 +64,12 @@ export const Hero = () => {
               cursor={true}
             />
           </div>
+
+          {/* Bouton fixe */}
           <Button
             onClick={() => scrollToSection("about")}
             size="lg"
-            className="bg-white text-black hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-lg px-8 py-6 h-auto font-telegraph mt-24" 
+            className="bg-white text-black hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-lg px-8 py-6 h-auto font-telegraph"
           >
             J'en apprends plus !
           </Button>
