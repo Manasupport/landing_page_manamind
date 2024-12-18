@@ -7,7 +7,7 @@ export const ConsultationSection = () => {
         <div className="flex flex-col md:flex-row items-center gap-8 p-6 rounded-xl">
           <div className="flex-shrink-0">
             <img
-              src="/lovable-uploads/cdb627a7-7452-4ceb-8748-55cc8c9e90ee.png"
+              src="/lovable-uploads/d1cbed4e-b6fa-4d42-8080-b8b3867786c7.png"
               alt="Yanis"
               className="w-24 h-24 rounded-full object-cover"
             />
