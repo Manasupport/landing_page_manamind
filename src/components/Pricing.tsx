@@ -89,15 +89,21 @@ export const Pricing = () => {
     if (isNaN(numericPrice)) return monthlyPrice;
     
     let price = numericPrice;
+
+    // Logique pour "Essential" : multiplier par le nombre de parcours
     if (title === "Essential") {
       price = numericPrice * essentialCourses[0];
+    } 
+    // Logique pour "Professional" : prix fixe
+    else if (title === "Professional") {
+      price = numericPrice; // Prix fixe, pas par parcours
     }
-    
+
     if (isAnnual) {
-      price = price * 12 * 0.9;
+      price = price * 12 * 0.9; // Réduction annuelle
     }
-    
-    return `${price} € / ${isAnnual ? 'an' : 'mois'}${!isAnnual ? ' / parcours' : ''}`;
+
+    return `${price} € / ${isAnnual ? 'an' : 'mois'}${!isAnnual && title === "Essential" ? ' / parcours' : ''}`;
   };
 
   return (
