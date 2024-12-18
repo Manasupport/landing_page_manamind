@@ -18,10 +18,7 @@ export const Contact = () => {
       </section>
 
       {/* Section Contactez-nous */}
-      <section
-        className="relative py-16 px-4"
-        style={{ backgroundColor: "#182234" }}
-      >
+      <section id="contact" className="relative py-16 px-4" style={{ backgroundColor: "#182234" }}>
         <div className="max-w-7xl mx-auto">
           <div className="space-y-6 animate-fadeIn text-center">
             <h2 className="text-4xl font-bold text-white font-quattrocento">Contactez-nous</h2>
