@@ -43,7 +43,7 @@ export const Hero = () => {
             <span>Des parcours interactifs pour des </span>
             <TypeAnimation
               sequence={[
-                "recrutemts mémorables.",
+                "recrutements mémorables.",
                 1500,
                 "formations mémorables.",
                 1500,
