@@ -40,14 +40,16 @@ export const Hero = () => {
             Manamind
           </h1>
           <div className="text-3xl md:text-4xl text-white/90 leading-relaxed font-telegraph mb-8">
-            <span>Des parcours interactifs pour des </span>
+            <span>Des parcours d'apprentissage sur mesure pour des </span>
             <TypeAnimation
               sequence={[
-                "recrutements mémorables.",
+                "compétences boostées.",
                 1500,
-                "formations mémorables.",
+                "experiences engageantes.",
                 1500,
                 "projets mémorables.",
+                1500,
+                "formation intéractives.",
                 1500,
               ]}
               wrapper="span"
