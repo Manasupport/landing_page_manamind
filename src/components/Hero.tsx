@@ -12,25 +12,27 @@ export const Hero = () => {
       style={{ backgroundColor: "#182234" }}
     >
       {/* Barre de navigation */}
-      <nav className="w-full py-4 px-8 bg-[#182234] flex justify-end space-x-6">
-        <button
-          onClick={() => scrollToSection("about")}
-          className="text-white text-sm hover:underline"
-        >
-          Qui sommes-nous
-        </button>
-        <button
-          onClick={() => scrollToSection("offers")}
-          className="text-white text-sm hover:underline"
-        >
-          Nos offres
-        </button>
-        <button
-          onClick={() => scrollToSection("contact")}
-          className="text-white text-sm hover:underline"
-        >
-          Contactez-nous
-        </button>
+      <nav className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full max-w-4xl py-6">
+        <div className="flex justify-center space-x-12">
+          <button
+            onClick={() => scrollToSection("about")}
+            className="text-white text-lg font-bold hover:text-[#71c088] transition duration-300"
+          >
+            Qui sommes-nous
+          </button>
+          <button
+            onClick={() => scrollToSection("offers")}
+            className="text-white text-lg font-bold hover:text-[#71c088] transition duration-300"
+          >
+            Nos offres
+          </button>
+          <button
+            onClick={() => scrollToSection("contact")}
+            className="text-white text-lg font-bold hover:text-[#71c088] transition duration-300"
+          >
+            Contactez-nous
+          </button>
+        </div>
       </nav>
 
       {/* Contenu principal de Hero Page */}
@@ -43,7 +45,7 @@ export const Hero = () => {
             <span>Des parcours interactifs pour des </span>
             <TypeAnimation
               sequence={[
-                "recrutements mémorables.",
+                "rc mémorables.",
                 1500,
                 "formations mémorables.",
                 1500,
