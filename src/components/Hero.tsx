@@ -14,7 +14,8 @@ export const Hero = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center space-y-8 animate-fadeIn">
           <h1 className="text-6xl md:text-7xl font-bold text-white mb-4 font-telegraph">
-            Manamind
+            Mana
+            <span style={{ color: "#71c088" }}>mind</span>
           </h1>
           <div className="text-3xl md:text-4xl text-white/90 leading-relaxed font-telegraph mb-8">
             <span>Des parcours interactifs pour des </span>
@@ -38,7 +39,7 @@ export const Hero = () => {
           <Button
             onClick={scrollToAbout}
             size="lg"
-            className="bg-white text-black hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-lg px-8 py-6 h-auto font-telegraph"
+            className="bg-white text-black font-bold hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-lg px-8 py-6 h-auto font-telegraph"
           >
             J'en apprends plus !
           </Button>
