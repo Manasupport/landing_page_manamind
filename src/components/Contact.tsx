@@ -4,18 +4,7 @@ import { Facebook, Instagram, Twitter } from "lucide-react";
 export const Contact = () => {
   return (
     <>
-      {/* Section Qui sommes-nous */}
-      <section id="about" className="py-20 bg-gray-100">
-        <div className="max-w-7xl mx-auto px-4 text-center space-y-6">
-          <h2 className="text-4xl font-bold text-slate-800">Qui sommes-nous</h2>
-          <p className="text-lg text-gray-700 leading-relaxed">
-            Manamind est une plateforme innovante dédiée à la création de parcours interactifs 
-            pour répondre aux besoins de recrutement, de formation et d'intrapreneuriat. 
-            Notre mission est de transformer l'apprentissage grâce à une expérience engageante 
-            et personnalisée.
-          </p>
-        </div>
-      </section>
+      
 
       {/* Section Contactez-nous */}
       <section id="contact" className="relative py-16 px-4" style={{ backgroundColor: "#182234" }}>
