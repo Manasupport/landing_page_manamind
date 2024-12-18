@@ -7,7 +7,7 @@ export const ConsultationSection = () => {
         <div className="flex flex-col md:flex-row items-center gap-8">
           <div className="w-full md:w-1/2">
             <img
-              src="/lovable-uploads/96007a48-77b2-49ce-88fc-5555726c80c5.png"
+              src="/lovable-uploads/dd891a06-c72e-4778-bc5f-a1c07003345f.png"
               alt="Yanis from Manamind"
               className="rounded-full w-48 h-48 object-cover mx-auto md:mx-0"
             />
@@ -17,7 +17,7 @@ export const ConsultationSection = () => {
               Besoin d'aide pour choisir votre offre ?
             </h2>
             <p className="text-lg text-slate-600">
-              Réservez un point avec Yanis pour discuter de vos besoins et trouver l'offre qui vous correspond le mieux.
+              Hello, c'est Yanis, Growth Hacker chez Mana. Discutons ensemble pour explorer vos besoins, répondre à vos questions et vous aider à choisir l'offre idéale. Notre consultation rapide et gratuite est adaptée à vos objectifs – sans aucune obligation !
             </p>
             <Button
               size="lg"

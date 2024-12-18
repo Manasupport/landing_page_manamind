@@ -131,7 +131,7 @@ export const CreateAccount = () => {
                 />
                 <Label
                   htmlFor={id}
-                  className="flex flex-col items-center justify-center p-4 bg-manamind/20 hover:bg-manamind/30 rounded-lg cursor-pointer transition-all peer-checked:bg-manamind peer-checked:text-black"
+                  className="flex flex-col items-center justify-center p-4 bg-white/10 hover:bg-white/20 rounded-lg cursor-pointer transition-all peer-checked:bg-manamind peer-checked:text-black"
                 >
                   <Icon className="h-12 w-12 mb-2 text-white peer-checked:text-black" />
                   <span className="text-center font-medium text-white peer-checked:text-black">{id}</span>

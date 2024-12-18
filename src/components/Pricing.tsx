@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Switch } from "./ui/switch";
 import { useState } from "react";
 import { Label } from "./ui/label";
+import { Slider } from "./ui/slider";
 
 const basePricingData = [
   {
@@ -64,6 +65,7 @@ const basePricingData = [
 export const Pricing = () => {
   const navigate = useNavigate();
   const [isAnnual, setIsAnnual] = useState(false);
+  const [essentialCourses, setEssentialCourses] = useState([1]);
 
   const handleSubscribe = (plan: string) => {
     if (plan === "Starter") {
@@ -81,12 +83,20 @@ export const Pricing = () => {
     }
   };
 
-  const getPriceDisplay = (monthlyPrice: string) => {
+  const getPriceDisplay = (monthlyPrice: string, title: string) => {
     if (monthlyPrice === "Modulable" || monthlyPrice === "0 €") return monthlyPrice;
     const numericPrice = parseInt(monthlyPrice);
     if (isNaN(numericPrice)) return monthlyPrice;
     
-    const price = isAnnual ? numericPrice * 12 * 0.9 : numericPrice;
+    let price = numericPrice;
+    if (title === "Essential") {
+      price = numericPrice * essentialCourses[0];
+    }
+    
+    if (isAnnual) {
+      price = price * 12 * 0.9;
+    }
+    
     return `${price} € / ${isAnnual ? 'an' : 'mois'}${!isAnnual ? ' / parcours' : ''}`;
   };
 
@@ -115,12 +125,28 @@ export const Pricing = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {basePricingData.map((plan) => (
-            <PricingCard
-              key={plan.title}
-              {...plan}
-              price={getPriceDisplay(plan.monthlyPrice)}
-              onSubscribe={() => handleSubscribe(plan.title)}
-            />
+            <div key={plan.title} className="space-y-4">
+              {plan.title === "Essential" && (
+                <div className="px-4 py-2 bg-white rounded-lg shadow-sm">
+                  <Label className="text-sm text-gray-600 mb-2 block">
+                    Nombre de parcours ({essentialCourses[0]})
+                  </Label>
+                  <Slider
+                    value={essentialCourses}
+                    onValueChange={setEssentialCourses}
+                    max={5}
+                    min={1}
+                    step={1}
+                    className="w-full"
+                  />
+                </div>
+              )}
+              <PricingCard
+                {...plan}
+                price={getPriceDisplay(plan.monthlyPrice, plan.title)}
+                onSubscribe={() => handleSubscribe(plan.title)}
+              />
+            </div>
           ))}
         </div>
       </div>
