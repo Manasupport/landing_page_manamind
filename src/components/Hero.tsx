@@ -8,7 +8,7 @@ export const Hero = () => {
 
   return (
     <section className="min-h-screen flex items-center bg-manamind relative overflow-hidden">
-      <div className="absolute inset-0 bg-[#182234]"></div>
+        <div className="absolute inset-0 bg-[#182234]"></div>
         <div className="max-w-3xl mx-auto text-center space-y-8 animate-fadeIn">
           <h1 className="text-6xl md:text-7xl font-bold text-white mb-4 font-telegraph">
             Manamind
