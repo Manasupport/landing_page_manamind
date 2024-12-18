@@ -27,7 +27,7 @@ export const Hero = () => {
               ]}
               wrapper="span"
               speed={40}
-              className="font-bold text-[#33C3F0]"
+              className="font-bold text-[#0e1117]"
               repeat={Infinity}
               cursor={true}
             />
