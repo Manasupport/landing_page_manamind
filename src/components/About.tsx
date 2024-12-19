@@ -68,9 +68,8 @@ export const About = () => {
               Notre Mission
             </h3>
             <p className="text-gray-300 leading-relaxed text-lg font-telegraph">
-              Manamind s'engage à transformer l'apprentissage en entreprise en créant des expériences
-              engageantes et mesurables. Notre plateforme combine innovation pédagogique et technologie
-              de pointe pour développer les compétences de vos équipes.
+              Manamind est la solution innovante pour concevoir facilement des parcours d’apprentissage et matérialiser l’acquisition 
+              des compétences.
             </p>
           </motion.div>
 
