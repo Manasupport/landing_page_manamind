@@ -43,7 +43,7 @@ export const Hero = () => {
         <div className="max-w-3xl mx-auto text-center space-y-8 animate-fadeIn">
           {/* Remplacement du texte par le logo */}
           <img
-            src="/lovable-uploads/manamind.png" // Chemin vers le logo
+            src="/lovable-uploads/Manamind.png" // Chemin vers le logo
             alt="Manamind Logo"
             className="mx-auto w-48 md:w-64" // Ajustez la taille du logo
           />
