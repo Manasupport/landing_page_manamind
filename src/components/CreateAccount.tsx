@@ -80,13 +80,20 @@ export const CreateAccount = () => {
       } else {
         // Paid plan - create checkout session
         const response = await supabase.functions.invoke('create-checkout', {
-          body: { priceId, email: formData.email }
+          body: { 
+            priceId, 
+            email: formData.email 
+          }
         });
 
         if (response.error) throw response.error;
 
         // Redirect to Stripe Checkout
-        window.location.href = response.data.url;
+        if (response.data?.url) {
+          window.location.href = response.data.url;
+        } else {
+          throw new Error('No checkout URL received from Stripe');
+        }
       }
     } catch (error) {
       console.error('Error:', error);
