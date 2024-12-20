@@ -52,7 +52,10 @@ export const CreateAccount = () => {
         },
       });
 
-      if (authError) throw authError;
+      if (authError) {
+        console.error('Auth error:', authError);
+        throw authError;
+      }
       console.log('User signed up successfully:', authData);
 
       // Update the profile with subscription information
@@ -65,7 +68,10 @@ export const CreateAccount = () => {
         })
         .eq('id', authData.user?.id);
 
-      if (profileError) throw profileError;
+      if (profileError) {
+        console.error('Profile update error:', profileError);
+        throw profileError;
+      }
       console.log('Profile updated successfully');
 
       if (selectedPlan === "Starter") {
@@ -73,7 +79,8 @@ export const CreateAccount = () => {
         window.location.href = "https://app.manamind.fr";
       } else {
         console.log('Paid plan selected, creating checkout session');
-        // Paid plan - create checkout session
+        console.log('Price ID:', priceId);
+        
         const response = await supabase.functions.invoke('create-checkout', {
           body: { 
             priceId, 
@@ -85,12 +92,22 @@ export const CreateAccount = () => {
 
         if (response.error) {
           console.error('Checkout error:', response.error);
-          throw response.error;
+          toast({
+            title: "Erreur",
+            description: "Erreur lors de la création de la session de paiement. Veuillez réessayer.",
+            variant: "destructive",
+          });
+          return;
         }
 
         if (!response.data?.url) {
           console.error('No checkout URL in response:', response);
-          throw new Error('No checkout URL received from Stripe');
+          toast({
+            title: "Erreur",
+            description: "URL de paiement manquante. Veuillez réessayer.",
+            variant: "destructive",
+          });
+          return;
         }
 
         // Redirect to Stripe Checkout
