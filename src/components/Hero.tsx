@@ -45,7 +45,7 @@ export const Hero = () => {
           <img
             src="/lovable-uploads/Manamind.png" // Chemin vers le logo
             alt="Manamind Logo"
-            className="mx-auto w-48 md:w-64" // Ajustez la taille du logo
+            className="mx-auto w-64 md:w-88" // Ajustez la taille du logo
           />
           <div className="text-3xl md:text-4xl text-white/90 leading-relaxed font-telegraph">
             <span>Des parcours interactifs pour des </span>
