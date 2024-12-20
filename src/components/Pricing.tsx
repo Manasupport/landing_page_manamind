@@ -9,32 +9,34 @@ import { Slider } from "./ui/slider";
 const getEssentialPriceId = (courses: number, isAnnual: boolean) => {
   const priceMap = {
     1: {
-      monthly: "prod_RQVXfAC16xEx7F",
-      yearly: "prod_RQVZhOW9xyRfL1"
+      monthly: "price_1QXeWuEEI50AF5TQBvSRiqYk",
+      yearly: "price_1QXeYkEEI50AF5TQemBkiRCS",
     },
     2: {
-      monthly: "prod_RQVYuKzugfhxWS",
-      yearly: "prod_RQVaR5hXbqTpm4"
+      monthly: "price_1QXeXGEEI50AF5TQMVSPcWyc",
+      yearly: "price_1QXeZdEEI50AF5TQs0umy4oM",
     },
     3: {
-      monthly: "prod_RQVYs1yYF1994w",
-      yearly: "prod_RQVbkjexmxNlai"
+      monthly: "price_1QXeXUEEI50AF5TQ5s0VBj6E",
+      yearly: "price_1QXea0EEI50AF5TQE2WPOqUv",
     },
     4: {
-      monthly: "prod_RQVYEo5HkoEGqK",
-      yearly: "prod_RQVbbTh7zXk5Ts"
+      monthly: "price_1QXeXgEEI50AF5TQVqzmiuRd",
+      yearly: "price_1QXeaHEEI50AF5TQK0q2bfG7",
     },
     5: {
-      monthly: "prod_RQVZDktUIDuYbC",
-      yearly: "prod_RQVbiWboG8Ni6E"
-    }
+      monthly: "price_1QXeY0EEI50AF5TQPIEYVWdu",
+      yearly: "price_1QXeaYEEI50AF5TQuQUNTIn2",
+    },
   };
-  
-  return priceMap[courses as keyof typeof priceMap]?.[isAnnual ? 'yearly' : 'monthly'];
+
+  return priceMap[courses as keyof typeof priceMap]?.[isAnnual ? "yearly" : "monthly"];
 };
 
 const getProfessionalPriceId = (isAnnual: boolean) => {
-  return isAnnual ? "prod_RQt1XAaknIq7TM" : "prod_RQt1bKMhVT4Ald";
+  return isAnnual
+    ? "price_1ProfessionalAnnualPrice"
+    : "price_1ProfessionalMonthlyPrice";
 };
 
 export const Pricing = () => {
