@@ -41,9 +41,12 @@ export const Hero = () => {
       {/* Contenu principal */}
       <div className="container mx-auto px-4 flex-1 flex items-center justify-center">
         <div className="max-w-3xl mx-auto text-center space-y-8 animate-fadeIn">
-          <h1 className="text-6xl md:text-7xl font-bold text-white mb-4 font-telegraph">
-            Manamind
-          </h1>
+          {/* Remplacement du texte par le logo */}
+          <img
+            src="/lovable-uploads/manamind.png" // Chemin vers le logo
+            alt="Manamind Logo"
+            className="mx-auto w-48 md:w-64" // Ajustez la taille du logo
+          />
           <div className="text-3xl md:text-4xl text-white/90 leading-relaxed font-telegraph">
             <span>Des parcours interactifs pour des </span>
             <TypeAnimation
