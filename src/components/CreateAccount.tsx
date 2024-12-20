@@ -5,10 +5,14 @@ import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Label } from "./ui/label";
 import { toast } from "./ui/use-toast";
 import { GraduationCap, BookOpen, User, Home } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 
 export const CreateAccount = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { selectedPlan, priceId, numberOfCourses } = location.state || {};
+
   const [accountType, setAccountType] = useState("");
   const [formData, setFormData] = useState({
     firstName: "",
@@ -16,7 +20,6 @@ export const CreateAccount = () => {
     email: "",
   });
 
-  // Inversion des positions : Institution & Directeur de Master
   const accountTypes = [
     { id: "Professeur permanent", icon: GraduationCap },
     { id: "Professeur vacataire", icon: User },
@@ -24,7 +27,7 @@ export const CreateAccount = () => {
     { id: "Directeur de Master", icon: BookOpen },
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!accountType) {
       toast({
@@ -44,12 +47,55 @@ export const CreateAccount = () => {
       return;
     }
 
-    toast({
-      title: "Compte créé avec succès",
-      description: "Vous allez être redirigé vers la page d'accueil",
-    });
+    try {
+      // Sign up the user
+      const { data: authData, error: authError } = await supabase.auth.signUp({
+        email: formData.email,
+        password: Math.random().toString(36).slice(-8), // Generate a random password
+        options: {
+          data: {
+            first_name: formData.firstName,
+            last_name: formData.lastName,
+          },
+        },
+      });
 
-    navigate("/success");
+      if (authError) throw authError;
+
+      // Update the profile with subscription information
+      const { error: profileError } = await supabase
+        .from('profiles')
+        .update({ 
+          selected_plan: selectedPlan,
+          number_of_courses: numberOfCourses,
+          subscription_status: selectedPlan === 'Starter' ? 'active' : 'pending'
+        })
+        .eq('id', authData.user?.id);
+
+      if (profileError) throw profileError;
+
+      if (selectedPlan === "Starter") {
+        // Free plan - redirect to app
+        window.location.href = "https://app.manamind.fr";
+      } else {
+        // Paid plan - create checkout session
+        const response = await supabase.functions.invoke('create-checkout', {
+          body: { priceId, email: formData.email }
+        });
+
+        if (response.error) throw response.error;
+
+        // Redirect to Stripe Checkout
+        window.location.href = response.data.url;
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue. Veuillez réessayer.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -131,7 +177,6 @@ export const CreateAccount = () => {
             Je crée mon compte
           </Button>
 
-          {/* Ligne ajoutée */}
           <div className="text-center mt-4 text-white text-sm">
             <a
               href="https://app.manamind.fr"

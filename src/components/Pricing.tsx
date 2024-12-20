@@ -6,61 +6,36 @@ import { useState } from "react";
 import { Label } from "./ui/label";
 import { Slider } from "./ui/slider";
 
-const basePricingData = [
-  {
-    title: "Starter",
-    monthlyPrice: "0 €",
-    description: "Parfait pour commencer",
-    features: [
-      { text: "1 parcours", included: true },
-      { text: "Jusqu'à 50 joueurs", included: true },
-      { text: "Fonctionnalités d'édition et d'exécution", included: true },
-      { text: "Centre de ressources générique", included: true },
-      { text: "Assistance standard", included: true },
-    ],
-    buttonText: "Essayer gratuitement",
-  },
-  {
-    title: "Essential",
-    monthlyPrice: "10 €",
-    description: "Pour les professeurs",
-    features: [
-      { text: "1 à 5 parcours simultanés", included: true },
-      { text: "Jusqu'à 100 joueurs par parcours", included: true },
-      { text: "Toutes les fonctionnalités", included: true },
-      { text: "Tableaux de bord", included: true },
-      { text: "Assistance prioritaire", included: true },
-    ],
-    buttonText: "Je m'abonne",
-    popular: true,
-  },
-  {
-    title: "Professional",
-    monthlyPrice: "130 €",
-    description: "Solution complète pour directeur de master",
-    features: [
-      { text: "Jusqu'à 15 parcours simultanés", included: true },
-      { text: "Jusqu'à 200 joueurs par parcours", included: true },
-      { text: "Tableaux de bord avancés", included: true },
-      { text: "IA pour le design de parcours", included: true },
-      { text: "Export AOL", included: true },
-    ],
-    buttonText: "Je m'abonne",
-  },
-  {
-    title: "Institution",
-    monthlyPrice: "Modulable",
-    description: "Solution sur mesure",
-    features: [
-      { text: "100% modulable", included: true },
-      { text: "Centre de ressources personnalisable", included: true },
-      { text: "Support premium dédié", included: true },
-      { text: "Intégrations LMS/CRM", included: true },
-      { text: "KPI auditables", included: true },
-    ],
-    buttonText: "Personnaliser",
-  },
-];
+const getEssentialPriceId = (courses: number, isAnnual: boolean) => {
+  const priceMap = {
+    1: {
+      monthly: "prod_RQVXfAC16xEx7F",
+      yearly: "prod_RQVZhOW9xyRfL1"
+    },
+    2: {
+      monthly: "prod_RQVYuKzugfhxWS",
+      yearly: "prod_RQVaR5hXbqTpm4"
+    },
+    3: {
+      monthly: "prod_RQVYs1yYF1994w",
+      yearly: "prod_RQVbkjexmxNlai"
+    },
+    4: {
+      monthly: "prod_RQVYEo5HkoEGqK",
+      yearly: "prod_RQVbbTh7zXk5Ts"
+    },
+    5: {
+      monthly: "prod_RQVZDktUIDuYbC",
+      yearly: "prod_RQVbiWboG8Ni6E"
+    }
+  };
+  
+  return priceMap[courses as keyof typeof priceMap]?.[isAnnual ? 'yearly' : 'monthly'];
+};
+
+const getProfessionalPriceId = (isAnnual: boolean) => {
+  return isAnnual ? "prod_RQt1XAaknIq7TM" : "prod_RQt1bKMhVT4Ald";
+};
 
 export const Pricing = () => {
   const navigate = useNavigate();
@@ -68,17 +43,10 @@ export const Pricing = () => {
   const [essentialCourses, setEssentialCourses] = useState([1]);
 
   const handleSubscribe = (plan: string) => {
-    if (plan === "Starter") {
-      navigate("/create-account");
-    } else if (plan === "Institution") {
+    if (plan === "Institution") {
       toast({
         title: "Demande de contact",
         description: "Notre équipe vous contactera prochainement.",
-      });
-    } else {
-      toast({
-        title: "Paiement",
-        description: "Redirection vers la page de paiement...",
       });
     }
   };
@@ -100,6 +68,64 @@ export const Pricing = () => {
 
     return `${price} € / ${isAnnual ? "an" : "mois"}${!isAnnual && title === "Essential" ? " / parcours" : ""}`;
   };
+
+  const basePricingData = [
+    {
+      title: "Starter",
+      monthlyPrice: "0 €",
+      description: "Parfait pour commencer",
+      features: [
+        { text: "1 parcours", included: true },
+        { text: "Jusqu'à 50 joueurs", included: true },
+        { text: "Fonctionnalités d'édition et d'exécution", included: true },
+        { text: "Centre de ressources générique", included: true },
+        { text: "Assistance standard", included: true },
+      ],
+      buttonText: "Essayer gratuitement",
+    },
+    {
+      title: "Essential",
+      monthlyPrice: "10 €",
+      description: "Pour les professeurs",
+      features: [
+        { text: `${essentialCourses[0]} à 5 parcours simultanés`, included: true },
+        { text: "Jusqu'à 100 joueurs par parcours", included: true },
+        { text: "Toutes les fonctionnalités", included: true },
+        { text: "Tableaux de bord", included: true },
+        { text: "Assistance prioritaire", included: true },
+      ],
+      buttonText: "Je m'abonne",
+      popular: true,
+      priceId: getEssentialPriceId(essentialCourses[0], isAnnual),
+    },
+    {
+      title: "Professional",
+      monthlyPrice: "130 €",
+      description: "Solution complète pour directeur de master",
+      features: [
+        { text: "Jusqu'à 15 parcours simultanés", included: true },
+        { text: "Jusqu'à 200 joueurs par parcours", included: true },
+        { text: "Tableaux de bord avancés", included: true },
+        { text: "IA pour le design de parcours", included: true },
+        { text: "Export AOL", included: true },
+      ],
+      buttonText: "Je m'abonne",
+      priceId: getProfessionalPriceId(isAnnual),
+    },
+    {
+      title: "Institution",
+      monthlyPrice: "Modulable",
+      description: "Solution sur mesure",
+      features: [
+        { text: "100% modulable", included: true },
+        { text: "Centre de ressources personnalisable", included: true },
+        { text: "Support premium dédié", included: true },
+        { text: "Intégrations LMS/CRM", included: true },
+        { text: "KPI auditables", included: true },
+      ],
+      buttonText: "Personnaliser",
+    },
+  ];
 
   return (
     <section id="pricing" className="py-20 px-4 bg-gradient-to-br from-slate-50 to-white">

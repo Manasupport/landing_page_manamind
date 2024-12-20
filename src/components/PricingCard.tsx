@@ -1,5 +1,7 @@
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import { useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 
 interface PricingFeature {
   text: string;
@@ -14,7 +16,8 @@ interface PricingCardProps {
   buttonText: string;
   popular?: boolean;
   onSubscribe: () => void;
-  children?: React.ReactNode; // Ajout pour intégrer du contenu dynamique (curseur)
+  children?: React.ReactNode;
+  priceId?: string;
 }
 
 export const PricingCard = ({
@@ -26,7 +29,32 @@ export const PricingCard = ({
   popular,
   onSubscribe,
   children,
+  priceId,
 }: PricingCardProps) => {
+  const navigate = useNavigate();
+
+  const handleSubscribe = async () => {
+    if (title === "Starter") {
+      // For free plan, redirect to account creation
+      navigate("/create-account", { 
+        state: { 
+          selectedPlan: title,
+          numberOfCourses: 1
+        }
+      });
+      return;
+    }
+
+    // For paid plans, redirect to account creation with plan info
+    navigate("/create-account", { 
+      state: { 
+        selectedPlan: title,
+        priceId: priceId,
+        numberOfCourses: title === "Essential" ? features[0].text.match(/\d+/)?.[0] || 1 : 15
+      }
+    });
+  };
+
   return (
     <Card
       className={`relative transition-all duration-200 hover:shadow-lg ${
@@ -45,7 +73,6 @@ export const PricingCard = ({
       <CardContent>
         <p className="text-gray-600 mb-6">{description}</p>
         
-        {/* Contenu dynamique */}
         {children}
 
         <ul className="space-y-3 mb-6">
@@ -66,7 +93,7 @@ export const PricingCard = ({
         </ul>
         
         <Button
-          onClick={onSubscribe}
+          onClick={handleSubscribe}
           className={`w-full ${
             popular ? "bg-manamind hover:bg-manamind-dark" : "bg-gray-800 hover:bg-gray-700"
           }`}
