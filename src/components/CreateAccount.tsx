@@ -2,9 +2,15 @@ import { useState } from "react";
 import { toast } from "./ui/use-toast";
 import { useNavigate, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-import { AccountTypeSelector } from "./account/AccountTypeSelector";
-import { AccountForm } from "./account/AccountForm";
 import { Button } from "./ui/button";
+import { cn } from "@/lib/utils"; // Pour faciliter les classes conditionnelles
+
+const accountTypes = [
+  { id: "professeur_permanent", label: "Professeur permanent", icon: "🎓" },
+  { id: "professeur_vacataire", label: "Professeur vacataire", icon: "👤" },
+  { id: "institution", label: "Institution", icon: "🏢" },
+  { id: "directeur_master", label: "Directeur de Master", icon: "📖" },
+];
 
 export const CreateAccount = () => {
   const navigate = useNavigate();
@@ -39,9 +45,8 @@ export const CreateAccount = () => {
     }
 
     try {
-      console.log('Starting account creation process...');
-      
-      // Sign up the user
+      console.log('Début de la création du compte...');
+
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email: formData.email,
         password: Math.random().toString(36).slice(-8),
@@ -53,13 +58,8 @@ export const CreateAccount = () => {
         },
       });
 
-      if (authError) {
-        console.error('Auth error:', authError);
-        throw authError;
-      }
-      console.log('User signed up successfully:', authData);
+      if (authError) throw authError;
 
-      // Update the profile with subscription information
       const { error: profileError } = await supabase
         .from('profiles')
         .update({ 
@@ -69,18 +69,11 @@ export const CreateAccount = () => {
         })
         .eq('id', authData.user?.id);
 
-      if (profileError) {
-        console.error('Profile update error:', profileError);
-        throw profileError;
-      }
-      console.log('Profile updated successfully');
+      if (profileError) throw profileError;
 
       if (selectedPlan === "Starter") {
-        console.log('Free plan selected, redirecting to app');
         window.location.href = "https://app.manamind.fr";
       } else {
-        console.log('Paid plan selected, creating checkout session');
-        
         const response = await supabase.functions.invoke('create-checkout', {
           body: { 
             priceId, 
@@ -88,36 +81,21 @@ export const CreateAccount = () => {
           }
         });
 
-        console.log('Checkout response:', response);
-
-        if (response.error) {
-          console.error('Checkout error:', response.error);
-          toast({
-            title: "Erreur",
-            description: "Erreur lors de la création de la session de paiement. Veuillez réessayer.",
-            variant: "destructive",
-          });
-          return;
-        }
-
         if (!response.data?.url) {
-          console.error('No checkout URL in response:', response);
           toast({
             title: "Erreur",
-            description: "URL de paiement manquante. Veuillez réessayer.",
+            description: "URL de paiement manquante.",
             variant: "destructive",
           });
           return;
         }
-
-        console.log('Redirecting to Stripe checkout:', response.data.url);
         window.location.href = response.data.url;
       }
     } catch (error) {
-      console.error('Error in account creation:', error);
+      console.error('Erreur :', error);
       toast({
         title: "Erreur",
-        description: "Une erreur est survenue. Veuillez réessayer.",
+        description: "Une erreur est survenue.",
         variant: "destructive",
       });
     }
@@ -126,44 +104,69 @@ export const CreateAccount = () => {
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-2">
       {/* Formulaire */}
-      <div
-        className="w-full p-8 md:p-12 flex flex-col justify-center items-center"
-        style={{ backgroundColor: "#71c088" }}
-      >
-        <h2 className="text-3xl font-bold text-white mb-6">Créez et animez vos parcours</h2>
-        <AccountForm
-          formData={formData}
-          setFormData={setFormData}
-          onSubmit={handleSubmit}
-        />
+      <div className="flex flex-col justify-center bg-[#71c088] px-8 py-12">
+        <h2 className="text-3xl font-bold text-white mb-8 text-center">Créez votre compte</h2>
+        <form className="space-y-4">
+          <input
+            type="text"
+            placeholder="Nom"
+            value={formData.lastName}
+            onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+            className="w-full p-3 rounded-lg border border-gray-300"
+          />
+          <input
+            type="text"
+            placeholder="Prénom"
+            value={formData.firstName}
+            onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+            className="w-full p-3 rounded-lg border border-gray-300"
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            className="w-full p-3 rounded-lg border border-gray-300"
+          />
+        </form>
       </div>
 
-      {/* Sélection du type de compte */}
-      <div
-        className="w-full p-8 md:p-12 flex flex-col justify-center items-center"
-        style={{ backgroundColor: "#0c3d5e" }}
-      >
-        <h2 className="text-3xl font-bold text-white mb-6">Choisissez le type de compte</h2>
-        <AccountTypeSelector
-          accountType={accountType}
-          setAccountType={setAccountType}
-        />
-
-        {/* Bouton Centré */}
-        <div className="mt-12 w-full flex justify-center">
-          <Button
-            onClick={handleSubmit}
-            size="lg"
-            className={`px-8 py-3 rounded-lg font-bold text-white shadow-md transition-all ${
-              accountType && formData.firstName && formData.email
-                ? "bg-[#71c088] hover:bg-[#5a9a6e]"
-                : "bg-gray-400 cursor-not-allowed"
-            }`}
-            disabled={!accountType || !formData.firstName || !formData.email}
-          >
-            Je crée mon compte
-          </Button>
+      {/* Sélection Type de compte */}
+      <div className="flex flex-col justify-center bg-[#0c3d5e] px-8 py-12 text-white">
+        <h2 className="text-3xl font-bold mb-8 text-center">Type de compte</h2>
+        <div className="grid grid-cols-2 gap-4">
+          {accountTypes.map((type) => (
+            <button
+              key={type.id}
+              onClick={() => setAccountType(type.id)}
+              className={cn(
+                "flex flex-col items-center justify-center p-4 rounded-lg border transition-all",
+                accountType === type.id
+                  ? "bg-[#71c088] text-white border-transparent"
+                  : "bg-[#0c3d5e] border-gray-300 hover:bg-[#5a9a6e]"
+              )}
+            >
+              <span className="text-3xl">{type.icon}</span>
+              <span className="mt-2">{type.label}</span>
+            </button>
+          ))}
         </div>
+      </div>
+
+      {/* Bouton Centré */}
+      <div className="col-span-2 flex justify-center py-6">
+        <Button
+          onClick={handleSubmit}
+          size="lg"
+          className={`px-8 py-3 rounded-lg font-bold shadow-md ${
+            accountType && formData.firstName && formData.email
+              ? "bg-[#71c088] hover:bg-[#5a9a6e]"
+              : "bg-gray-400 cursor-not-allowed"
+          }`}
+          disabled={!accountType || !formData.firstName || !formData.email}
+        >
+          Je crée mon compte
+        </Button>
       </div>
     </div>
   );
