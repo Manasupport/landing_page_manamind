@@ -45,17 +45,17 @@ export const Hero = () => {
         </div>
       </nav>
 
-      {/* Logo statique */}
-      <div className="absolute top-20 left-1/2 transform -translate-x-1/2 z-10">
+      {/* Logo ajusté */}
+      <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 z-10">
         <img
           src="/lovable-uploads/Manamind.png"
           alt="Manamind Logo"
-          className="mx-auto w-64 md:w-80"
+          className="mx-auto w-96 md:w-[28rem]"
         />
       </div>
 
-      {/* Texte animé (fixé en dessous du logo) */}
-      <div className="flex-1 flex items-center justify-center mt-32">
+      {/* Texte animé */}
+      <div className="flex-1 flex items-center justify-center mt-48">
         <div className="max-w-3xl mx-auto text-center space-y-8">
           <div className="text-3xl md:text-4xl text-white/90 leading-relaxed font-telegraph">
             <span>Des parcours interactifs pour des </span>
@@ -63,16 +63,16 @@ export const Hero = () => {
               <TypeAnimation
                 sequence={[
                   "expériences engageantes.",
-                  1500,
+                  1000,
                   "compétences boostées.",
-                  1500,
+                  1000,
                   "projets mémorables.",
-                  1500,
+                  1000,
                   "formations ludiques.",
-                  1500,
+                  1000,
                 ]}
                 wrapper="span"
-                speed={40}
+                speed={30}
                 className="font-bold"
                 style={{ color: "#71c088" }}
                 repeat={Infinity}
@@ -83,7 +83,7 @@ export const Hero = () => {
         </div>
       </div>
 
-      {/* Bouton "J'en apprends plus !" */}
+      {/* Bouton */}
       <div className="w-full flex justify-center pb-12">
         <Button
           onClick={() => navigate("/about")}
