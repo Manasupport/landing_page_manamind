@@ -90,7 +90,7 @@ export const CreateAccount = () => {
     <div className="min-h-screen flex flex-col md:flex-row">
       {/* Section Formulaire */}
       <div className="w-full md:w-1/2 p-8 md:p-12 bg-[#71c088] flex flex-col justify-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 text-center">
+        <h2 className="text-4xl font-bold text-white mb-8 text-center">
           Créez votre compte
         </h2>
         <AccountForm
@@ -102,7 +102,7 @@ export const CreateAccount = () => {
 
       {/* Section Type de compte */}
       <div className="w-full md:w-1/2 p-8 md:p-12 bg-[#0c3d5e] flex flex-col justify-center text-white">
-        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
+        <h2 className="text-4xl font-bold mb-8 text-center">
           Choisissez votre type de compte
         </h2>
         <AccountTypeSelector
@@ -111,7 +111,7 @@ export const CreateAccount = () => {
         />
       </div>
 
-      {/* Bouton centré */}
+      {/* Bouton Principal au centre */}
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
         <Button
           onClick={handleSubmit}
