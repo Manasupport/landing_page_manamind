@@ -101,8 +101,11 @@ export const CreateAccount = () => {
             className="w-full p-3 rounded-lg border-0"
           />
         </form>
+        {/* Lien de Connexion */}
         <p className="text-center text-sm text-white mt-6 underline cursor-pointer hover:text-gray-200">
-          J'ai déjà un compte, je me connecte
+          <a href="https://app.manamind.fr" target="_blank" rel="noopener noreferrer">
+            J'ai déjà un compte, je me connecte
+          </a>
         </p>
       </div>
 
