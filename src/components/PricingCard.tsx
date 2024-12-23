@@ -57,9 +57,9 @@ export const PricingCard = ({
 
   return (
     <Card
-      className={`relative transition-all duration-200 hover:shadow-lg ${
+      className={relative transition-all duration-200 hover:shadow-lg ${
         popular ? "border-manamind shadow-md scale-105" : ""
-      }`}
+      }}
     >
       {popular && (
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-manamind text-white px-4 py-1 rounded-full text-sm font-medium">
@@ -79,9 +79,9 @@ export const PricingCard = ({
           {features.map((feature, index) => (
             <li key={index} className="flex items-center space-x-3">
               <span
-                className={`w-5 h-5 rounded-full flex items-center justify-center ${
+                className={w-5 h-5 rounded-full flex items-center justify-center ${
                   feature.included ? "bg-manamind/20 text-manamind" : "bg-gray-100 text-gray-400"
-                }`}
+                }}
               >
                 {feature.included ? "✓" : "×"}
               </span>
@@ -94,9 +94,9 @@ export const PricingCard = ({
         
         <Button
           onClick={handleSubscribe}
-          className={`w-full ${
+          className={w-full ${
             popular ? "bg-manamind hover:bg-manamind-dark" : "bg-gray-800 hover:bg-gray-700"
-          }`}
+          }}
         >
           {buttonText}
         </Button>
