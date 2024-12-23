@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { AccountTypeSelector } from "./account/AccountTypeSelector";
 import { AccountForm } from "./account/AccountForm";
+import { Button } from "./ui/button";
 
 export const CreateAccount = () => {
   const navigate = useNavigate();
@@ -79,7 +80,6 @@ export const CreateAccount = () => {
         window.location.href = "https://app.manamind.fr";
       } else {
         console.log('Paid plan selected, creating checkout session');
-        console.log('Price ID:', priceId);
         
         const response = await supabase.functions.invoke('create-checkout', {
           body: { 
@@ -110,7 +110,6 @@ export const CreateAccount = () => {
           return;
         }
 
-        // Redirect to Stripe Checkout
         console.log('Redirecting to Stripe checkout:', response.data.url);
         window.location.href = response.data.url;
       }
@@ -125,11 +124,13 @@ export const CreateAccount = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row">
+    <div className="min-h-screen grid grid-cols-1 md:grid-cols-2">
+      {/* Formulaire */}
       <div
-        className="w-full md:w-1/2 p-8 md:p-12 flex items-center justify-center"
+        className="w-full p-8 md:p-12 flex flex-col justify-center items-center"
         style={{ backgroundColor: "#71c088" }}
       >
+        <h2 className="text-3xl font-bold text-white mb-6">Créez et animez vos parcours</h2>
         <AccountForm
           formData={formData}
           setFormData={setFormData}
@@ -137,14 +138,32 @@ export const CreateAccount = () => {
         />
       </div>
 
+      {/* Sélection du type de compte */}
       <div
-        className="w-full md:w-1/2 p-8 md:p-12 flex items-center justify-center"
-        style={{ backgroundColor: "#182234" }}
+        className="w-full p-8 md:p-12 flex flex-col justify-center items-center"
+        style={{ backgroundColor: "#0c3d5e" }}
       >
+        <h2 className="text-3xl font-bold text-white mb-6">Choisissez le type de compte</h2>
         <AccountTypeSelector
           accountType={accountType}
           setAccountType={setAccountType}
         />
+
+        {/* Bouton Centré */}
+        <div className="mt-12 w-full flex justify-center">
+          <Button
+            onClick={handleSubmit}
+            size="lg"
+            className={`px-8 py-3 rounded-lg font-bold text-white shadow-md transition-all ${
+              accountType && formData.firstName && formData.email
+                ? "bg-[#71c088] hover:bg-[#5a9a6e]"
+                : "bg-gray-400 cursor-not-allowed"
+            }`}
+            disabled={!accountType || !formData.firstName || !formData.email}
+          >
+            Je crée mon compte
+          </Button>
+        </div>
       </div>
     </div>
   );
