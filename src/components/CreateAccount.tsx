@@ -3,6 +3,7 @@ import { toast } from "./ui/use-toast";
 import { useNavigate, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "./ui/button";
+import { BookOpen, GraduationCap, Building, Users } from "lucide-react";
 
 export const CreateAccount = () => {
   const navigate = useNavigate();
@@ -100,6 +101,9 @@ export const CreateAccount = () => {
             className="w-full p-3 rounded-lg border-0"
           />
         </form>
+        <p className="text-center text-sm text-white mt-6 underline cursor-pointer hover:text-gray-200">
+          J'ai déjà un compte, je me connecte
+        </p>
       </div>
 
       {/* Partie Droite : Types de Comptes */}
@@ -109,19 +113,20 @@ export const CreateAccount = () => {
         </h2>
         <div className="grid grid-cols-2 gap-4">
           {[
-            { label: "Professeur permanent", value: "permanent" },
-            { label: "Professeur vacataire", value: "vacataire" },
-            { label: "Institution", value: "institution" },
-            { label: "Directeur de Master", value: "master" },
+            { label: "Professeur permanent", value: "permanent", icon: GraduationCap },
+            { label: "Professeur vacataire", value: "vacataire", icon: Users },
+            { label: "Institution", value: "institution", icon: Building },
+            { label: "Directeur de Master", value: "master", icon: BookOpen },
           ].map((type) => (
             <div
               key={type.value}
               onClick={() => setAccountType(type.value)}
-              className={`p-4 text-center rounded-lg cursor-pointer border ${
-                accountType === type.value ? "bg-[#71c088] text-black" : "bg-white/10"
+              className={`p-4 text-center rounded-lg cursor-pointer border flex flex-col items-center ${
+                accountType === type.value ? "bg-[#71c088] text-black shadow-lg" : "bg-white/10"
               } transition-all`}
             >
-              <span className="block font-semibold">{type.label}</span>
+              <type.icon className="h-8 w-8 mb-2" />
+              <span className="font-semibold">{type.label}</span>
             </div>
           ))}
         </div>
