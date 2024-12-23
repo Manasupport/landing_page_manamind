@@ -53,10 +53,10 @@ export const About = () => {
         className="container mx-auto px-4 mb-20 text-center"
       >
         <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#71c088] to-[#a3d7b3] text-transparent bg-clip-text">
-          À propos de Manamind
+          Manamind, c'est quoi ?
         </h1>
         <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          Révolutionnez l'apprentissage avec une plateforme qui s'adapte à vos besoins.
+        Manamind pour concevoir et jouer des parcours d’apprentissages sur-mesure centrés sur les compétences
         </p>
       </motion.div>
 
@@ -73,10 +73,9 @@ export const About = () => {
             <Heart className="w-12 h-12 text-[#71c088] mb-6" />
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Notre Mission</h2>
             <p className="text-xl text-gray-300 leading-relaxed max-w-2xl">
-              Manamind est née d'une vision : rendre l'apprentissage plus efficace, 
-              engageant et accessible. Notre plateforme innovante permet de concevoir 
-              des parcours d'apprentissage personnalisés et de suivre l'acquisition 
-              des compétences de manière intuitive.
+            Manamind est la solution innovante pour concevoir facilement des parcours d’apprentissage et matérialiser l’acquisition 
+            des compétences.
+
             </p>
           </motion.div>
           <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 bg-gradient-to-l from-[#71c088] to-transparent" />
