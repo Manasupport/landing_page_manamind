@@ -2,8 +2,6 @@ import { useState } from "react";
 import { toast } from "./ui/use-toast";
 import { useNavigate, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-import { AccountTypeSelector } from "./account/AccountTypeSelector";
-import { AccountForm } from "./account/AccountForm";
 import { Button } from "./ui/button";
 
 export const CreateAccount = () => {
@@ -20,6 +18,7 @@ export const CreateAccount = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!accountType) {
       toast({
         title: "Type de compte requis",
@@ -52,29 +51,14 @@ export const CreateAccount = () => {
 
       if (authError) throw authError;
 
-      const { error: profileError } = await supabase
-        .from('profiles')
-        .update({ 
-          selected_plan: selectedPlan,
-          number_of_courses: numberOfCourses,
-          subscription_status: selectedPlan === 'Starter' ? 'active' : 'pending'
-        })
-        .eq('id', authData.user?.id);
-
-      if (profileError) throw profileError;
-
       if (selectedPlan === "Starter") {
         window.location.href = "https://app.manamind.fr";
       } else {
         const response = await supabase.functions.invoke('create-checkout', {
-          body: { 
-            priceId, 
-            email: formData.email 
-          }
+          body: { priceId, email: formData.email }
         });
 
         if (!response.data?.url) throw new Error("URL de paiement manquante");
-
         window.location.href = response.data.url;
       }
     } catch (error) {
@@ -87,31 +71,63 @@ export const CreateAccount = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row">
-      {/* Section Formulaire */}
+    <div className="min-h-screen flex flex-col md:flex-row relative">
+      {/* Partie Gauche : Formulaire */}
       <div className="w-full md:w-1/2 p-8 md:p-12 bg-[#71c088] flex flex-col justify-center">
-        <h2 className="text-4xl font-bold text-white mb-8 text-center">
-          Créez votre compte
+        <h2 className="text-3xl font-bold text-white mb-6 text-center">
+          Créez et animez vos parcours
         </h2>
-        <AccountForm
-          formData={formData}
-          setFormData={setFormData}
-          onSubmit={handleSubmit}
-        />
+        <form className="space-y-4">
+          <input
+            type="text"
+            placeholder="Nom"
+            value={formData.firstName}
+            onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+            className="w-full p-3 rounded-lg border-0"
+          />
+          <input
+            type="text"
+            placeholder="Prénom"
+            value={formData.lastName}
+            onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+            className="w-full p-3 rounded-lg border-0"
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            className="w-full p-3 rounded-lg border-0"
+          />
+        </form>
       </div>
 
-      {/* Section Type de compte */}
-      <div className="w-full md:w-1/2 p-8 md:p-12 bg-[#0c3d5e] flex flex-col justify-center text-white">
-        <h2 className="text-4xl font-bold mb-8 text-center">
-          Choisissez votre type de compte
+      {/* Partie Droite : Types de Comptes */}
+      <div className="w-full md:w-1/2 p-8 md:p-12 bg-[#0c3d5e] text-white flex flex-col justify-center">
+        <h2 className="text-3xl font-bold mb-6 text-center">
+          Choisis le type de compte qui te correspond
         </h2>
-        <AccountTypeSelector
-          accountType={accountType}
-          setAccountType={setAccountType}
-        />
+        <div className="grid grid-cols-2 gap-4">
+          {[
+            { label: "Professeur permanent", value: "permanent" },
+            { label: "Professeur vacataire", value: "vacataire" },
+            { label: "Institution", value: "institution" },
+            { label: "Directeur de Master", value: "master" },
+          ].map((type) => (
+            <div
+              key={type.value}
+              onClick={() => setAccountType(type.value)}
+              className={`p-4 text-center rounded-lg cursor-pointer border ${
+                accountType === type.value ? "bg-[#71c088] text-black" : "bg-white/10"
+              } transition-all`}
+            >
+              <span className="block font-semibold">{type.label}</span>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Bouton Principal au centre */}
+      {/* Bouton Central */}
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
         <Button
           onClick={handleSubmit}
@@ -121,7 +137,7 @@ export const CreateAccount = () => {
           }`}
           disabled={!accountType || !formData.email}
         >
-          Je crée mon compte
+          Je m'inscris
         </Button>
       </div>
     </div>
