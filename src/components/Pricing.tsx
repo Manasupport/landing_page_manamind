@@ -6,82 +6,90 @@ import { useState } from "react";
 import { Label } from "./ui/label";
 import { Slider } from "./ui/slider";
 
-const getEssentialPriceId = (courses: number, isAnnual: boolean) => {
-  const priceMap = {
-    1: {
-      monthly: "price_1QXeWuEEI50AF5TQBvSRiqYk",
-      yearly: "price_1QXeYkEEI50AF5TQemBkiRCS",
-    },
-    2: {
-      monthly: "price_1QXeXGEEI50AF5TQMVSPcWyc",
-      yearly: "price_1QXeZdEEI50AF5TQs0umy4oM",
-    },
-    3: {
-      monthly: "price_1QXeXUEEI50AF5TQ5s0VBj6E",
-      yearly: "price_1QXea0EEI50AF5TQE2WPOqUv",
-    },
-    4: {
-      monthly: "price_1QXeXgEEI50AF5TQVqzmiuRd",
-      yearly: "price_1QXeaHEEI50AF5TQK0q2bfG7",
-    },
-    5: {
-      monthly: "price_1QXeY0EEI50AF5TQPIEYVWdu",
-      yearly: "price_1QXeaYEEI50AF5TQuQUNTIn2",
-    },
-  };
-
-  return priceMap[courses as keyof typeof priceMap]?.[isAnnual ? "yearly" : "monthly"];
+// 🎯 **Gestion des Identifiants de Prix**
+const PRICE_MAP = {
+  Essential: {
+    1: { monthly: "price_1QXeWuEEI50AF5TQBvSRiqYk", yearly: "price_1QXeYkEEI50AF5TQemBkiRCS" },
+    2: { monthly: "price_1QXeXGEEI50AF5TQMVSPcWyc", yearly: "price_1QXeZdEEI50AF5TQs0umy4oM" },
+    3: { monthly: "price_1QXeXUEEI50AF5TQ5s0VBj6E", yearly: "price_1QXea0EEI50AF5TQE2WPOqUv" },
+    4: { monthly: "price_1QXeXgEEI50AF5TQVqzmiuRd", yearly: "price_1QXeaHEEI50AF5TQK0q2bfG7" },
+    5: { monthly: "price_1QXeY0EEI50AF5TQPIEYVWdu", yearly: "price_1QXeaYEEI50AF5TQuQUNTIn2" },
+  },
+  Professional: {
+    monthly: "price_1QY1FGEEI50AF5TQDpoUSNbT",
+    yearly: "price_1QY1FbEEI50AF5TQQ4QNdRlH",
+  },
 };
 
-const getProfessionalPriceId = (isAnnual: boolean) => {
-  return isAnnual
-    ? "price_1QY1FbEEI50AF5TQQ4QNdRlH"
-    : "price_1QY1FGEEI50AF5TQDpoUSNbT";
+// 🛠️ **Obtenir les Identifiants de Prix**
+const getPriceId = (plan: string, courses: number, isAnnual: boolean) => {
+  if (plan === "Essential") {
+    return PRICE_MAP.Essential[courses]?.[isAnnual ? "yearly" : "monthly"];
+  }
+  if (plan === "Professional") {
+    return isAnnual ? PRICE_MAP.Professional.yearly : PRICE_MAP.Professional.monthly;
+  }
+  return null;
 };
 
+// 💳 **Composant Pricing**
 export const Pricing = () => {
-  const navigate = useNavigate();
   const [isAnnual, setIsAnnual] = useState(false);
-  const [essentialCourses, setEssentialCourses] = useState([1]);
+  const [essentialCourses, setEssentialCourses] = useState(1);
+  const navigate = useNavigate();
 
-  const handleSubscribe = (plan: string) => {
+  const handleSubscribe = (plan: string, priceId?: string) => {
     if (plan === "Institution") {
       toast({
         title: "Demande de contact",
         description: "Notre équipe vous contactera prochainement.",
       });
+      return;
+    }
+
+    if (priceId) {
+      navigate("/create-account", {
+        state: {
+          selectedPlan: plan,
+          priceId,
+          numberOfCourses: plan === "Essential" ? essentialCourses : 15,
+        },
+      });
+    } else {
+      toast({
+        title: "Erreur",
+        description: "Identifiant de prix introuvable.",
+        variant: "destructive",
+      });
     }
   };
 
-  const getPriceDisplay = (monthlyPrice: string, title: string) => {
-    if (monthlyPrice === "Modulable" || monthlyPrice === "0 €") return monthlyPrice;
-    const numericPrice = parseInt(monthlyPrice);
-    if (isNaN(numericPrice)) return monthlyPrice;
+  const calculatePrice = (basePrice: string, plan: string) => {
+    if (basePrice === "Modulable" || basePrice === "0 €") return basePrice;
+    let price = parseInt(basePrice);
+    if (isNaN(price)) return basePrice;
 
-    let price = numericPrice;
-
-    if (title === "Essential") {
-      price = numericPrice * essentialCourses[0];
+    if (plan === "Essential") {
+      price *= essentialCourses;
     }
-
     if (isAnnual) {
-      price = price * 12 * 0.9;
+      price *= 12 * 0.9;
     }
 
-    return `${price} € / ${isAnnual ? "an" : "mois"}${!isAnnual && title === "Essential" ? " / parcours" : ""}`;
+    return `${price} € / ${isAnnual ? "an" : "mois"}${plan === "Essential" && !isAnnual ? " / parcours" : ""}`;
   };
 
-  const basePricingData = [
+  const pricingPlans = [
     {
       title: "Starter",
       monthlyPrice: "0 €",
       description: "Parfait pour commencer",
       features: [
-        { text: "1 parcours", included: true },
-        { text: "Jusqu'à 50 joueurs", included: true },
-        { text: "Fonctionnalités d'édition et d'exécution", included: true },
-        { text: "Centre de ressources générique", included: true },
-        { text: "Assistance standard", included: true },
+        "1 parcours",
+        "Jusqu'à 50 joueurs",
+        "Fonctionnalités d'édition et d'exécution",
+        "Centre de ressources générique",
+        "Assistance standard",
       ],
       buttonText: "Essayer gratuitement",
     },
@@ -90,40 +98,40 @@ export const Pricing = () => {
       monthlyPrice: "10 €",
       description: "Pour les professeurs",
       features: [
-        { text: `${essentialCourses[0]} à 5 parcours simultanés`, included: true },
-        { text: "Jusqu'à 100 joueurs par parcours", included: true },
-        { text: "Toutes les fonctionnalités", included: true },
-        { text: "Tableaux de bord", included: true },
-        { text: "Assistance prioritaire", included: true },
+        `${essentialCourses} à 5 parcours simultanés`,
+        "Jusqu'à 100 joueurs par parcours",
+        "Toutes les fonctionnalités",
+        "Tableaux de bord",
+        "Assistance prioritaire",
       ],
       buttonText: "Je m'abonne",
-      priceId: getEssentialPriceId(essentialCourses[0], isAnnual),
+      priceId: getPriceId("Essential", essentialCourses, isAnnual),
     },
     {
       title: "Professional",
       monthlyPrice: "130 €",
       description: "Solution complète pour directeur de master",
       features: [
-        { text: "Jusqu'à 15 parcours simultanés", included: true },
-        { text: "Jusqu'à 200 joueurs par parcours", included: true },
-        { text: "Tableaux de bord avancés", included: true },
-        { text: "IA pour le design de parcours", included: true },
-        { text: "Export AOL", included: true },
+        "Jusqu'à 15 parcours simultanés",
+        "Jusqu'à 200 joueurs par parcours",
+        "Tableaux de bord avancés",
+        "IA pour le design de parcours",
+        "Export AOL",
       ],
       buttonText: "Je m'abonne",
       popular: true,
-      priceId: getProfessionalPriceId(isAnnual),
+      priceId: getPriceId("Professional", essentialCourses, isAnnual),
     },
     {
       title: "Institution",
       monthlyPrice: "Modulable",
       description: "Solution sur mesure",
       features: [
-        { text: "100% modulable", included: true },
-        { text: "Centre de ressources personnalisable", included: true },
-        { text: "Support premium dédié", included: true },
-        { text: "Intégrations LMS/CRM", included: true },
-        { text: "KPI auditables", included: true },
+        "100% modulable",
+        "Centre de ressources personnalisable",
+        "Support premium dédié",
+        "Intégrations LMS/CRM",
+        "KPI auditables",
       ],
       buttonText: "Personnaliser",
     },
@@ -146,21 +154,23 @@ export const Pricing = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {basePricingData.map((plan) => (
+          {pricingPlans.map((plan) => (
             <PricingCard
               key={plan.title}
-              {...plan}
-              price={getPriceDisplay(plan.monthlyPrice, plan.title)}
-              onSubscribe={() => handleSubscribe(plan.title)}
+              title={plan.title}
+              description={plan.description}
+              price={calculatePrice(plan.monthlyPrice, plan.title)}
+              features={plan.features.map((feature) => ({ text: feature, included: true }))}
+              buttonText={plan.buttonText}
+              popular={plan.popular}
+              onSubscribe={() => handleSubscribe(plan.title, plan.priceId)}
             >
               {plan.title === "Essential" && (
                 <div className="flex flex-col items-center mb-6">
-                  <Label className="text-sm text-gray-600 mb-2">
-                    Nombre de parcours ({essentialCourses[0]})
-                  </Label>
+                  <Label className="text-sm text-gray-600 mb-2">Nombre de parcours ({essentialCourses})</Label>
                   <Slider
-                    value={essentialCourses}
-                    onValueChange={setEssentialCourses}
+                    value={[essentialCourses]}
+                    onValueChange={(val) => setEssentialCourses(val[0])}
                     max={5}
                     min={1}
                     step={1}
