@@ -15,13 +15,18 @@ const getEssentialPriceId = (courses: number, isAnnual: boolean) => {
     4: { monthly: "price_1QXeXgEEI50AF5TQVqzmiuRd", yearly: "price_1QXeaHEEI50AF5TQK0q2bfG7" },
     5: { monthly: "price_1QXeY0EEI50AF5TQPIEYVWdu", yearly: "price_1QXeaYEEI50AF5TQuQUNTIn2" },
   };
+<<<<<<< HEAD
   return priceMap[courses]?.[isAnnual ? "yearly" : "monthly"];
+=======
+
+  return priceMap[courses as keyof typeof priceMap]?.[isAnnual ? "yearly" : "monthly"];
+>>>>>>> e321ee3e63496428b2c2dcdec7f04c9d799e8e75
 };
 
 const getProfessionalPriceId = (isAnnual: boolean) => {
   return isAnnual
-    ? "price_1QY1FbEEI50AF5TQQ4QNdRlH"
-    : "price_1QY1FGEEI50AF5TQDpoUSNbT";
+    ? "price_1ProfessionalAnnualPrice"
+    : "price_1ProfessionalMonthlyPrice";
 };
 
 export const Pricing = () => {
@@ -29,15 +34,19 @@ export const Pricing = () => {
   const [isAnnual, setIsAnnual] = useState(false);
   const [essentialCourses, setEssentialCourses] = useState([1]);
 
+<<<<<<< HEAD
   // 📌 Gestion de l'abonnement
   const handleSubscribe = (plan: string, priceId?: string) => {
+=======
+  const handleSubscribe = (plan: string) => {
+>>>>>>> e321ee3e63496428b2c2dcdec7f04c9d799e8e75
     if (plan === "Institution") {
       toast({
         title: "Demande de contact",
         description: "Notre équipe vous contactera prochainement.",
       });
-      return;
     }
+<<<<<<< HEAD
 
     if (priceId) {
       navigate("/create-account", {
@@ -54,6 +63,8 @@ export const Pricing = () => {
         variant: "destructive",
       });
     }
+=======
+>>>>>>> e321ee3e63496428b2c2dcdec7f04c9d799e8e75
   };
 
   // 📌 Formatage du prix affiché
@@ -155,7 +166,11 @@ export const Pricing = () => {
               key={plan.title}
               {...plan}
               price={getPriceDisplay(plan.monthlyPrice, plan.title)}
+<<<<<<< HEAD
               onSubscribe={() => handleSubscribe(plan.title, plan.priceId)}
+=======
+              onSubscribe={() => handleSubscribe(plan.title)}
+>>>>>>> e321ee3e63496428b2c2dcdec7f04c9d799e8e75
             >
               {plan.title === "Essential" && (
                 <div className="flex flex-col items-center mb-6">
