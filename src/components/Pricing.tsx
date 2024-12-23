@@ -30,7 +30,7 @@ const getEssentialPriceId = (courses: number, isAnnual: boolean) => {
     },
   };
 
-  return priceMap[courses as keyof typeof priceMap]?.[isAnnual ? "yearly" : "monthly"];
+  return priceMap[courses]?.[isAnnual ? "yearly" : "monthly"];
 };
 
 const getProfessionalPriceId = (isAnnual: boolean) => {
@@ -44,13 +44,65 @@ export const Pricing = () => {
   const [isAnnual, setIsAnnual] = useState(false);
   const [essentialCourses, setEssentialCourses] = useState([1]);
 
-  const handleSubscribe = (plan: string) => {
+  const handleSubscribe = async (plan: string, priceId?: string) => {
     if (plan === "Institution") {
       toast({
         title: "Demande de contact",
         description: "Notre équipe vous contactera prochainement.",
       });
+      return;
     }
+
+    if (plan === "Professional" || plan === "Essential") {
+      if (!priceId) {
+        toast({
+          title: "Erreur",
+          description: "ID de prix manquant, veuillez réessayer.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      try {
+        // Rediriger vers Stripe Checkout
+        const response = await fetch("/.netlify/functions/create-checkout", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ priceId }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.url) {
+          window.location.href = data.url; // Redirection vers Stripe
+        } else {
+          toast({
+            title: "Erreur de paiement",
+            description: "Impossible de rediriger vers Stripe.",
+            variant: "destructive",
+          });
+        }
+      } catch (error) {
+        console.error("Erreur lors de la création de la session Stripe :", error);
+        toast({
+          title: "Erreur serveur",
+          description: "Impossible de communiquer avec le serveur.",
+          variant: "destructive",
+        });
+      }
+      return;
+    }
+
+    // Par défaut, rediriger vers la page de création de compte
+    navigate("/create-account", {
+      state: {
+        selectedPlan: plan,
+        priceId: priceId,
+        numberOfCourses: plan === "Essential" ? essentialCourses[0] : 15,
+      },
+    });
   };
 
   const getPriceDisplay = (monthlyPrice: string, title: string) => {
@@ -68,10 +120,12 @@ export const Pricing = () => {
       price = price * 12 * 0.9;
     }
 
-    return ${price} € / ${isAnnual ? "an" : "mois"}${!isAnnual && title === "Essential" ? " / parcours" : ""};
+    return `${price} € / ${isAnnual ? "an" : "mois"}${
+      !isAnnual && title === "Essential" ? " / parcours" : ""
+    }`;
   };
 
-  const basePricingData = [
+  const pricingData = [
     {
       title: "Starter",
       monthlyPrice: "0 €",
@@ -79,8 +133,6 @@ export const Pricing = () => {
       features: [
         { text: "1 parcours", included: true },
         { text: "Jusqu'à 50 joueurs", included: true },
-        { text: "Fonctionnalités d'édition et d'exécution", included: true },
-        { text: "Centre de ressources générique", included: true },
         { text: "Assistance standard", included: true },
       ],
       buttonText: "Essayer gratuitement",
@@ -90,11 +142,9 @@ export const Pricing = () => {
       monthlyPrice: "10 €",
       description: "Pour les professeurs",
       features: [
-        { text: ${essentialCourses[0]} à 5 parcours simultanés, included: true },
+        { text: `${essentialCourses[0]} à 5 parcours simultanés`, included: true },
         { text: "Jusqu'à 100 joueurs par parcours", included: true },
-        { text: "Toutes les fonctionnalités", included: true },
         { text: "Tableaux de bord", included: true },
-        { text: "Assistance prioritaire", included: true },
       ],
       buttonText: "Je m'abonne",
       priceId: getEssentialPriceId(essentialCourses[0], isAnnual),
@@ -106,9 +156,6 @@ export const Pricing = () => {
       features: [
         { text: "Jusqu'à 15 parcours simultanés", included: true },
         { text: "Jusqu'à 200 joueurs par parcours", included: true },
-        { text: "Tableaux de bord avancés", included: true },
-        { text: "IA pour le design de parcours", included: true },
-        { text: "Export AOL", included: true },
       ],
       buttonText: "Je m'abonne",
       popular: true,
@@ -120,55 +167,29 @@ export const Pricing = () => {
       description: "Solution sur mesure",
       features: [
         { text: "100% modulable", included: true },
-        { text: "Centre de ressources personnalisable", included: true },
         { text: "Support premium dédié", included: true },
-        { text: "Intégrations LMS/CRM", included: true },
-        { text: "KPI auditables", included: true },
       ],
       buttonText: "Personnaliser",
     },
   ];
 
   return (
-    <section id="pricing" className="py-20 px-4 bg-gradient-to-br from-slate-50 to-white">
+    <section id="pricing" className="py-20 px-4 bg-[#f9fafb]">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-slate-800">
-          Découvrez nos offres
-        </h2>
+        <h2 className="text-4xl font-bold text-center mb-8">Découvrez nos offres</h2>
         <div className="flex items-center justify-center gap-4 mb-12">
-          <Label htmlFor="pricing-toggle" className={!isAnnual ? "font-bold" : ""}>
-            Mensuel
-          </Label>
-          <Switch id="pricing-toggle" checked={isAnnual} onCheckedChange={setIsAnnual} />
-          <Label htmlFor="pricing-toggle" className={isAnnual ? "font-bold" : ""}>
-            Annuel (-10%)
-          </Label>
+          <Label>Mensuel</Label>
+          <Switch checked={isAnnual} onCheckedChange={setIsAnnual} />
+          <Label>Annuel (-10%)</Label>
         </div>
-
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {basePricingData.map((plan) => (
+          {pricingData.map((plan) => (
             <PricingCard
               key={plan.title}
               {...plan}
               price={getPriceDisplay(plan.monthlyPrice, plan.title)}
-              onSubscribe={() => handleSubscribe(plan.title)}
-            >
-              {plan.title === "Essential" && (
-                <div className="flex flex-col items-center mb-6">
-                  <Label className="text-sm text-gray-600 mb-2">
-                    Nombre de parcours ({essentialCourses[0]})
-                  </Label>
-                  <Slider
-                    value={essentialCourses}
-                    onValueChange={setEssentialCourses}
-                    max={5}
-                    min={1}
-                    step={1}
-                    className="w-3/4"
-                  />
-                </div>
-              )}
-            </PricingCard>
+              onSubscribe={() => handleSubscribe(plan.title, plan.priceId)}
+            />
           ))}
         </div>
       </div>
