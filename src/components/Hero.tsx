@@ -1,15 +1,8 @@
 import { Button } from "./ui/button";
 import { TypeAnimation } from "react-type-animation";
-import { useNavigate } from "react-router-dom";
 
 export const Hero = () => {
-  const navigate = useNavigate();
-
   const handleNavigation = (target: string) => {
-    if (target === "about") {
-      navigate("/about");
-      return;
-    }
     const element = document.getElementById(target);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -25,7 +18,7 @@ export const Hero = () => {
       <nav className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full max-w-4xl py-6">
         <div className="flex justify-center space-x-12">
           <button
-            onClick={() => navigate("/about")}
+            onClick={() => handleNavigation("about")}
             className="text-white text-lg font-bold hover:text-[#71c088] transition duration-300"
           >
             Qui sommes-nous
@@ -50,7 +43,7 @@ export const Hero = () => {
         <img
           src="/lovable-uploads/Manamind.png"
           alt="Manamind Logo"
-          className="mx-auto w-96 md:w-[28rem]"
+          className="mx-auto w-[30rem]"
         />
       </div>
 
@@ -86,7 +79,7 @@ export const Hero = () => {
       {/* Bouton */}
       <div className="w-full flex justify-center pb-12">
         <Button
-          onClick={() => navigate("/about")}
+          onClick={() => handleNavigation("about")}
           size="lg"
           className="bg-white text-black hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-lg px-8 py-6 h-auto font-telegraph"
         >
