@@ -35,8 +35,8 @@ const getEssentialPriceId = (courses: number, isAnnual: boolean) => {
 
 const getProfessionalPriceId = (isAnnual: boolean) => {
   return isAnnual
-    ? "price_1ProfessionalAnnualPrice"
-    : "price_1ProfessionalMonthlyPrice";
+    ? "price_1QY1FbEEI50AF5TQQ4QNdRlH"
+    : "price_1QY1FGEEI50AF5TQDpoUSNbT";
 };
 
 export const Pricing = () => {
