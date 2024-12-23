@@ -7,7 +7,6 @@ import {
   ArrowRight
 } from "lucide-react";
 import { Button } from "./ui/button";
-import { Card } from "./ui/card";
 
 export const About = () => {
   // Animation variants
@@ -45,7 +44,7 @@ export const About = () => {
   ];
 
   return (
-    <section className="py-20 min-h-screen bg-[#0c3d5e] text-white overflow-hidden">
+    <section id="about" className="py-20 min-h-screen bg-[#0c3d5e] text-white overflow-hidden">
       {/* Hero Section */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -127,6 +126,12 @@ export const About = () => {
           </p>
           <Button
             size="lg"
+            onClick={() => {
+              const section = document.getElementById("contact");
+              if (section) {
+                section.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
             className="bg-[#71c088] hover:bg-[#5a9a6e] text-white group"
           >
             Commencer maintenant
