@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { 
-  RocketLaunch, 
+  Rocket, 
   BookOpen, 
   Users, 
   Heart, 
@@ -30,7 +30,7 @@ export const About = () => {
 
   const values = [
     {
-      icon: RocketLaunch,
+      icon: Rocket,
       title: "Innovation continue",
       description: "Nous repoussons constamment les limites pour créer des expériences d'apprentissage uniques.",
     },
