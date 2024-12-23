@@ -5,14 +5,14 @@ import { useNavigate } from "react-router-dom";
 export const Hero = () => {
   const navigate = useNavigate();
   
-  const scrollToSection = (id: string) => {
-    if (id === "about") {
+  const handleNavigation = (target: string) => {
+    if (target === "about") {
       navigate("/about");
       return;
     }
-    const target = document.getElementById(id);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
+    const element = document.getElementById(target);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -21,7 +21,6 @@ export const Hero = () => {
       className="min-h-screen flex flex-col justify-between relative overflow-hidden"
       style={{ backgroundColor: "#0c3d5e" }}
     >
-      {/* Barre de navigation */}
       <nav className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full max-w-4xl py-6">
         <div className="flex justify-center space-x-12">
           <button
@@ -31,13 +30,13 @@ export const Hero = () => {
             Qui sommes-nous
           </button>
           <button
-            onClick={() => scrollToSection("pricing")}
+            onClick={() => handleNavigation("pricing")}
             className="text-white text-lg font-bold hover:text-[#71c088] transition duration-300"
           >
             Nos offres
           </button>
           <button
-            onClick={() => scrollToSection("help-offer")}
+            onClick={() => handleNavigation("contact")}
             className="text-white text-lg font-bold hover:text-[#71c088] transition duration-300"
           >
             Contactez-nous
@@ -45,10 +44,8 @@ export const Hero = () => {
         </div>
       </nav>
 
-      {/* Contenu principal */}
       <div className="container mx-auto px-4 flex-1 flex items-center justify-center">
         <div className="relative max-w-3xl mx-auto text-center space-y-8">
-          {/* Logo fixe, légèrement plus haut */}
           <div className="mb-4">
             <img
               src="/lovable-uploads/Manamind.png"
@@ -58,7 +55,6 @@ export const Hero = () => {
             />
           </div>
 
-          {/* Texte animé sans déplacer le reste */}
           <div className="text-3xl md:text-4xl text-white/90 leading-relaxed font-telegraph">
             <span>Des parcours interactifs pour des </span>
             <span style={{ display: "inline-block", minHeight: "1.2em" }}>
@@ -85,7 +81,6 @@ export const Hero = () => {
         </div>
       </div>
 
-      {/* Bouton "J'en apprends plus" centré en bas */}
       <div className="w-full flex justify-center pb-12">
         <Button
           onClick={() => navigate("/about")}
