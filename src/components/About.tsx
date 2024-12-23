@@ -127,7 +127,7 @@ export const About = () => {
           <Button
             size="lg"
             onClick={() => {
-              const section = document.getElementById("contact");
+              const section = document.getElementById("pricing");
               if (section) {
                 section.scrollIntoView({ behavior: "smooth" });
               }
