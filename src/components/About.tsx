@@ -74,7 +74,7 @@ export const About = () => {
             <Heart className="w-12 h-12 text-[#71c088] mb-6" />
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Notre Mission</h2>
             <p className="text-xl text-gray-300 leading-relaxed max-w-2xl">
-            Manamind pour concevoir et jouer des parcours d’apprentissages sur-mesure centrés sur les compétences
+            Concevoir et jouer des parcours d’apprentissages sur-mesure centrés sur les compétences.
 
             </p>
           </motion.div>
