@@ -97,7 +97,6 @@ export const Pricing = () => {
         { text: "Assistance prioritaire", included: true },
       ],
       buttonText: "Je m'abonne",
-      popular: true,
       priceId: getEssentialPriceId(essentialCourses[0], isAnnual),
     },
     {
@@ -112,6 +111,7 @@ export const Pricing = () => {
         { text: "Export AOL", included: true },
       ],
       buttonText: "Je m'abonne",
+      popular: true,
       priceId: getProfessionalPriceId(isAnnual),
     },
     {
