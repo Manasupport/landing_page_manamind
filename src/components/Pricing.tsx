@@ -6,39 +6,45 @@ import { useState } from "react";
 import { Label } from "./ui/label";
 import { Slider } from "./ui/slider";
 
-// 🎯 **Gestion des Identifiants de Prix**
-const PRICE_MAP = {
-  Essential: {
-    1: { monthly: "price_1QXeWuEEI50AF5TQBvSRiqYk", yearly: "price_1QXeYkEEI50AF5TQemBkiRCS" },
-    2: { monthly: "price_1QXeXGEEI50AF5TQMVSPcWyc", yearly: "price_1QXeZdEEI50AF5TQs0umy4oM" },
-    3: { monthly: "price_1QXeXUEEI50AF5TQ5s0VBj6E", yearly: "price_1QXea0EEI50AF5TQE2WPOqUv" },
-    4: { monthly: "price_1QXeXgEEI50AF5TQVqzmiuRd", yearly: "price_1QXeaHEEI50AF5TQK0q2bfG7" },
-    5: { monthly: "price_1QXeY0EEI50AF5TQPIEYVWdu", yearly: "price_1QXeaYEEI50AF5TQuQUNTIn2" },
-  },
-  Professional: {
-    monthly: "price_1QY1FGEEI50AF5TQDpoUSNbT",
-    yearly: "price_1QY1FbEEI50AF5TQQ4QNdRlH",
-  },
+const getEssentialPriceId = (courses: number, isAnnual: boolean) => {
+  const priceMap = {
+    1: {
+      monthly: "price_1QXeWuEEI50AF5TQBvSRiqYk",
+      yearly: "price_1QXeYkEEI50AF5TQemBkiRCS",
+    },
+    2: {
+      monthly: "price_1QXeXGEEI50AF5TQMVSPcWyc",
+      yearly: "price_1QXeZdEEI50AF5TQs0umy4oM",
+    },
+    3: {
+      monthly: "price_1QXeXUEEI50AF5TQ5s0VBj6E",
+      yearly: "price_1QXea0EEI50AF5TQE2WPOqUv",
+    },
+    4: {
+      monthly: "price_1QXeXgEEI50AF5TQVqzmiuRd",
+      yearly: "price_1QXeaHEEI50AF5TQK0q2bfG7",
+    },
+    5: {
+      monthly: "price_1QXeY0EEI50AF5TQPIEYVWdu",
+      yearly: "price_1QXeaYEEI50AF5TQuQUNTIn2",
+    },
+  };
+
+  return priceMap[courses]?.[isAnnual ? "yearly" : "monthly"];
 };
 
-// 🛠️ **Obtenir les Identifiants de Prix**
-const getPriceId = (plan: string, courses: number, isAnnual: boolean) => {
-  if (plan === "Essential") {
-    return PRICE_MAP.Essential[courses]?.[isAnnual ? "yearly" : "monthly"];
-  }
-  if (plan === "Professional") {
-    return isAnnual ? PRICE_MAP.Professional.yearly : PRICE_MAP.Professional.monthly;
-  }
-  return null;
+const getProfessionalPriceId = (isAnnual: boolean) => {
+  return isAnnual
+    ? "price_1QY1FbEEI50AF5TQQ4QNdRlH"
+    : "price_1QY1FGEEI50AF5TQDpoUSNbT";
 };
 
-// 💳 **Composant Pricing**
 export const Pricing = () => {
-  const [isAnnual, setIsAnnual] = useState(false);
-  const [essentialCourses, setEssentialCourses] = useState(1);
   const navigate = useNavigate();
+  const [isAnnual, setIsAnnual] = useState(false);
+  const [essentialCourses, setEssentialCourses] = useState([1]);
 
-  const handleSubscribe = (plan: string, priceId?: string) => {
+  const handleSubscribe = async (plan: string, priceId?: string) => {
     if (plan === "Institution") {
       toast({
         title: "Demande de contact",
@@ -47,49 +53,45 @@ export const Pricing = () => {
       return;
     }
 
-    if (priceId) {
-      navigate("/create-account", {
-        state: {
-          selectedPlan: plan,
-          priceId,
-          numberOfCourses: plan === "Essential" ? essentialCourses : 15,
-        },
-      });
-    } else {
-      toast({
-        title: "Erreur",
-        description: "Identifiant de prix introuvable.",
-        variant: "destructive",
-      });
-    }
+    // Redirection vers la création de compte avec plan et priceId
+    navigate("/create-account", {
+      state: {
+        selectedPlan: plan,
+        priceId: priceId,
+        numberOfCourses: plan === "Essential" ? essentialCourses[0] : 15,
+      },
+    });
   };
 
-  const calculatePrice = (basePrice: string, plan: string) => {
-    if (basePrice === "Modulable" || basePrice === "0 €") return basePrice;
-    let price = parseInt(basePrice);
-    if (isNaN(price)) return basePrice;
+  const getPriceDisplay = (monthlyPrice: string, title: string) => {
+    if (monthlyPrice === "Modulable" || monthlyPrice === "0 €") return monthlyPrice;
+    const numericPrice = parseInt(monthlyPrice);
+    if (isNaN(numericPrice)) return monthlyPrice;
 
-    if (plan === "Essential") {
-      price *= essentialCourses;
+    let price = numericPrice;
+
+    if (title === "Essential") {
+      price = numericPrice * essentialCourses[0];
     }
+
     if (isAnnual) {
-      price *= 12 * 0.9;
+      price = price * 12 * 0.9;
     }
 
-    return `${price} € / ${isAnnual ? "an" : "mois"}${plan === "Essential" && !isAnnual ? " / parcours" : ""}`;
+    return `${price} € / ${isAnnual ? "an" : "mois"}${
+      !isAnnual && title === "Essential" ? " / parcours" : ""
+    }`;
   };
 
-  const pricingPlans = [
+  const pricingData = [
     {
       title: "Starter",
       monthlyPrice: "0 €",
       description: "Parfait pour commencer",
       features: [
-        "1 parcours",
-        "Jusqu'à 50 joueurs",
-        "Fonctionnalités d'édition et d'exécution",
-        "Centre de ressources générique",
-        "Assistance standard",
+        { text: "1 parcours", included: true },
+        { text: "Jusqu'à 50 joueurs", included: true },
+        { text: "Assistance standard", included: true },
       ],
       buttonText: "Essayer gratuitement",
     },
@@ -98,87 +100,55 @@ export const Pricing = () => {
       monthlyPrice: "10 €",
       description: "Pour les professeurs",
       features: [
-        `${essentialCourses} à 5 parcours simultanés`,
-        "Jusqu'à 100 joueurs par parcours",
-        "Toutes les fonctionnalités",
-        "Tableaux de bord",
-        "Assistance prioritaire",
+        { text: `${essentialCourses[0]} à 5 parcours simultanés`, included: true },
+        { text: "Jusqu'à 100 joueurs par parcours", included: true },
+        { text: "Tableaux de bord", included: true },
       ],
       buttonText: "Je m'abonne",
-      priceId: getPriceId("Essential", essentialCourses, isAnnual),
+      priceId: getEssentialPriceId(essentialCourses[0], isAnnual),
     },
     {
       title: "Professional",
       monthlyPrice: "130 €",
       description: "Solution complète pour directeur de master",
       features: [
-        "Jusqu'à 15 parcours simultanés",
-        "Jusqu'à 200 joueurs par parcours",
-        "Tableaux de bord avancés",
-        "IA pour le design de parcours",
-        "Export AOL",
+        { text: "Jusqu'à 15 parcours simultanés", included: true },
+        { text: "Jusqu'à 200 joueurs par parcours", included: true },
+        { text: "IA pour le design de parcours", included: true },
       ],
       buttonText: "Je m'abonne",
       popular: true,
-      priceId: getPriceId("Professional", essentialCourses, isAnnual),
+      priceId: getProfessionalPriceId(isAnnual),
     },
     {
       title: "Institution",
       monthlyPrice: "Modulable",
       description: "Solution sur mesure",
       features: [
-        "100% modulable",
-        "Centre de ressources personnalisable",
-        "Support premium dédié",
-        "Intégrations LMS/CRM",
-        "KPI auditables",
+        { text: "100% modulable", included: true },
+        { text: "Support premium dédié", included: true },
       ],
       buttonText: "Personnaliser",
     },
   ];
 
   return (
-    <section id="pricing" className="py-20 px-4 bg-gradient-to-br from-slate-50 to-white">
+    <section id="pricing" className="py-20 px-4 bg-[#f9fafb]">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-slate-800">
-          Découvrez nos offres
-        </h2>
+        <h2 className="text-4xl font-bold text-center mb-8">Découvrez nos offres</h2>
         <div className="flex items-center justify-center gap-4 mb-12">
-          <Label htmlFor="pricing-toggle" className={!isAnnual ? "font-bold" : ""}>
-            Mensuel
-          </Label>
-          <Switch id="pricing-toggle" checked={isAnnual} onCheckedChange={setIsAnnual} />
-          <Label htmlFor="pricing-toggle" className={isAnnual ? "font-bold" : ""}>
-            Annuel (-10%)
-          </Label>
+          <Label>Mensuel</Label>
+          <Switch checked={isAnnual} onCheckedChange={setIsAnnual} />
+          <Label>Annuel (-10%)</Label>
         </div>
-
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {pricingPlans.map((plan) => (
+          {pricingData.map((plan) => (
             <PricingCard
               key={plan.title}
-              title={plan.title}
-              description={plan.description}
-              price={calculatePrice(plan.monthlyPrice, plan.title)}
-              features={plan.features.map((feature) => ({ text: feature, included: true }))}
-              buttonText={plan.buttonText}
-              popular={plan.popular}
+              {...plan}
+              price={getPriceDisplay(plan.monthlyPrice, plan.title)}
               onSubscribe={() => handleSubscribe(plan.title, plan.priceId)}
-            >
-              {plan.title === "Essential" && (
-                <div className="flex flex-col items-center mb-6">
-                  <Label className="text-sm text-gray-600 mb-2">Nombre de parcours ({essentialCourses})</Label>
-                  <Slider
-                    value={[essentialCourses]}
-                    onValueChange={(val) => setEssentialCourses(val[0])}
-                    max={5}
-                    min={1}
-                    step={1}
-                    className="w-3/4"
-                  />
-                </div>
-              )}
-            </PricingCard>
+            />
           ))}
         </div>
       </div>
