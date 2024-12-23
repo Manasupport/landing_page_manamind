@@ -4,8 +4,6 @@ import {
   BookOpen, 
   Users, 
   Heart, 
-  Target, 
-  Brain,
   ArrowRight
 } from "lucide-react";
 import { Button } from "./ui/button";
@@ -46,26 +44,8 @@ export const About = () => {
     },
   ];
 
-  const timeline = [
-    {
-      year: "2022",
-      title: "Naissance",
-      description: "Lancement de Manamind avec une vision innovante de l'apprentissage.",
-    },
-    {
-      year: "2023",
-      title: "Croissance",
-      description: "Développement de fonctionnalités avancées et expansion de notre communauté.",
-    },
-    {
-      year: "2024",
-      title: "Innovation",
-      description: "Intégration de nouvelles technologies pour une expérience encore plus immersive.",
-    },
-  ];
-
   return (
-    <section className="py-20 min-h-screen bg-gradient-to-b from-[#182234] to-[#1d2a3f] text-white overflow-hidden">
+    <section className="py-20 min-h-screen bg-[#0c3d5e] text-white overflow-hidden">
       {/* Hero Section */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -77,7 +57,7 @@ export const About = () => {
           À propos de Manamind
         </h1>
         <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          Révolutionnez l'apprentissage avec une plateforme qui s'adapte à vos besoins
+          Révolutionnez l'apprentissage avec une plateforme qui s'adapte à vos besoins.
         </p>
       </motion.div>
 
@@ -89,7 +69,7 @@ export const About = () => {
         viewport={{ once: true }}
         className="container mx-auto px-4 mb-20"
       >
-        <div className="bg-white/5 rounded-2xl p-8 md:p-12 backdrop-blur-sm relative overflow-hidden">
+        <div className="bg-white/5 rounded-2xl p-8 md:p-12 backdrop-blur-sm relative overflow-hidden shadow-lg">
           <motion.div variants={itemVariants} className="relative z-10">
             <Heart className="w-12 h-12 text-[#71c088] mb-6" />
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Notre Mission</h2>
@@ -119,43 +99,11 @@ export const About = () => {
               key={index}
               variants={itemVariants}
               whileHover={{ scale: 1.05 }}
-              className="bg-white/5 rounded-xl p-6 backdrop-blur-sm hover:bg-white/10 transition-all duration-300"
+              className="bg-white/5 rounded-xl p-6 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 shadow-lg"
             >
               <value.icon className="w-12 h-12 text-[#71c088] mb-4" />
               <h3 className="text-xl font-semibold mb-3">{value.title}</h3>
               <p className="text-gray-300">{value.description}</p>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
-
-      {/* Timeline Section */}
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="container mx-auto px-4 mb-20"
-      >
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Notre Histoire</h2>
-        <div className="relative">
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-[#71c088]/30" />
-          {timeline.map((item, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className={`flex items-center mb-12 ${
-                index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-              }`}
-            >
-              <div className={`w-full md:w-1/2 ${index % 2 === 0 ? "md:pr-12" : "md:pl-12"}`}>
-                <Card className="bg-white/5 p-6 backdrop-blur-sm border-none hover:bg-white/10 transition-all duration-300">
-                  <h3 className="text-[#71c088] font-bold text-xl mb-2">{item.year}</h3>
-                  <h4 className="font-semibold text-lg mb-2">{item.title}</h4>
-                  <p className="text-gray-300">{item.description}</p>
-                </Card>
-              </div>
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-[#71c088] rounded-full" />
             </motion.div>
           ))}
         </div>
