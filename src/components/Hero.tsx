@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Hero = () => {
   const navigate = useNavigate();
-  
+
   const handleNavigation = (target: string) => {
     if (target === "about") {
       navigate("/about");
@@ -21,6 +21,7 @@ export const Hero = () => {
       className="min-h-screen flex flex-col justify-between relative overflow-hidden"
       style={{ backgroundColor: "#0c3d5e" }}
     >
+      {/* Barre de navigation */}
       <nav className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full max-w-4xl py-6">
         <div className="flex justify-center space-x-12">
           <button
@@ -44,17 +45,18 @@ export const Hero = () => {
         </div>
       </nav>
 
-      <div className="container mx-auto px-4 flex-1 flex items-center justify-center">
-        <div className="relative max-w-3xl mx-auto text-center space-y-8">
-          <div className="mb-4">
-            <img
-              src="/lovable-uploads/Manamind.png"
-              alt="Manamind Logo"
-              className="mx-auto w-80 md:w-96"
-              style={{ marginBottom: "20px" }}
-            />
-          </div>
+      {/* Logo statique */}
+      <div className="absolute top-20 left-1/2 transform -translate-x-1/2 z-10">
+        <img
+          src="/lovable-uploads/Manamind.png"
+          alt="Manamind Logo"
+          className="mx-auto w-64 md:w-80"
+        />
+      </div>
 
+      {/* Texte animé (fixé en dessous du logo) */}
+      <div className="flex-1 flex items-center justify-center mt-32">
+        <div className="max-w-3xl mx-auto text-center space-y-8">
           <div className="text-3xl md:text-4xl text-white/90 leading-relaxed font-telegraph">
             <span>Des parcours interactifs pour des </span>
             <span style={{ display: "inline-block", minHeight: "1.2em" }}>
@@ -81,6 +83,7 @@ export const Hero = () => {
         </div>
       </div>
 
+      {/* Bouton "J'en apprends plus !" */}
       <div className="w-full flex justify-center pb-12">
         <Button
           onClick={() => navigate("/about")}
