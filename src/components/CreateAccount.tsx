@@ -55,17 +55,33 @@ export const CreateAccount = () => {
       if (selectedPlan === "Starter") {
         window.location.href = "https://app.manamind.fr";
       } else {
-        const response = await supabase.functions.invoke('create-checkout', {
-          body: { priceId, email: formData.email }
-        });
+        try {
+          const { data, error } = await supabase.functions.invoke('create-checkout', {
+            body: { 
+              priceId, 
+              email: formData.email 
+            }
+          });
 
-        if (!response.data?.url) throw new Error("URL de paiement manquante");
-        window.location.href = response.data.url;
+          if (error) throw error;
+          if (!data?.url) throw new Error("URL de paiement manquante");
+
+          console.log("Redirecting to Stripe:", data.url);
+          window.location.href = data.url;
+        } catch (checkoutError) {
+          console.error("Checkout error:", checkoutError);
+          toast({
+            title: "Erreur lors de la redirection vers le paiement",
+            description: "Une erreur est survenue. Veuillez réessayer.",
+            variant: "destructive",
+          });
+        }
       }
     } catch (error) {
+      console.error("Account creation error:", error);
       toast({
         title: "Erreur",
-        description: "Une erreur est survenue. Veuillez réessayer.",
+        description: "Une erreur est survenue lors de la création du compte. Veuillez réessayer.",
         variant: "destructive",
       });
     }
