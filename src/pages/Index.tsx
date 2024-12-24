@@ -15,8 +15,8 @@ const Index = () => {
       <About />
       <WhyManamind />
       <Values />
-      <ConsultationSection />
       <Pricing />
+      <ConsultationSection />
       <Contact />
     </div>
   );

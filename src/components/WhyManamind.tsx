@@ -34,8 +34,14 @@ export const WhyManamind = () => {
   return (
     <section className="py-20 px-4 text-white" style={{ backgroundColor: "#0c3d5e" }}>
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <p className="text-xl text-manamind mb-2">Manamind : considérée par 92% des étudiants comme un vecteur d'expérience engageante.*</p>
+        <div className="text-center mb-16">
+          <p className="text-3xl md:text-4xl font-bold text-manamind mb-2 animate-fadeIn">
+            Manamind : <span className="text-white">considérée par</span>{" "}
+            <span className="text-manamind font-extrabold">92%</span>{" "}
+            <span className="text-white">des étudiants comme un</span>{" "}
+            <span className="italic font-semibold">vecteur d'expérience engageante</span>
+            <span className="text-manamind">.</span>
+          </p>
         </div>
         <div className="grid md:grid-cols-3 gap-12">
           {features.map((feature, index) => (
