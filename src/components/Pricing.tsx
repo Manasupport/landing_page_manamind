@@ -6,7 +6,6 @@ import { useState } from "react";
 import { Label } from "./ui/label";
 import { Slider } from "./ui/slider";
 
-// 📌 Gestion des IDs Stripe
 const getEssentialPriceId = (courses: number, isAnnual: boolean) => {
   const priceMap = {
     1: { monthly: "price_1QXeWuEEI50AF5TQBvSRiqYk", yearly: "price_1QXeYkEEI50AF5TQemBkiRCS" },
@@ -29,7 +28,6 @@ export const Pricing = () => {
   const [isAnnual, setIsAnnual] = useState(true);
   const [essentialCourses, setEssentialCourses] = useState([1]);
 
-  // 📌 Gestion de l'abonnement
   const handleSubscribe = (plan: string, priceId?: string) => {
     if (plan === "Institution") {
       toast({
@@ -56,7 +54,6 @@ export const Pricing = () => {
     }
   };
 
-  // 📌 Formatage du prix affiché
   const getPriceDisplay = (monthlyPrice: string, title: string) => {
     if (monthlyPrice === "Modulable" || monthlyPrice === "0 €") return monthlyPrice;
     const numericPrice = parseInt(monthlyPrice);
@@ -79,7 +76,7 @@ export const Pricing = () => {
     {
       title: "Starter",
       monthlyPrice: "0 €",
-      description: "Parfait pour commencer",
+      description: "Parfait pour prendre en main l’outil",
       features: [
         { text: "1 parcours", included: true },
         { text: "Jusqu'à 50 joueurs", included: true },
@@ -92,12 +89,12 @@ export const Pricing = () => {
     {
       title: "Essential",
       monthlyPrice: "10 €",
-      description: "Pour les professeurs",
+      description: "Solution pour Enseignants et Équipes Pédagogiques",
       features: [
         { text: "1 à 5 parcours simultanés", included: true },
-        { text: "Jusqu'à 100 joueurs par parcours", included: true },
-        { text: "Toutes les fonctionnalités", included: true },
-        { text: "Tableaux de bord", included: true },
+        { text: "Jusqu'à 80 joueurs par parcours", included: true },
+        { text: "Toutes les fonctionnalités d'édition et d'exécution", included: true },
+        { text: "Dashboards standards", included: true },
         { text: "Assistance prioritaire", included: true },
       ],
       buttonText: "Je m'abonne",
@@ -106,13 +103,13 @@ export const Pricing = () => {
     {
       title: "Professional",
       monthlyPrice: "130 €",
-      description: "Solution complète pour directeur de master",
+      description: "Solution pour Masters & Départements Académiques",
       features: [
         { text: "Jusqu'à 15 parcours simultanés", included: true },
-        { text: "Jusqu'à 200 joueurs par parcours", included: true },
-        { text: "Tableaux de bord avancés", included: true },
+        { text: "Jusqu'à 150 joueurs par parcours", included: true },
+        { text: "Dashboard avancés & consolidés", included: true },
         { text: "IA pour le design de parcours", included: true },
-        { text: "Export AOL", included: true },
+        { text: "Parfait pour auditabilité, export en un clic !", included: true },
       ],
       buttonText: "Je m'abonne",
       popular: true,

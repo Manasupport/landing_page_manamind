@@ -1,7 +1,6 @@
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
 
 interface PricingFeature {
   text: string;
@@ -29,35 +28,12 @@ export const PricingCard = ({
   popular,
   onSubscribe,
   children,
-  priceId,
 }: PricingCardProps) => {
   const navigate = useNavigate();
 
-  const handleSubscribe = async () => {
-    if (title === "Starter") {
-      // For free plan, redirect to account creation
-      navigate("/create-account", { 
-        state: { 
-          selectedPlan: title,
-          numberOfCourses: 1
-        }
-      });
-      return;
-    }
-
-    // For paid plans, redirect to account creation with plan info
-    navigate("/create-account", { 
-      state: { 
-        selectedPlan: title,
-        priceId: priceId,
-        numberOfCourses: title === "Essential" ? features[0].text.match(/\d+/)?.[0] || 1 : 15
-      }
-    });
-  };
-
   return (
     <Card
-      className={`relative transition-all duration-200 hover:shadow-lg ${
+      className={`relative flex flex-col transition-all duration-200 hover:shadow-lg ${
         popular ? "border-manamind shadow-md scale-105" : ""
       }`}
     >
@@ -66,16 +42,16 @@ export const PricingCard = ({
           Populaire
         </div>
       )}
-      <CardHeader>
+      <CardHeader className="flex-none">
         <CardTitle className="text-2xl font-bold">{title}</CardTitle>
         <CardDescription className="text-xl font-semibold">{price}</CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex-grow flex flex-col">
         <p className="text-gray-600 mb-6">{description}</p>
         
         {children}
 
-        <ul className="space-y-3 mb-6">
+        <ul className="space-y-3 mb-6 flex-grow">
           {features.map((feature, index) => (
             <li key={index} className="flex items-center space-x-3">
               <span
@@ -93,8 +69,8 @@ export const PricingCard = ({
         </ul>
         
         <Button
-          onClick={handleSubscribe}
-          className={`w-full ${
+          onClick={onSubscribe}
+          className={`w-full mt-auto ${
             popular ? "bg-manamind hover:bg-manamind-dark" : "bg-gray-800 hover:bg-gray-700"
           }`}
         >
