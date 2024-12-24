@@ -33,7 +33,7 @@ export const PricingCard = ({
 
   return (
     <Card
-      className={`relative flex flex-col transition-all duration-200 hover:shadow-lg ${
+      className={`relative flex flex-col h-full transition-all duration-200 hover:shadow-lg ${
         popular ? "border-manamind shadow-md scale-105" : ""
       }`}
     >
@@ -42,20 +42,19 @@ export const PricingCard = ({
           Populaire
         </div>
       )}
-      <CardHeader className="flex-none">
+      <CardHeader className="flex-none space-y-4">
         <CardTitle className="text-2xl font-bold">{title}</CardTitle>
         <CardDescription className="text-xl font-semibold">{price}</CardDescription>
+        <p className="text-gray-600 min-h-[48px]">{description}</p>
       </CardHeader>
       <CardContent className="flex-grow flex flex-col">
-        <p className="text-gray-600 mb-6">{description}</p>
-        
         {children}
 
-        <ul className="space-y-3 mb-6 flex-grow">
+        <ul className="space-y-4 mb-8 flex-grow">
           {features.map((feature, index) => (
-            <li key={index} className="flex items-center space-x-3">
+            <li key={index} className="flex items-start space-x-3 min-h-[48px]">
               <span
-                className={`w-5 h-5 rounded-full flex items-center justify-center ${
+                className={`mt-1 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${
                   feature.included ? "bg-manamind/20 text-manamind" : "bg-gray-100 text-gray-400"
                 }`}
               >
