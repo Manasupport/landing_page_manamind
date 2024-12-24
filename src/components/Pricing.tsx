@@ -26,7 +26,7 @@ const getProfessionalPriceId = (isAnnual: boolean) => {
 
 export const Pricing = () => {
   const navigate = useNavigate();
-  const [isAnnual, setIsAnnual] = useState(false);
+  const [isAnnual, setIsAnnual] = useState(true); // Changed to true for annual by default
   const [essentialCourses, setEssentialCourses] = useState([1]);
 
   // 📌 Gestion de l'abonnement
@@ -94,7 +94,7 @@ export const Pricing = () => {
       monthlyPrice: "10 €",
       description: "Pour les professeurs",
       features: [
-        { text: `${essentialCourses[0]} à 5 parcours simultanés`, included: true },
+        { text: "1 à 5 parcours simultanés", included: true }, // Fixed text
         { text: "Jusqu'à 100 joueurs par parcours", included: true },
         { text: "Toutes les fonctionnalités", included: true },
         { text: "Tableaux de bord", included: true },
@@ -159,8 +159,11 @@ export const Pricing = () => {
             >
               {plan.title === "Essential" && (
                 <div className="flex flex-col items-center mb-6">
+                  <span className="text-[#0c3d5e] font-semibold mb-2">
+                    {essentialCourses[0]} parcours
+                  </span>
                   <Label className="text-sm text-gray-600 mb-2">
-                    Nombre de parcours ({essentialCourses[0]})
+                    Choisis le nombre de parcours désiré
                   </Label>
                   <Slider
                     value={essentialCourses}
