@@ -117,7 +117,7 @@ export const Pricing = () => {
     },
     {
       title: "Institution",
-      monthlyPrice: "Modulable",
+      monthlyPrice: "Sur demande",
       description: "Solution sur mesure pour une institution",
       features: [
         { text: "100% modulable", included: true },
