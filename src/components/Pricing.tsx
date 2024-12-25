@@ -80,7 +80,7 @@ export const Pricing = () => {
       features: [
         { text: "1 parcours", included: true },
         { text: "Jusqu'à 50 joueurs", included: true },
-        { text: "Fonctionnalités d'édition et d'exécution", included: true },
+        { text: "Fonctionnalités essentielles d'édition et d'exécution", included: true },
         { text: "Centre de ressources générique", included: true },
         { text: "Assistance standard", included: true },
       ],
@@ -94,7 +94,7 @@ export const Pricing = () => {
         { text: "Jusqu'à 5 parcours simultanés", included: true },
         { text: "Jusqu'à 80 joueurs par parcours", included: true },
         { text: "Toutes les fonctionnalités d'édition et d'exécution", included: true },
-        { text: "Dashboards standards", included: true },
+        { text: "Tableaux de bords spécifiques", included: true },
         { text: "Assistance prioritaire", included: true },
       ],
       buttonText: "Je m'abonne",
