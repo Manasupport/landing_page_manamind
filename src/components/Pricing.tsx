@@ -89,7 +89,7 @@ export const Pricing = () => {
     {
       title: "Essential",
       monthlyPrice: "10 €",
-      description: "Solution pour Enseignants et Équipes Pédagogiques",
+      description: "Solution pour enseignants et équipes pédagogiques",
       features: [
         { text: "Jusqu'à 5 parcours simultanés", included: true },
         { text: "Jusqu'à 80 joueurs par parcours", included: true },
@@ -103,13 +103,13 @@ export const Pricing = () => {
     {
       title: "Professional",
       monthlyPrice: "130 €",
-      description: "Solution pour Masters & Départements Académiques",
+      description: "Solution pour masters & départements académiques",
       features: [
         { text: "Jusqu'à 15 parcours simultanés", included: true },
         { text: "Jusqu'à 150 joueurs par parcours", included: true },
-        { text: "Dashboard avancés & consolidés", included: true },
+        { text: "Tableaux de bords consolidés", included: true },
         { text: "IA pour le design de parcours", included: true },
-        { text: "Parfait pour auditabilité, export en un clic !", included: true },
+        { text: "Export des données, parfait pour l'auditabilité !", included: true },
       ],
       buttonText: "Je m'abonne",
       popular: true,
@@ -118,7 +118,7 @@ export const Pricing = () => {
     {
       title: "Institution",
       monthlyPrice: "Modulable",
-      description: "Solution sur mesure",
+      description: "Solution sur mesure pour une institution",
       features: [
         { text: "100% modulable", included: true },
         { text: "Centre de ressources personnalisable", included: true },
