@@ -128,7 +128,7 @@ export const CreateAccount = () => {
       {/* Partie Droite : Types de Comptes */}
       <div className="w-full md:w-1/2 p-8 md:p-12 bg-[#0c3d5e] text-white flex flex-col justify-center">
         <h2 className="text-3xl font-bold mb-6 text-center">
-          Choisis le type de compte qui te correspond
+          Je choisis le type de compte qui me corresponds
         </h2>
         <div className="grid grid-cols-2 gap-4">
           {[
