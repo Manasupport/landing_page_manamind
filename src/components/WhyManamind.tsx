@@ -82,6 +82,9 @@ export const WhyManamind = () => {
           className="mt-20 bg-gradient-to-r from-[#71c088]/20 to-[#a3d7b3]/20 rounded-2xl p-8 md:p-12 text-center backdrop-blur-sm border border-white/10"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Prêt à transformer votre apprentissage ?</h2>
+          <p className="text-xl text-gray-300 mb-8">
+            Manamind : considérée par 92%* des étudiants comme un vecteur d'expérience engageante
+          </p>
           <Button
             size="lg"
             onClick={() => {

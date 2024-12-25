@@ -31,7 +31,7 @@ export const About = () => {
           Manamind pour concevoir et jouer des parcours d'apprentissages sur-mesure centrés sur les compétences
         </p>
         
-        <div className="max-w-5xl mx-auto bg-white/5 rounded-2xl p-8 backdrop-blur-sm">
+        <div className="max-w-5xl mx-auto">
           <img
             src="/lovable-uploads/675596c9-f66c-4c0f-a559-cb1abd9453d0.png"
             alt="Manamind Platform Interface"
