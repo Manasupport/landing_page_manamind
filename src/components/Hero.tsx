@@ -21,7 +21,7 @@ export const Hero = () => {
             onClick={() => handleNavigation("about")}
             className="text-white text-lg font-bold hover:text-[#71c088] transition duration-300"
           >
-            Qui sommes-nous
+            À propos de Manamind
           </button>
           <button
             onClick={() => handleNavigation("pricing")}
