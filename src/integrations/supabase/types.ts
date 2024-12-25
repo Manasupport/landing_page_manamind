@@ -11,46 +11,40 @@ export type Database = {
     Tables: {
       profiles: {
         Row: {
-          account_type: string | null
-          contract_renewal_date: string | null
-          created_at: string
+          "créer le": string
+          "Date de reconduction de l'abonnement": string | null
           email: string | null
-          first_name: string | null
           id: string
-          last_name: string | null
-          number_of_courses: number | null
-          plan_type: string | null
-          selected_plan: string | null
-          subscription_status: string | null
-          updated_at: string
+          "modifié le": string
+          Nom: string | null
+          "Nombre de parcours": number | null
+          "Plan choisi": string | null
+          Prenom: string | null
+          "Statut de l'abonnement": string | null
         }
         Insert: {
-          account_type?: string | null
-          contract_renewal_date?: string | null
-          created_at?: string
+          "créer le"?: string
+          "Date de reconduction de l'abonnement"?: string | null
           email?: string | null
-          first_name?: string | null
           id: string
-          last_name?: string | null
-          number_of_courses?: number | null
-          plan_type?: string | null
-          selected_plan?: string | null
-          subscription_status?: string | null
-          updated_at?: string
+          "modifié le"?: string
+          Nom?: string | null
+          "Nombre de parcours"?: number | null
+          "Plan choisi"?: string | null
+          Prenom?: string | null
+          "Statut de l'abonnement"?: string | null
         }
         Update: {
-          account_type?: string | null
-          contract_renewal_date?: string | null
-          created_at?: string
+          "créer le"?: string
+          "Date de reconduction de l'abonnement"?: string | null
           email?: string | null
-          first_name?: string | null
           id?: string
-          last_name?: string | null
-          number_of_courses?: number | null
-          plan_type?: string | null
-          selected_plan?: string | null
-          subscription_status?: string | null
-          updated_at?: string
+          "modifié le"?: string
+          Nom?: string | null
+          "Nombre de parcours"?: number | null
+          "Plan choisi"?: string | null
+          Prenom?: string | null
+          "Statut de l'abonnement"?: string | null
         }
         Relationships: []
       }

@@ -14,30 +14,6 @@ export const Hero = () => {
       className="min-h-screen flex flex-col justify-between relative overflow-hidden"
       style={{ backgroundColor: "#0c3d5e" }}
     >
-      {/* Barre de navigation */}
-      <nav className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full max-w-4xl py-6">
-        <div className="flex justify-center space-x-12">
-          <button
-            onClick={() => handleNavigation("about")}
-            className="text-white text-lg font-bold hover:text-[#71c088] transition duration-300"
-          >
-            À propos de Manamind
-          </button>
-          <button
-            onClick={() => handleNavigation("pricing")}
-            className="text-white text-lg font-bold hover:text-[#71c088] transition duration-300"
-          >
-            Nos offres
-          </button>
-          <button
-            onClick={() => handleNavigation("contact")}
-            className="text-white text-lg font-bold hover:text-[#71c088] transition duration-300"
-          >
-            Contactez-nous
-          </button>
-        </div>
-      </nav>
-
       {/* Logo ajusté */}
       <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 z-10">
         <img
