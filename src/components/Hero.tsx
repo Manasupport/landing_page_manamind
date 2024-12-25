@@ -14,7 +14,6 @@ export const Hero = () => {
       className="min-h-screen flex flex-col justify-between relative overflow-hidden"
       style={{ backgroundColor: "#0c3d5e" }}
     >
-      {/* Logo ajusté */}
       <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 z-10">
         <img
           src="/lovable-uploads/Manamind.png"
@@ -23,7 +22,6 @@ export const Hero = () => {
         />
       </div>
 
-      {/* Texte animé */}
       <div className="flex-1 flex items-center justify-center mt-48">
         <div className="max-w-3xl mx-auto text-center space-y-8">
           <div className="text-3xl md:text-4xl text-white/90 leading-relaxed font-telegraph">
@@ -52,14 +50,13 @@ export const Hero = () => {
         </div>
       </div>
 
-      {/* Bouton */}
       <div className="w-full flex justify-center pb-12">
         <Button
           onClick={() => handleNavigation("about")}
           size="lg"
-          className="bg-white text-black hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-lg px-8 py-6 h-auto font-telegraph"
+          className="bg-[#71c088] text-white hover:bg-[#5a9a6e] transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-lg px-8 py-6 h-auto font-telegraph font-bold"
         >
-          J'en apprends plus !
+          À propos de Manamind
         </Button>
       </div>
     </section>
