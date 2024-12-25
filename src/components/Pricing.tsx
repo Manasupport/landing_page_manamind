@@ -91,7 +91,7 @@ export const Pricing = () => {
       monthlyPrice: "10 €",
       description: "Solution pour Enseignants et Équipes Pédagogiques",
       features: [
-        { text: "1 à 5 parcours simultanés", included: true },
+        { text: "Jusqu'à 5 parcours simultanés", included: true },
         { text: "Jusqu'à 80 joueurs par parcours", included: true },
         { text: "Toutes les fonctionnalités d'édition et d'exécution", included: true },
         { text: "Dashboards standards", included: true },
