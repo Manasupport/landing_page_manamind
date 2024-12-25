@@ -1,6 +1,7 @@
 import { Lightbulb, Users, BarChart } from "lucide-react";
 import { Button } from "./ui/button";
 import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 export const WhyManamind = () => {
   const features = [
@@ -73,7 +74,13 @@ export const WhyManamind = () => {
           ))}
         </div>
 
-        <div className="mt-20 bg-gradient-to-r from-[#71c088]/20 to-[#a3d7b3]/20 rounded-2xl p-8 md:p-12 text-center backdrop-blur-sm border border-white/10">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="mt-20 bg-gradient-to-r from-[#71c088]/20 to-[#a3d7b3]/20 rounded-2xl p-8 md:p-12 text-center backdrop-blur-sm border border-white/10"
+        >
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Prêt à transformer votre apprentissage ?</h2>
           <Button
             size="lg"
@@ -88,7 +95,7 @@ export const WhyManamind = () => {
             Commencer maintenant
             <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
           </Button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
