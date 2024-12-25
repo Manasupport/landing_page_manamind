@@ -56,13 +56,13 @@ export const Hero = () => {
               <TypeAnimation
                 sequence={[
                   "expériences engageantes.",
-                  800,
+                  1000,
                   "compétences boostées.",
-                  800,
+                  1000,
                   "projets mémorables.",
-                  800,
+                  1000,
                   "formations ludiques.",
-                  800,
+                  1000,
                 ]}
                 wrapper="span"
                 speed={30}
