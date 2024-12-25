@@ -27,8 +27,13 @@ export const About = () => {
         <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#71c088] to-[#a3d7b3] text-transparent bg-clip-text">
           Manamind, c'est quoi ?
         </h1>
+<<<<<<< HEAD
         <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-16">
           Manamind pour concevoir et jouer des parcours d'apprentissages sur-mesure centrés sur les compétences
+=======
+        <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          Manamind est une application pour concevoir et jouer des parcours d'apprentissages sur-mesure centrés sur les compétences
+>>>>>>> 9d66353 (rzre)
         </p>
         
         <div className="max-w-5xl mx-auto">
