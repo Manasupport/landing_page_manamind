@@ -35,7 +35,7 @@ export const ConsultationSection = () => {
                 window.open("https://calendar.app.google/8PzSHhTa8sLE9XWf7", "_blank")
               }
             >
-              Je réserve un point
+              Je réserve un rendez-vous
             </Button>
           </div>
         </div>
