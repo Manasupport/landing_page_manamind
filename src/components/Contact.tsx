@@ -21,12 +21,11 @@ export const Contact = () => {
                 variant="ghost"
                 size="icon"
                 className="hover:bg-white/10"
-                onClick={() => window.open("https://linkedin.com/company/manamind", "_blank")}
+                onClick={() => window.open("https://linkedin.com/company/manadvise", "_blank")}
               >
                 <Linkedin className="h-5 w-5 text-white" />
               </Button>
             </div>
-            <p className="text-lg text-white font-quattrocento">contact@mana.fr</p>
             <p className="text-base text-white font-quattrocento">24 rue Pierre Semard, 75009 PARIS</p>
           </div>
           <div className="pt-6">
