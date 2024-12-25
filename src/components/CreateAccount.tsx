@@ -92,7 +92,7 @@ export const CreateAccount = () => {
       {/* Partie Gauche : Formulaire */}
       <div className="w-full md:w-1/2 p-8 md:p-12 bg-[#71c088] flex flex-col justify-center">
         <h2 className="text-3xl font-bold text-white mb-6 text-center">
-          Créez et animez vos parcours
+          Je m'enregistre
         </h2>
         <form className="space-y-4">
           <input
