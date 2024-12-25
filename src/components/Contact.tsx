@@ -28,14 +28,19 @@ export const Contact = () => {
             </div>
             <p className="text-base text-white font-quattrocento">24 rue Pierre Semard, 75009 PARIS</p>
           </div>
-          <div className="pt-6">
+          <div className="pt-6 space-y-2">
+            <img
+              src="/lovable-uploads/Manamind.png"
+              alt="Manamind Logo"
+              className="h-10 mx-auto"
+            />
             <p className="text-xs text-white font-quattrocento">
-              Une solution originale par
+              une solution originale par
             </p>
             <img
               src="/lovable-uploads/8a236523-7325-450e-af98-859d2716368d.png"
               alt="Mana Logo"
-              className="h-10 mx-auto mt-2 hover:scale-105 transition-all duration-300"
+              className="h-10 mx-auto hover:scale-105 transition-all duration-300"
             />
           </div>
         </div>
