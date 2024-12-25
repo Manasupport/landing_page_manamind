@@ -36,36 +36,44 @@ export const WhyManamind = () => {
   return (
     <section className="py-20 px-4 text-white" style={{ backgroundColor: "#0c3d5e" }}>
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-16">Notre Mantra</h2>
+        <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-[#71c088] to-[#a3d7b3] text-transparent bg-clip-text">
+          Notre Mantra
+        </h2>
+        
         <div className="grid md:grid-cols-3 gap-12">
           {features.map((feature, index) => (
-            <div
+            <motion.div
               key={index}
-              className="space-y-8 animate-fadeIn"
-              style={{ animationDelay: `${index * 200}ms` }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              viewport={{ once: true }}
+              className="group hover:scale-105 transition-transform duration-300"
             >
-              <div className="flex flex-col items-center text-center space-y-6">
-                <div className="w-24 h-24 rounded-full bg-manamind/20 flex items-center justify-center mb-6">
-                  <feature.icon className="w-12 h-12 text-manamind" />
+              <div className="bg-white/5 rounded-2xl p-8 h-full backdrop-blur-sm border border-white/10 hover:border-manamind/30 transition-colors">
+                <div className="flex flex-col items-center text-center space-y-6">
+                  <div className="w-20 h-20 rounded-full bg-manamind/20 flex items-center justify-center mb-6 group-hover:bg-manamind/30 transition-colors">
+                    <feature.icon className="w-10 h-10 text-manamind" />
+                  </div>
+                  <h3 className="text-2xl font-semibold leading-tight">
+                    <span className="text-manamind">{feature.title.split(" ")[0]}</span>
+                    {" " + feature.title.split(" ").slice(1).join(" ")}
+                  </h3>
+                  <ul className="space-y-6 text-left">
+                    {feature.points.map((point, pointIndex) => (
+                      <li key={pointIndex} className="flex items-start space-x-2">
+                        <span className="text-manamind font-semibold min-w-[80px]">{point.key}</span>
+                        <span className="text-gray-300">{point.text}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <h3 className="text-2xl font-semibold leading-tight">
-                  <span className="text-manamind">{feature.title.split(" ")[0]}</span>
-                  {" " + feature.title.split(" ").slice(1).join(" ")}
-                </h3>
-                <ul className="space-y-6 text-left">
-                  {feature.points.map((point, pointIndex) => (
-                    <li key={pointIndex} className="flex items-start space-x-2">
-                      <span className="text-manamind font-semibold">{point.key}</span>
-                      <span className="text-gray-300">{point.text}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        <div className="mt-20 bg-gradient-to-r from-[#71c088]/20 to-[#a3d7b3]/20 rounded-2xl p-8 md:p-12 text-center backdrop-blur-sm">
+        <div className="mt-20 bg-gradient-to-r from-[#71c088]/20 to-[#a3d7b3]/20 rounded-2xl p-8 md:p-12 text-center backdrop-blur-sm border border-white/10">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Prêt à transformer votre apprentissage ?</h2>
           <Button
             size="lg"

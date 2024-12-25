@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Button } from "./ui/button";
 
 export const About = () => {
   const containerVariants = {
@@ -23,14 +22,22 @@ export const About = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="container mx-auto px-4 mb-20 text-center"
+        className="container mx-auto px-4 mb-12 text-center"
       >
         <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#71c088] to-[#a3d7b3] text-transparent bg-clip-text">
           Manamind, c'est quoi ?
         </h1>
-        <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-16">
           Manamind pour concevoir et jouer des parcours d'apprentissages sur-mesure centrés sur les compétences
         </p>
+        
+        <div className="max-w-5xl mx-auto bg-white/5 rounded-2xl p-8 backdrop-blur-sm">
+          <img
+            src="/lovable-uploads/675596c9-f66c-4c0f-a559-cb1abd9453d0.png"
+            alt="Manamind Platform Interface"
+            className="w-full h-auto rounded-lg shadow-2xl"
+          />
+        </div>
       </motion.div>
     </section>
   );
