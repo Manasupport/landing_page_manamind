@@ -15,21 +15,21 @@ export const StickyNav = () => {
         <Button
           variant="ghost"
           onClick={() => scrollToSection("about")}
-          className="text-white hover:text-white/80"
+          className="text-white hover:bg-[#5a9a6e] hover:text-white"
         >
           A propos de Manamind
         </Button>
         <Button
           variant="ghost"
           onClick={() => scrollToSection("pricing")}
-          className="text-white hover:text-white/80"
+          className="text-white hover:bg-[#5a9a6e] hover:text-white"
         >
           Nos offres
         </Button>
         <Button
           variant="ghost"
           onClick={() => scrollToSection("contact")}
-          className="text-white hover:text-white/80"
+          className="text-white hover:bg-[#5a9a6e] hover:text-white"
         >
           Contactez-nous
         </Button>

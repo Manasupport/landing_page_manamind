@@ -6,30 +6,30 @@ import { motion } from "framer-motion";
 export const WhyManamind = () => {
   const features = [
     {
-      title: "Pilotage par les encadrants",
+      title: "Pilotage pour les encadrants",
       icon: Lightbulb,
       points: [
-        { key: "Concevoir", text: "et personnaliser des parcours d'apprentissage sur mesure." },
-        { key: "Mesurer", text: "l'acquisition des compétences et suivre les parcours en temps réel." },
-        { key: "Exploiter", text: "les données des parcours pour des livrables pertinents." },
+        { text: "Concevoir et personnaliser facilement des parcours d'apprentissage." },
+        { text: "Suivre en temps réel la progression des apprenants et l'acquisition des compétences." },
+        { text: "Bénéficier d'un guichet unique pour faciliter le partage de ressources et l'évaluation des livrables." },
       ],
     },
     {
       title: "Expérience pour les apprenants",
       icon: Users,
       points: [
-        { key: "Offrir", text: "un cadre d'apprentissage aligné aux standards professionnels." },
-        { key: "Impliquer", text: "les apprenants dans des parcours engageants et collaboratifs." },
-        { key: "Faciliter", text: "l'évaluation individuelle et collective tout au long du parcours" },
+        { text: "Impliquer les apprenants dans des parcours engageants et collaboratifs." },
+        { text: "Matérialiser l'acquisition des compétences techniques et comportementales tout au long du projet." },
+        { text: "Offrir un cadre d'apprentissage adapté à des projets aussi bien individuels que collectifs." },
       ],
     },
     {
-      title: "Auditabilité des acquis pour l'organisation",
+      title: "Auditabilité pour l'institution",
       icon: BarChart,
       points: [
-        { key: "Intégrer", text: "des référentiels de compétences (ex. RNCP, référentiels métiers) aux parcours d'apprentissage." },
-        { key: "Automatiser", text: "l'évaluation des compétences acquises." },
-        { key: "Simplifier", text: "les processus d'audit." },
+        { text: "Intégrer des référentiels de compétences (ex. RNCP, France compétences, Fiches métiers…) aux parcours d'apprentissage." },
+        { text: "Automatiser l'évaluation des compétences." },
+        { text: "Simplifier les processus d'audit (AoL)." },
       ],
     },
   ];
@@ -37,8 +37,8 @@ export const WhyManamind = () => {
   return (
     <section className="py-20 px-4 text-white" style={{ backgroundColor: "#0c3d5e" }}>
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-[#71c088] to-[#a3d7b3] text-transparent bg-clip-text">
-          Notre Mantra
+        <h2 className="text-2xl md:text-3xl text-center mb-16 text-white">
+          Manamind propose une expérience d'apprentissage innovante et créatrice de valeur pour chaque partie prenante :
         </h2>
         
         <div className="grid md:grid-cols-3 gap-12">
@@ -56,14 +56,12 @@ export const WhyManamind = () => {
                   <div className="w-20 h-20 rounded-full bg-manamind/20 flex items-center justify-center mb-6 group-hover:bg-manamind/30 transition-colors">
                     <feature.icon className="w-10 h-10 text-manamind" />
                   </div>
-                  <h3 className="text-2xl font-semibold leading-tight">
-                    <span className="text-manamind">{feature.title.split(" ")[0]}</span>
-                    {" " + feature.title.split(" ").slice(1).join(" ")}
+                  <h3 className="text-2xl font-semibold leading-tight text-manamind">
+                    {feature.title}
                   </h3>
                   <ul className="space-y-6 text-left">
                     {feature.points.map((point, pointIndex) => (
                       <li key={pointIndex} className="flex items-start space-x-2">
-                        <span className="text-manamind font-semibold min-w-[80px]">{point.key}</span>
                         <span className="text-gray-300">{point.text}</span>
                       </li>
                     ))}
