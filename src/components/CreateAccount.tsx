@@ -140,9 +140,9 @@ export const CreateAccount = () => {
       </div>
 
       {/* Partie Droite : Types de Comptes */}
-      <div className="w-full md:w-1/2 p-8 md:p-12 bg-gradient-to-br from-[#0c3d5e] to-[#71c088] text-white flex flex-col justify-center">
+      <div className="w-full md:w-1/2 p-8 md:p-12 bg-[#0c3d5e] text-white flex flex-col justify-center">
         <h2 className="text-3xl font-bold mb-6 text-center">
-          Je choisis le type de compte qui me correspond
+          Je choisis le type de compte qui me corresponds
         </h2>
         <div className="grid grid-cols-2 gap-4">
           {[
