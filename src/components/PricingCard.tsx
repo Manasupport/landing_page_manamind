@@ -50,8 +50,7 @@ export const PricingCard = ({
       <CardContent className="flex-grow flex flex-col">
         {children}
 
-        {/* Liste des Fonctionnalités avec Alignement Uniforme */}
-        <ul className="grid grid-rows-[repeat(6,minmax(48px,auto))] gap-4 mb-8 flex-grow">
+        <ul className="space-y-4 mb-8 flex-grow">
           {features.map((feature, index) => (
             <li key={index} className="flex items-start space-x-3 min-h-[48px]">
               <span
@@ -67,8 +66,7 @@ export const PricingCard = ({
             </li>
           ))}
         </ul>
-
-        {/* Bouton d'Abonnement */}
+        
         <Button
           onClick={onSubscribe}
           className={`w-full mt-auto ${
