@@ -140,9 +140,9 @@ export const CreateAccount = () => {
             <div
               key={type.value}
               onClick={() => setAccountType(type.value)}
-              className={p-4 text-center rounded-lg cursor-pointer border flex flex-col items-center ${
+              className={`p-4 text-center rounded-lg cursor-pointer border flex flex-col items-center ${
                 accountType === type.value ? "bg-[#71c088] text-black shadow-lg" : "bg-white/10"
-              } transition-all}
+              } transition-all`}
             >
               <type.icon className="h-8 w-8 mb-2" />
               <span className="font-semibold">{type.label}</span>
@@ -156,9 +156,9 @@ export const CreateAccount = () => {
         <Button
           onClick={handleSubmit}
           size="lg"
-          className={bg-[#71c088] text-white px-8 py-4 rounded-lg font-bold hover:bg-[#5a9a6e] shadow-md transition-all duration-300 ${
+          className={`bg-[#71c088] text-white px-8 py-4 rounded-lg font-bold hover:bg-[#5a9a6e] shadow-md transition-all duration-300 ${
             !accountType || !formData.email ? "opacity-50 cursor-not-allowed" : ""
-          }}
+          }`}
           disabled={!accountType || !formData.email}
         >
           Je m'inscris
