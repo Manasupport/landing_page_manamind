@@ -1,6 +1,6 @@
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
-import { useNavigate } from "react-router-dom";
+import { Check } from "lucide-react";
 
 interface PricingFeature {
   text: string;
@@ -29,8 +29,6 @@ export const PricingCard = ({
   onSubscribe,
   children,
 }: PricingCardProps) => {
-  const navigate = useNavigate();
-
   return (
     <Card
       className={`relative flex flex-col h-full transition-all duration-200 hover:shadow-lg ${
@@ -42,25 +40,36 @@ export const PricingCard = ({
           Populaire
         </div>
       )}
-      <CardHeader className="flex-none space-y-4">
-        <CardTitle className="text-2xl font-bold">{title}</CardTitle>
-        <CardDescription className="text-xl font-semibold">{price}</CardDescription>
-        <p className="text-gray-600 min-h-[48px]">{description}</p>
+      <CardHeader className="flex-none pb-6">
+        <CardTitle className="text-2xl font-bold text-[#0c3d5e]">{title}</CardTitle>
+        <CardDescription className="text-xl font-semibold mt-2">{price}</CardDescription>
+        <p className="text-gray-600 min-h-[48px] mt-2">{description}</p>
       </CardHeader>
       <CardContent className="flex-grow flex flex-col">
         {children}
-
+        
         <ul className="space-y-4 mb-8 flex-grow">
           {features.map((feature, index) => (
-            <li key={index} className="flex items-start space-x-3 min-h-[48px]">
-              <span
-                className={`mt-1 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${
-                  feature.included ? "bg-manamind/20 text-manamind" : "bg-gray-100 text-gray-400"
+            <li 
+              key={index} 
+              className="flex items-start gap-3 min-h-[48px] group"
+            >
+              <span className="mt-0.5 flex-shrink-0">
+                <Check 
+                  className={`w-5 h-5 ${
+                    feature.included 
+                      ? "text-manamind" 
+                      : "text-gray-300"
+                  }`}
+                />
+              </span>
+              <span 
+                className={`text-sm sm:text-base ${
+                  feature.included 
+                    ? "text-gray-700" 
+                    : "text-gray-400"
                 }`}
               >
-                {feature.included ? "✓" : "×"}
-              </span>
-              <span className={feature.included ? "text-gray-700" : "text-gray-400"}>
                 {feature.text}
               </span>
             </li>
@@ -70,7 +79,9 @@ export const PricingCard = ({
         <Button
           onClick={onSubscribe}
           className={`w-full mt-auto ${
-            popular ? "bg-manamind hover:bg-manamind-dark" : "bg-gray-800 hover:bg-gray-700"
+            popular 
+              ? "bg-manamind hover:bg-manamind-dark text-white" 
+              : "bg-[#0c3d5e] hover:bg-[#0a3450] text-white"
           }`}
         >
           {buttonText}

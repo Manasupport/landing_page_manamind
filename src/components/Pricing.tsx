@@ -76,7 +76,7 @@ export const Pricing = () => {
     {
       title: "Starter",
       monthlyPrice: "0 €",
-      description: "Parfait pour prendre en main l’outil",
+      description: "Parfait pour prendre en main l'outil",
       features: [
         { text: "1 parcours", included: true },
         { text: "Jusqu'à 50 joueurs", included: true },
@@ -94,7 +94,7 @@ export const Pricing = () => {
         { text: "Jusqu'à 5 parcours simultanés", included: true },
         { text: "Jusqu'à 80 joueurs par parcours", included: true },
         { text: "Toutes les fonctionnalités d'édition et d'exécution", included: true },
-        { text: "Tableaux de bords spécifiques", included: true },
+        { text: "Tableaux de bord spécifiques", included: true },
         { text: "Assistance prioritaire", included: true },
       ],
       buttonText: "Je m'abonne",
@@ -107,9 +107,10 @@ export const Pricing = () => {
       features: [
         { text: "Jusqu'à 15 parcours simultanés", included: true },
         { text: "Jusqu'à 150 joueurs par parcours", included: true },
-        { text: "Tableaux de bords consolidés", included: true },
+        { text: "Tableaux de bord consolidés", included: true },
         { text: "IA pour le design de parcours", included: true },
         { text: "Export des données, parfait pour l'auditabilité !", included: true },
+        { text: "Assistance prioritaire", included: true },
       ],
       buttonText: "Je m'abonne",
       popular: true,
@@ -124,7 +125,9 @@ export const Pricing = () => {
         { text: "Centre de ressources personnalisable", included: true },
         { text: "Support premium dédié", included: true },
         { text: "Intégrations LMS/CRM", included: true },
-        { text: "KPI auditables", included: true },
+        { text: "Tableaux de bord consolidés", included: true },
+        { text: "Export des données, parfait pour l'auditabilité !", included: true },
+        { text: "Assistance spécialisée avec un chef de projet dédié", included: true },
       ],
       buttonText: "Personnaliser",
     },
@@ -133,7 +136,7 @@ export const Pricing = () => {
   return (
     <section id="pricing" className="py-20 px-4 bg-gradient-to-br from-slate-50 to-white">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-slate-800">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-[#0c3d5e]">
           Découvrez nos offres
         </h2>
         <div className="flex items-center justify-center gap-4 mb-12">
@@ -146,7 +149,7 @@ export const Pricing = () => {
           </Label>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
           {basePricingData.map((plan) => (
             <PricingCard
               key={plan.title}
