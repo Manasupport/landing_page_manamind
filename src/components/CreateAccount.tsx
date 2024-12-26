@@ -52,6 +52,20 @@ export const CreateAccount = () => {
 
       if (authError) throw authError;
 
+      // Update profile with additional information
+      const { error: profileError } = await supabase
+        .from('profiles')
+        .update({
+          "Prenom": formData.firstName,
+          "Nom": formData.lastName,
+          "Type de compte": accountType,
+          "Plan choisi": selectedPlan,
+          "Nombre de parcours": numberOfCourses || 1,
+        })
+        .eq('id', authData.user?.id);
+
+      if (profileError) throw profileError;
+
       if (selectedPlan === "Starter") {
         window.location.href = "https://app.manamind.fr";
       } else {
