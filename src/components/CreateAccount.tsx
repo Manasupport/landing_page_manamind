@@ -52,20 +52,6 @@ export const CreateAccount = () => {
 
       if (authError) throw authError;
 
-      // Update profile with additional information
-      const { error: profileError } = await supabase
-        .from('profiles')
-        .update({
-          "Prenom": formData.firstName,
-          "Nom": formData.lastName,
-          "Type de compte": accountType,
-          "Plan choisi": selectedPlan,
-          "Nombre de parcours": numberOfCourses || 1,
-        })
-        .eq('id', authData.user?.id);
-
-      if (profileError) throw profileError;
-
       if (selectedPlan === "Starter") {
         window.location.href = "https://app.manamind.fr";
       } else {
@@ -154,9 +140,9 @@ export const CreateAccount = () => {
             <div
               key={type.value}
               onClick={() => setAccountType(type.value)}
-              className={`p-4 text-center rounded-lg cursor-pointer border flex flex-col items-center ${
+              className={p-4 text-center rounded-lg cursor-pointer border flex flex-col items-center ${
                 accountType === type.value ? "bg-[#71c088] text-black shadow-lg" : "bg-white/10"
-              } transition-all`}
+              } transition-all}
             >
               <type.icon className="h-8 w-8 mb-2" />
               <span className="font-semibold">{type.label}</span>
@@ -170,9 +156,9 @@ export const CreateAccount = () => {
         <Button
           onClick={handleSubmit}
           size="lg"
-          className={`bg-[#71c088] text-white px-8 py-4 rounded-lg font-bold hover:bg-[#5a9a6e] shadow-md transition-all duration-300 ${
+          className={bg-[#71c088] text-white px-8 py-4 rounded-lg font-bold hover:bg-[#5a9a6e] shadow-md transition-all duration-300 ${
             !accountType || !formData.email ? "opacity-50 cursor-not-allowed" : ""
-          }`}
+          }}
           disabled={!accountType || !formData.email}
         >
           Je m'inscris
