@@ -30,9 +30,16 @@ export const Pricing = () => {
 
   const handleSubscribe = (plan: string, priceId?: string) => {
     if (plan === "Institution") {
-      toast({
-        title: "Demande de contact",
-        description: "Notre équipe vous contactera prochainement.",
+      window.open("https://calendar.app.google/8PzSHhTa8sLE9XWf7", "_blank");
+      return;
+    }
+
+    if (plan === "Starter") {
+      navigate("/create-account", {
+        state: {
+          selectedPlan: plan,
+          numberOfCourses: 1,
+        },
       });
       return;
     }
@@ -129,7 +136,7 @@ export const Pricing = () => {
         { text: "Export des données, parfait pour l'auditabilité !", included: true },
         { text: "Assistance spécialisée avec un chef de projet dédié", included: true },
       ],
-      buttonText: "Personnaliser",
+      buttonText: "Prendre rendez-vous",
     },
   ];
 

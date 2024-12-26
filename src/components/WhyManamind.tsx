@@ -37,7 +37,7 @@ export const WhyManamind = () => {
   return (
     <section className="py-20 px-4 text-white" style={{ backgroundColor: "#0c3d5e" }}>
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-2xl md:text-3xl text-center mb-16 text-white">
+        <h2 className="text-2xl md:text-3xl text-center mb-16 text-[#71c088]">
           Manamind propose une expérience d'apprentissage innovante et créatrice de valeur pour chaque partie prenante :
         </h2>
         
@@ -96,6 +96,9 @@ export const WhyManamind = () => {
             Commencer maintenant
             <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
           </Button>
+          <p className="text-xs text-gray-400 mt-4 italic">
+            * Questionnaire soumis aux étudiants du MIB Dauphine - PSL Spring 2024, basé sur 47 réponses.
+          </p>
         </motion.div>
       </div>
     </section>
