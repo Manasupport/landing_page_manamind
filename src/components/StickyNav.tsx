@@ -17,7 +17,7 @@ export const StickyNav = () => {
           onClick={() => scrollToSection("about")}
           className="text-[#0c3d5e] hover:text-[#0c3d5e]/80"
         >
-          Qui sommes-nous
+          A propos de Manamind
         </Button>
         <Button
           variant="ghost"
