@@ -10,6 +10,7 @@ export const CreateAccount = () => {
   const location = useLocation();
   const { selectedPlan, priceId, numberOfCourses } = location.state || {};
 
+  const [step, setStep] = useState(1);
   const [accountType, setAccountType] = useState("");
   const [formData, setFormData] = useState({
     firstName: "",
@@ -88,81 +89,138 @@ export const CreateAccount = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row relative">
-      {/* Partie Gauche : Formulaire */}
-      <div className="w-full md:w-1/2 p-8 md:p-12 bg-[#71c088] flex flex-col justify-center">
-        <h2 className="text-3xl font-bold text-white mb-6 text-center">
-          Je m'enregistre
-        </h2>
-        <form className="space-y-4">
-          <input
-            type="text"
-            placeholder="Nom"
-            value={formData.firstName}
-            onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-            className="w-full p-3 rounded-lg border-0"
+    <div className="min-h-screen bg-gradient-to-b from-[#71c088]/10 to-[#0c3d5e]/10 py-12 px-4">
+      <div className="max-w-2xl mx-auto">
+        <div className="text-center mb-12">
+          <img
+            src="/lovable-uploads/384c8e47-f179-4499-b24e-4ee8556324d9.png"
+            alt="Manamind Logo"
+            className="h-16 w-16 mx-auto mb-6"
           />
-          <input
-            type="text"
-            placeholder="Prénom"
-            value={formData.lastName}
-            onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-            className="w-full p-3 rounded-lg border-0"
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            className="w-full p-3 rounded-lg border-0"
-          />
-        </form>
-        {/* Lien de Connexion */}
-        <p className="text-center text-sm text-white mt-6 underline cursor-pointer hover:text-gray-200">
-          <a href="https://app.manamind.fr" target="_blank" rel="noopener noreferrer">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            Créez votre compte Manamind
+          </h1>
+          <p className="text-gray-600">
+            Rejoignez notre communauté d'enseignants et transformez l'apprentissage
+          </p>
+          <div className="flex justify-center gap-4 mt-6">
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+              step === 1 ? 'bg-[#71c088] text-white' : 'bg-gray-200'
+            }`}>
+              1
+            </div>
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+              step === 2 ? 'bg-[#71c088] text-white' : 'bg-gray-200'
+            }`}>
+              2
+            </div>
+          </div>
+        </div>
+
+        {step === 1 ? (
+          <div className="bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-center mb-8">
+              Choisissez votre type de compte
+            </h2>
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { label: "Professeur permanent", value: "permanent", icon: GraduationCap },
+                { label: "Professeur vacataire", value: "vacataire", icon: Users },
+                { label: "Institution", value: "institution", icon: Building },
+                { label: "Directeur de Master", value: "master", icon: BookOpen },
+              ].map((type) => (
+                <button
+                  key={type.value}
+                  onClick={() => {
+                    setAccountType(type.value);
+                    setStep(2);
+                  }}
+                  className={`p-6 rounded-lg border-2 flex flex-col items-center transition-all ${
+                    accountType === type.value
+                      ? "border-[#71c088] bg-[#71c088]/10"
+                      : "border-gray-200 hover:border-[#71c088] hover:bg-[#71c088]/5"
+                  }`}
+                >
+                  <type.icon className={`h-8 w-8 mb-3 ${
+                    accountType === type.value ? "text-[#71c088]" : "text-gray-500"
+                  }`} />
+                  <span className="font-medium text-gray-900">{type.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-center mb-8">
+              Complétez vos informations
+            </h2>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Nom
+                </label>
+                <input
+                  type="text"
+                  value={formData.lastName}
+                  onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                  className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#71c088] focus:border-transparent"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Prénom
+                </label>
+                <input
+                  type="text"
+                  value={formData.firstName}
+                  onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                  className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#71c088] focus:border-transparent"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#71c088] focus:border-transparent"
+                  required
+                />
+              </div>
+              <div className="flex gap-4 pt-4">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => setStep(1)}
+                  className="flex-1"
+                >
+                  Retour
+                </Button>
+                <Button
+                  type="submit"
+                  className="flex-1 bg-[#71c088] hover:bg-[#5a9a6e]"
+                >
+                  Je m'inscris
+                </Button>
+              </div>
+            </form>
+          </div>
+        )}
+
+        <p className="text-center text-sm text-gray-600 mt-8">
+          <a
+            href="https://app.manamind.fr"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#71c088] hover:underline"
+          >
             J'ai déjà un compte, je me connecte
           </a>
         </p>
-      </div>
-
-      {/* Partie Droite : Types de Comptes */}
-      <div className="w-full md:w-1/2 p-8 md:p-12 bg-[#0c3d5e] text-white flex flex-col justify-center">
-        <h2 className="text-3xl font-bold mb-6 text-center">
-          Je choisis le type de compte qui me correspond
-        </h2>
-        <div className="grid grid-cols-2 gap-4">
-          {[
-            { label: "Professeur permanent", value: "permanent", icon: GraduationCap },
-            { label: "Professeur vacataire", value: "vacataire", icon: Users },
-            { label: "Institution", value: "institution", icon: Building },
-            { label: "Directeur de Master", value: "master", icon: BookOpen },
-          ].map((type) => (
-            <div
-              key={type.value}
-              onClick={() => setAccountType(type.value)}
-              className={`p-4 text-center rounded-lg cursor-pointer border flex flex-col items-center ${
-                accountType === type.value ? "bg-[#71c088] text-black shadow-lg" : "bg-white/10"
-              } transition-all`}
-            >
-              <type.icon className="h-8 w-8 mb-2" />
-              <span className="font-semibold">{type.label}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Bouton Central */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
-        <Button
-          onClick={handleSubmit}
-          size="lg"
-          className={`bg-[#71c088] text-white px-8 py-4 rounded-lg font-bold hover:bg-[#5a9a6e] shadow-md transition-all duration-300 ${
-            !accountType || !formData.email ? "opacity-50 cursor-not-allowed" : ""
-          }`}
-          disabled={!accountType || !formData.email}
-        >
-          Je m'inscris
-        </Button>
       </div>
     </div>
   );
