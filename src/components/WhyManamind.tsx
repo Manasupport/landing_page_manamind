@@ -80,7 +80,7 @@ export const WhyManamind = () => {
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Prêt à transformer votre apprentissage ?</h2>
           <p className="text-xl text-gray-300 mb-8">
-            Manamind : considérée par 92%* des étudiants comme un vecteur d'expérience engageante
+            Manamind : considérée par 94%* des étudiants comme un vecteur d'expérience engageante
           </p>
           <Button
             size="lg"
@@ -96,7 +96,7 @@ export const WhyManamind = () => {
             <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
           </Button>
           <p className="text-xs text-gray-400 mt-4 italic">
-            * Questionnaire soumis aux étudiants du MIB Dauphine - PSL Spring 2024, basé sur 47 réponses.
+            * Questionnaire soumis aux étudiants utilisateurs de Manamind Spring 2024.
           </p>
         </motion.div>
       </div>
