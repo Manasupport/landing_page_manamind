@@ -12,7 +12,8 @@ export const About = () => {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 20 },npm install framer-motion
+
     visible: { opacity: 1, y: 0 },
   };
 
