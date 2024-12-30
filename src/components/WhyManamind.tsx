@@ -8,27 +8,27 @@ export const WhyManamind = () => {
       title: "Pilotage pour les encadrants",
       icon: Lightbulb,
       points: [
-        { text: "Concevoir et personnaliser facilement des parcours d'apprentissage." },
-        { text: "Suivre en temps réel la progression des apprenants et l'acquisition des compétences." },
-        { text: "Bénéficier d'un guichet unique pour faciliter le partage de ressources et l'évaluation des livrables." },
+        { text: "- Concevoir et personnaliser facilement des parcours d'apprentissage." },
+        { text: "- Suivre en temps réel la progression des apprenants et l'acquisition des compétences." },
+        { text: "- Bénéficier d'un guichet unique pour faciliter le partage de ressources et l'évaluation des livrables." },
       ],
     },
     {
       title: "Expérience pour les apprenants",
       icon: Users,
       points: [
-        { text: "Impliquer les apprenants dans des parcours engageants et collaboratifs." },
-        { text: "Matérialiser l'acquisition des compétences techniques et comportementales tout au long du projet." },
-        { text: "Offrir un cadre d'apprentissage adapté à des projets aussi bien individuels que collectifs." },
+        { text: "- Impliquer les apprenants dans des parcours engageants et collaboratifs." },
+        { text: "- Matérialiser l'acquisition des compétences techniques et comportementales tout au long du projet." },
+        { text: "- Offrir un cadre d'apprentissage adapté à des projets aussi bien individuels que collectifs." },
       ],
     },
     {
       title: "Auditabilité pour l'institution",
       icon: BarChart,
       points: [
-        { text: "Intégrer des référentiels de compétences (ex. RNCP, France compétences, Fiches métiers…) aux parcours d'apprentissage." },
-        { text: "Automatiser l'évaluation des compétences." },
-        { text: "Simplifier les processus d'audit (AoL)." },
+        { text: "- Intégrer des référentiels de compétences (ex. RNCP, France compétences, Fiches métiers…) aux parcours d'apprentissage." },
+        { text: "- Automatiser l'évaluation des compétences." },
+        { text: "- Simplifier les processus d'audit (AoL)." },
       ],
     },
   ];
