@@ -87,7 +87,7 @@ export const Pricing = () => {
       features: [
         { text: "1 parcours", included: true },
         { text: "Jusqu'à 50 joueurs", included: true },
-        { text: "Fonctionnalités essentielles d'édition et d'exécution", included: true },
+        { text: "Toutes les fonctionnalités d'édition et d'exécution", included: true },
         { text: "Centre de ressources générique", included: true },
         { text: "Assistance standard", included: true },
       ],
@@ -101,7 +101,7 @@ export const Pricing = () => {
         { text: "Jusqu'à 5 parcours simultanés", included: true },
         { text: "Jusqu'à 80 joueurs par parcours", included: true },
         { text: "Toutes les fonctionnalités d'édition et d'exécution", included: true },
-        { text: "Tableaux de bord spécifiques", included: true },
+        { text: "Tableaux de bord de reporting et pilotage", included: true },
         { text: "Assistance prioritaire", included: true },
       ],
       buttonText: "Je m'abonne",
@@ -114,7 +114,7 @@ export const Pricing = () => {
       features: [
         { text: "Jusqu'à 15 parcours simultanés", included: true },
         { text: "Jusqu'à 150 joueurs par parcours", included: true },
-        { text: "Tableaux de bord consolidés", included: true },
+        { text: "Tableaux de bord de reporting et de pilotage consolidés", included: true },
         { text: "IA pour le design de parcours", included: true },
         { text: "Export des données, parfait pour l'auditabilité !", included: true },
         { text: "Assistance prioritaire", included: true },
