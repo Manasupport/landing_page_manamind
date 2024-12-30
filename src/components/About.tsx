@@ -1,57 +1,85 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import React, { useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { useGLTF, ScrollControls, useTexture } from "@react-three/drei";
+import { motion } from "framer-motion";
 
-export const About = () => {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "center center"],
+function LaptopWithScreen() {
+  const group = useRef();
+  const { nodes, materials } = useGLTF('/lovable-uploads/laptop.glb'); // Chemin mis à jour
+  const screenTexture = useTexture('/lovable-uploads/screenmacbook.gif'); // Chemin mis à jour
+
+  useFrame(() => {
+    // Animation d'ouverture du laptop en fonction du scroll
+    if (group.current) {
+      group.current.rotation.x = window.scrollY * 0.001; // Ajuste la rotation au scroll
+    }
   });
 
-  // Transformations pour simuler une ouverture
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 1]);
-  const rotateX = useTransform(scrollYProgress, [0, 0.5, 1], [60, 0, 0]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.5, 1, 1]);
+  return (
+    <group ref={group} position={[0, 0, 0]} scale={1.5}>
+      {/* Modèle principal */}
+      <primitive object={nodes.Laptop} material={materials.body} />
+      
+      {/* Écran avec GIF */}
+      <mesh geometry={nodes.Screen.geometry} position={nodes.Screen.position}>
+        <meshBasicMaterial map={screenTexture} toneMapped={false} />
+      </mesh>
+    </group>
+  );
+}
+
+function LaptopScene() {
+  return (
+    <section className="h-screen flex items-center justify-center overflow-hidden">
+      <Canvas>
+        <ScrollControls pages={2} damping={0.25}>
+          <LaptopWithScreen />
+        </ScrollControls>
+      </Canvas>
+    </section>
+  );
+}
+
+export const About = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
 
   return (
-    <section
-      id="about"
-      className="py-20 min-h-screen bg-[#0c3d5e] text-white flex items-center justify-center overflow-hidden"
-      ref={containerRef}
-    >
-      {/* Texte Introductif */}
+    <section id="about" className="py-20 min-h-screen bg-[#0c3d5e] text-white overflow-hidden">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
         className="container mx-auto px-4 mb-12 text-center"
       >
-        <h1 className="text-2xl md:text-3xl font-bold mb-6 bg-gradient-to-r from-[#71c088] to-[#a3d7b3] text-transparent bg-clip-text">
+        <motion.h1
+          variants={itemVariants}
+          className="text-2xl md:text-3xl font-bold mb-6 bg-gradient-to-r from-[#71c088] to-[#a3d7b3] text-transparent bg-clip-text"
+        >
           L’expérience d'apprentissage innovante qui booste l’engagement et les compétences.
-        </h1>
-        <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+        </motion.h1>
+        <motion.p
+          variants={itemVariants}
+          className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+        >
           Manamind est une application conçue pour créer et animer des parcours d'apprentissage sur mesure, centrés sur le développement des compétences.
-        </p>
+        </motion.p>
       </motion.div>
 
-      {/* Animation MacBook */}
-      <div className="relative flex justify-center items-center w-full">
-        {/* MacBook PNG */}
-        <motion.img
-          src="/lovable-uploads/macbook-base.png"
-          alt="MacBook"
-          style={{ scale, rotateX, opacity }}
-          className="w-[90%] md:w-[70%] lg:w-[60%] max-w-4xl mx-auto"
-        />
-
-        {/* Animation GIF à l'intérieur */}
-        <motion.img
-          src="/lovable-uploads/screenmacbook.gif"
-          alt="Animation GIF"
-          style={{ opacity }}
-          className="absolute top-[17%] left-[29%] w-[42%] md:w-[35%] lg:w-[30%] rounded-md shadow-lg"
-        />
-      </div>
+      {/* Laptop 3D Animation */}
+      <LaptopScene />
     </section>
   );
 };
