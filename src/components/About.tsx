@@ -29,25 +29,14 @@ export const About = () => {
         />
         
         {/* Écran avec GIF */}
-        <div className="absolute w-[55%] h-[35%] top-[14.5%] left-[22.5%] overflow-hidden rounded-md">
+        <div className="absolute w-[52%] h-[34%] top-[13.5%] left-[24%] overflow-hidden rounded-md">
           <img
             src="/lovable-uploads/screenmacbook.gif"
             alt="Animation GIF Manamind"
             className="w-full h-full object-cover"
-            style={{ animation: "speedUp 1.5s infinite linear" }}
           />
         </div>
       </div>
-
-      {/* Animation CSS pour accélérer le GIF */}
-      <style>
-        {`
-          @keyframes speedUp {
-            from { transform: translateY(0); }
-            to { transform: translateY(-100%); }
-          }
-        `}
-      </style>
     </section>
   );
 };
