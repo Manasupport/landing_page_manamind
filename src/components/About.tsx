@@ -8,14 +8,15 @@ export const About = () => {
     offset: ["start end", "center center"],
   });
 
-  // Animation d'ouverture du MacBook
-  const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [0.5, 1]);
+  // Transformations pour simuler une ouverture
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 1]);
+  const rotateX = useTransform(scrollYProgress, [0, 0.5, 1], [60, 0, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.5, 1, 1]);
 
   return (
     <section
       id="about"
-      className="py-20 min-h-screen bg-[#0c3d5e] text-white overflow-hidden"
+      className="py-20 min-h-screen bg-[#0c3d5e] text-white flex items-center justify-center overflow-hidden"
       ref={containerRef}
     >
       {/* Texte Introductif */}
@@ -34,12 +35,12 @@ export const About = () => {
       </motion.div>
 
       {/* Animation MacBook */}
-      <div className="relative flex justify-center items-center overflow-hidden">
-        {/* Image du MacBook */}
+      <div className="relative flex justify-center items-center w-full">
+        {/* MacBook PNG */}
         <motion.img
           src="/lovable-uploads/macbook-base.png"
           alt="MacBook"
-          style={{ scale, opacity }}
+          style={{ scale, rotateX, opacity }}
           className="w-[90%] md:w-[70%] lg:w-[60%] max-w-4xl mx-auto"
         />
 
