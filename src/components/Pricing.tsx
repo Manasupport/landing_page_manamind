@@ -132,7 +132,6 @@ export const Pricing = () => {
       features: [
         { text: "100% modulable", included: true },
         { text: "Centre de ressources personnalisable", included: true },
-        { text: "Support premium dédié", included: true },
         { text: "Intégrations LMS/CRM", included: true },
         { text: "Tableaux de bord consolidés", included: true },
         { text: "Export des données, parfait pour l'auditabilité !", included: true },
