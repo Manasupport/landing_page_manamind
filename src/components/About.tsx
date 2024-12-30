@@ -29,7 +29,7 @@ export const About = () => {
         />
         
         {/* Écran avec GIF */}
-        <div className="absolute w-[52%] h-[34%] top-[13.5%] left-[24%] overflow-hidden rounded-md">
+        <div className="absolute w-[56%] h-[36%] top-[13%] left-[22%] overflow-hidden rounded-md">
           <img
             src="/lovable-uploads/screenmacbook.gif"
             alt="Animation GIF Manamind"
