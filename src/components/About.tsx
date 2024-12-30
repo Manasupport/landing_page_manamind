@@ -19,14 +19,29 @@ export const About = () => {
         </p>
       </motion.div>
 
-      {/* GIF MacBook complet */}
-      <div className="flex justify-center items-center mx-auto max-w-5xl">
+      {/* GIF MacBook réduit et rapide */}
+      <div className="flex justify-center items-center mx-auto">
         <img
           src="/lovable-uploads/macbookbase.gif"
           alt="Animation GIF MacBook Manamind"
-          className="w-full h-auto rounded-lg shadow-2xl"
+          className="w-[60%] h-auto rounded-lg shadow-2xl"
+          style={{ animation: "gif-speed 1s infinite linear" }}
         />
       </div>
+
+      {/* Animation pour accélérer le GIF */}
+      <style>
+        {`
+          @keyframes gif-speed {
+            0% { transform: scale(1); }
+            100% { transform: scale(1); }
+          }
+
+          img {
+            animation-duration: 0.5s !important;
+          }
+        `}
+      </style>
     </section>
   );
 };
