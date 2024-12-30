@@ -23,7 +23,7 @@ export const ConsultationSection = () => {
           </h2>
           <p className="text-lg text-slate-600 leading-relaxed">
             Hello, c'est Yanis, Growth Hacker chez{" "}
-            <span className="text-[#71c088] font-semibold">Mana</span>. Discutons pour répondre à vos questions, explorer vos besoins, et vous aider à choisir l'offre idéale. Consultez moi, j’en serais ravi, c’est rapide, gratuit et sans aucune obligation !
+            <span className="text-[#71c088] font-semibold">Mana</span>. Discutons pour répondre à vos questions, explorer vos besoins et vous aider à choisir l'offre idéale. Prenons rendez-vous, c’est rapide, gratuit et sans obligation !
           </p>
 
           {/* Bouton centré */}
