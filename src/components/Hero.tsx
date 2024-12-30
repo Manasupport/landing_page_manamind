@@ -27,7 +27,7 @@ export const Hero = () => {
           <h1 className="text-2xl md:text-3xl text-white/90 mb-4">
           </h1>
           <div className="text-3xl md:text-4xl text-white/90 leading-relaxed font-telegraph">
-            <span>Des parcours interactifs pour des </span>
+            <span>Des parcours d'apprentissage interactifs pour des </span>
             <span style={{ display: "inline-block", minHeight: "1.2em" }}>
               <TypeAnimation
                 sequence={[
