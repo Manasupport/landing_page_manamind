@@ -86,7 +86,7 @@ export const Pricing = () => {
       description: "Parfait pour prendre en main l'outil",
       features: [
         { text: "1 parcours", included: true },
-        { text: "Jusqu'à 50 joueurs", included: true },
+        { text: "Jusqu'à 50 participants", included: true },
         { text: "Toutes les fonctionnalités d'édition et d'exécution", included: true },
         { text: "Centre de ressources générique", included: true },
         { text: "Assistance standard", included: true },
@@ -99,7 +99,7 @@ export const Pricing = () => {
       description: "Solution pour enseignants et équipes pédagogiques",
       features: [
         { text: "Jusqu'à 5 parcours simultanés", included: true },
-        { text: "Jusqu'à 80 joueurs par parcours", included: true },
+        { text: "Jusqu'à 80 participants par parcours", included: true },
         { text: "Toutes les fonctionnalités d'édition et d'exécution", included: true },
         { text: "Tableaux de bord de reporting et pilotage", included: true },
         { text: "Centre de ressources générique", included: true },
@@ -114,7 +114,7 @@ export const Pricing = () => {
       description: "Solution pour masters & départements académiques",
       features: [
         { text: "Jusqu'à 15 parcours simultanés", included: true },
-        { text: "Jusqu'à 150 joueurs par parcours", included: true },
+        { text: "Jusqu'à 150 participants par parcours", included: true },
         { text: "Tableaux de bord de reporting et de pilotage consolidés", included: true },
         { text: "IA pour le design de parcours", included: true },
         { text: "Export des données, parfait pour l'auditabilité !", included: true },
