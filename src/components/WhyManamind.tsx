@@ -37,7 +37,7 @@ export const WhyManamind = () => {
     <section className="py-20 px-4 text-white" style={{ backgroundColor: "#0c3d5e" }}>
       <div className="max-w-7xl mx-auto">
         <h2 className="text-2xl md:text-3xl text-center mb-16 text-[#71c088] font-bold">
-          Manamind propose une expérience d'apprentissage innovante et créatrice de valeur pour chaque partie prenante :
+          Manamind propose une expérience d'apprentissage innovante et créatrice de valeur pour chaque partie prenante.
         </h2>
         
         <div className="grid md:grid-cols-3 gap-12">
