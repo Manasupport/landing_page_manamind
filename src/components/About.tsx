@@ -19,23 +19,13 @@ export const About = () => {
         </p>
       </motion.div>
 
-      {/* MacBook avec écran GIF */}
-      <div className="relative flex justify-center items-center mx-auto max-w-4xl">
-        {/* Image du MacBook */}
+      {/* GIF MacBook complet */}
+      <div className="flex justify-center items-center mx-auto max-w-5xl">
         <img
-          src="/lovable-uploads/macbook-base.png"
-          alt="MacBook"
-          className="w-full max-w-3xl"
+          src="/lovable-uploads/macbookbase.gif"
+          alt="Animation GIF MacBook Manamind"
+          className="w-full h-auto rounded-lg shadow-2xl"
         />
-        
-        {/* Écran avec GIF */}
-        <div className="absolute w-[56%] h-[36%] top-[13%] left-[22%] overflow-hidden rounded-md">
-          <img
-            src="/lovable-uploads/screenmacbook.gif"
-            alt="Animation GIF Manamind"
-            className="w-full h-full object-cover"
-          />
-        </div>
       </div>
     </section>
   );
