@@ -115,6 +115,7 @@ export const Pricing = () => {
       features: [
         { text: "Jusqu'à 15 parcours simultanés", included: true },
         { text: "Jusqu'à 150 participants par parcours", included: true },
+        { text: "Toutes les fonctionnalités d'édition, d'execution et d'administration ", included: true },
         { text: "Tableaux de bord de reporting et de pilotage consolidés", included: true },
         { text: "IA pour le design de parcours", included: true },
         { text: "Export des données", included: true },
@@ -131,9 +132,10 @@ export const Pricing = () => {
       description: "Solution sur mesure pour une institution",
       features: [
         { text: "100% modulable", included: true },
+        { text: "Toutes les fonctionnalités d'édition, d'execution et d'administration personnalisable", included: true },
+        { text: "Tableaux de bord de reporting et de pilotage consolidés", included: true },
         { text: "Centre de ressources personnalisable", included: true },
         { text: "Intégrations LMS/CRM", included: true },
-        { text: "Tableaux de bord de reporting et de pilotage consolidés", included: true },
         { text: "Export des données, parfait pour l'auditabilité !", included: true },
         { text: "Assistance spécialisée avec un chef de projet dédié", included: true },
       ],
