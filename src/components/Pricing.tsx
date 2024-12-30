@@ -117,7 +117,7 @@ export const Pricing = () => {
         { text: "Jusqu'à 150 participants par parcours", included: true },
         { text: "Tableaux de bord de reporting et de pilotage consolidés", included: true },
         { text: "IA pour le design de parcours", included: true },
-        { text: "Export des données, parfait pour l'auditabilité !", included: true },
+        { text: "Export des données", included: true },
         { text: "Centre de ressources générique", included: true },
         { text: "Assistance prioritaire", included: true },
       ],
