@@ -127,7 +127,7 @@ export const CreateAccount = () => {
                 { label: "Professeur permanent", value: "permanent", icon: GraduationCap },
                 { label: "Professeur vacataire", value: "vacataire", icon: Users },
                 { label: "Institution", value: "institution", icon: Building },
-                { label: "Directeur de Master", value: "master", icon: BookOpen },
+                { label: "Directeur de Master / Programme", value: "master", icon: BookOpen },
               ].map((type) => (
                 <button
                   key={type.value}
