@@ -132,7 +132,7 @@ export const Pricing = () => {
       description: "Solution sur mesure pour une institution",
       features: [
         { text: "100% modulable", included: true },
-        { text: "Toutes les fonctionnalités d'édition, d'execution et d'administration personnalisable", included: true },
+        { text: "Toutes les fonctionnalités d'édition, d'execution et d'administration personnalisables", included: true },
         { text: "Tableaux de bord de reporting et de pilotage consolidés", included: true },
         { text: "Centre de ressources personnalisable", included: true },
         { text: "Intégrations LMS/CRM", included: true },
