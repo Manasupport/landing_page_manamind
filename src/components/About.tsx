@@ -24,7 +24,7 @@ export const About = () => {
         transition={{ duration: 0.6 }}
         className="container mx-auto px-4 mb-12 text-center"
       >
-        <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#71c088] to-[#a3d7b3] text-transparent bg-clip-text">
+        <h1 className="text-xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#71c088] to-[#a3d7b3] text-transparent bg-clip-text">
          L’expérience d'apprentissage innovante qui booste l’engagement et les compétences.
         </h1>
         <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
