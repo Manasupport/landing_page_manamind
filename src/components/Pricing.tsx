@@ -136,7 +136,7 @@ export const Pricing = () => {
         { text: "Tableaux de bord de reporting et de pilotage consolidés", included: true },
         { text: "IA pour le design de parcours", included: true },
         { text: "Centre de ressources personnalisable", included: true },
-        { text: "Intégrations Learning management system (LMS)", included: true },
+        { text: "Intégration Learning Management System (LMS)", included: true },
         { text: "Export des données, parfait pour l'auditabilité !", included: true },
         { text: "Assistance spécialisée avec un chef de projet dédié", included: true },
       ],
