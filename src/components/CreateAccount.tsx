@@ -101,7 +101,7 @@ export const CreateAccount = () => {
             Créez votre compte Manamind
           </h1>
           <p className="text-gray-600">
-            Rejoignez notre communauté d'enseignants et transformez l'apprentissage
+            Rejoignez la communauté de Manaminders et transformez l'apprentissage
           </p>
           <div className="flex justify-center gap-4 mt-6">
             <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
@@ -124,10 +124,10 @@ export const CreateAccount = () => {
             </h2>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { label: "Professeur permanent", value: "permanent", icon: GraduationCap },
-                { label: "Professeur vacataire", value: "vacataire", icon: Users },
+                { label: "Enseignant", value: "permanent", icon: GraduationCap },
+                { label: "Equipe pédagogique  / Institution", value: "vacataire", icon: Users },
                 { label: "Directeur de Master / Programme", value: "master", icon: BookOpen },
-                { label: "Institution", value: "institution", icon: Building },
+                { label: "Autre", value: "institution", icon: Building },
               ].map((type) => (
                 <button
                   key={type.value}
