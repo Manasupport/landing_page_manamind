@@ -18,8 +18,8 @@ export const WhyManamind = () => {
       icon: Users,
       points: [
         { text: "- Impliquer les apprenants dans des parcours engageants et collaboratifs." },
-        { text: "- Matérialiser l'acquisition des compétences techniques et comportementales tout au long du projet." },
-        { text: "- Offrir un cadre d'apprentissage adapté à des projets aussi bien individuels que collectifs." },
+        { text: "- Matérialiser l'acquisition des compétences techniques et comportementales tout au long du parcours." },
+        { text: "- Offrir un cadre d'apprentissage adapté à des parcours aussi bien individuels que collectifs." },
       ],
     },
     {
