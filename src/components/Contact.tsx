@@ -26,7 +26,7 @@ export const Contact = () => {
                 <Linkedin className="h-5 w-5 text-white" />
               </Button>
             </div>
-            <p className="text-base text-white font-quattrocento">24 rue Pierre Semard, 75009 PARIS</p>
+            <p className="text-base text-white font-quattrocento">24 rue Pierre Semard, 75009, PARIS, FRANCE</p>
           </div>
           <div className="pt-6 space-y-2">
             <img
