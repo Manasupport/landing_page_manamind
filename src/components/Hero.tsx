@@ -26,7 +26,6 @@ export const Hero = () => {
       <div className="flex-1 flex items-center justify-center mt-48">
         <div className="max-w-3xl mx-auto text-center space-y-8">
           <h1 className="text-2xl md:text-3xl text-white/90 mb-4">
-            Bienvenue sur Manamind
           </h1>
           <div className="text-3xl md:text-4xl text-white/90 leading-relaxed font-telegraph">
             <span>Des parcours d'apprentissage interactifs pour des </span>
