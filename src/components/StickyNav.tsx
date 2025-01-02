@@ -4,7 +4,7 @@ export const StickyNav = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
@@ -15,6 +15,7 @@ export const StickyNav = () => {
         <button
           onClick={() => scrollToSection("hero")}
           className="flex-shrink-0 focus:outline-none"
+          aria-label="Retour à l'accueil"
         >
           <img
             src="/lovable-uploads/384c8e47-f179-4499-b24e-4ee8556324d9.png"
