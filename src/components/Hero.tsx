@@ -42,7 +42,7 @@ export const Hero = () => {
                   500,
                 ]}
                 wrapper="span"
-                speed={50} // Vitesse de saisie (augmenté pour aller plus vite)
+                speed={100} // Vitesse de saisie (augmenté pour aller plus vite)
                 className="font-bold"
                 style={{ color: "#71c088" }}
                 repeat={Infinity}
