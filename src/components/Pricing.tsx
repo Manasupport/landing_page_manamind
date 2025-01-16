@@ -79,70 +79,27 @@ export const Pricing = () => {
     return `${price} € / ${isAnnual ? "an" : "mois"}${!isAnnual && title === "Essential" ? " / parcours" : ""}`;
   };
 
-  const basePricingData = [
-    {
-      title: "Starter",
-      monthlyPrice: "0 €",
-      description: "Parfait pour prendre en main l'outil",
-      features: [
-        { text: "1 parcours", included: true },
-        { text: "Jusqu'à 50 participants", included: true },
-        { text: "Toutes les fonctionnalités d'édition et d'exécution", included: true },
-        { text: "Centre de ressources générique", included: true },
-        { text: "Assistance standard", included: true },
-      ],
-      buttonText: "Essayer gratuitement",
-    },
-    {
-      title: "Essential",
-      monthlyPrice: "10 €",
-      description: "Solution pour enseignants et équipes pédagogiques",
-      features: [
-        { text: "Jusqu'à 5 parcours simultanés", included: true },
-        { text: "Jusqu'à 80 participants par parcours", included: true },
-        { text: "Toutes les fonctionnalités d'édition et d'exécution", included: true },
-        { text: "Tableaux de bord de reporting et de pilotage", included: true },
-        { text: "Centre de ressources générique", included: true },
-        { text: "Assistance prioritaire", included: true },
-      ],
-      buttonText: "Je m'abonne",
-      priceId: getEssentialPriceId(essentialCourses[0], isAnnual),
-    },
-    {
-      title: "Professional",
-      monthlyPrice: "130 €",
-      description: "Idéal pour animer des programmes ou départements académiques.",
-      features: [
-        { text: "Jusqu'à 15 parcours simultanés", included: true },
-        { text: "Jusqu'à 150 participants par parcours", included: true },
-        { text: "Toutes les fonctionnalités d'édition, d'execution et d'administration ", included: true },
-        { text: "Tableaux de bord de reporting et de pilotage consolidés", included: true },
-        { text: "IA pour le design de parcours", included: true },
-        { text: "Centre de ressources générique", included: true },
-        { text: "Export des données", included: true },
-        { text: "Assistance prioritaire", included: true },
-      ],
-      buttonText: "Je m'abonne",
-      popular: true,
-      priceId: getProfessionalPriceId(isAnnual),
-    },
-    {
-      title: "Institution",
-      monthlyPrice: "Sur demande",
-      description: "Solution sur mesure pour une institution",
-      features: [
-        { text: "100% modulable", included: true },
-        { text: "Fonctionnalités d'édition, d'execution et d'administration personnalisables", included: true },
-        { text: "Tableaux de bord de reporting et de pilotage consolidés", included: true },
-        { text: "IA pour le design de parcours", included: true },
-        { text: "Centre de ressources personnalisable", included: true },
-        { text: "Intégration Learning Management System (LMS)", included: true },
-        { text: "Export des données, parfait pour l'auditabilité !", included: true },
-        { text: "Assistance spécialisée avec un chef de projet dédié", included: true },
-      ],
-      buttonText: "Prendre rendez-vous",
-    },
+  const featuresData = [
+    ["1 parcours", "Jusqu'à 5 parcours simultanés", "Jusqu'à 15 parcours simultanés", "100% modulable"],
+    ["Jusqu'à 50 participants", "Jusqu'à 80 participants par parcours", "Jusqu'à 150 participants par parcours", ""],
+    [
+      "Toutes les fonctionnalités d'édition et d'exécution",
+      "Toutes les fonctionnalités d'édition et d'exécution",
+      "Toutes les fonctionnalités d'édition, d'exécution et d'administration",
+      "Fonctionnalités d'édition, d'exécution et d'administration personnalisables",
+    ],
+    [
+      "Centre de ressources générique",
+      "Centre de ressources générique",
+      "Centre de ressources générique",
+      "Centre de ressources personnalisable",
+    ],
+    ["Assistance standard", "Assistance prioritaire", "Assistance prioritaire", "Assistance spécialisée"],
+    ["", "Tableaux de bord de reporting et de pilotage", "IA pour le design de parcours", "Intégration LMS"],
   ];
+
+  const pricingTitles = ["Starter", "Essential", "Professional", "Institution"];
+  const pricingButtons = ["Essayer gratuitement", "Je m'abonne", "Je m'abonne", "Prendre rendez-vous"];
 
   return (
     <section id="pricing" className="py-20 px-4 bg-gradient-to-br from-slate-50 to-white">
@@ -160,33 +117,38 @@ export const Pricing = () => {
           </Label>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
-          {basePricingData.map((plan) => (
-            <PricingCard
-              key={plan.title}
-              {...plan}
-              price={getPriceDisplay(plan.monthlyPrice, plan.title)}
-              onSubscribe={() => handleSubscribe(plan.title, plan.priceId)}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {pricingTitles.map((title, colIdx) => (
+            <div
+              key={title}
+              className={`border p-4 rounded-lg shadow ${
+                colIdx === 2 ? "border-green-500" : "border-gray-200"
+              }`}
             >
-              {plan.title === "Essential" && (
-                <div className="flex flex-col items-center mb-6">
-                  <span className="text-[#0c3d5e] font-semibold mb-2">
-                    {essentialCourses[0]} parcours
-                  </span>
-                  <Label className="text-sm text-gray-600 mb-2">
-                    Choisis le nombre de parcours désiré
-                  </Label>
-                  <Slider
-                    value={essentialCourses}
-                    onValueChange={setEssentialCourses}
-                    max={5}
-                    min={1}
-                    step={1}
-                    className="w-3/4"
-                  />
-                </div>
-              )}
-            </PricingCard>
+              <h3 className="text-xl font-bold text-center mb-4">{title}</h3>
+              <ul className="space-y-2">
+                {featuresData.map((row, rowIdx) => (
+                  <li
+                    key={`${title}-${rowIdx}`}
+                    className={`${
+                      row[colIdx] ? "text-gray-800" : "text-gray-400"
+                    } flex items-center`}
+                  >
+                    {row[colIdx] || "Non inclus"}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-4 text-center">
+                <button
+                  className={`px-4 py-2 rounded ${
+                    colIdx === 2 ? "bg-green-500 text-white" : "bg-blue-500 text-white"
+                  }`}
+                  onClick={() => handleSubscribe(title)}
+                >
+                  {pricingButtons[colIdx]}
+                </button>
+              </div>
+            </div>
           ))}
         </div>
       </div>
