@@ -28,19 +28,16 @@ export const Pricing = () => {
   const [isAnnual, setIsAnnual] = useState(true);
   const [essentialCourses, setEssentialCourses] = useState([1]);
 
-  // Référence pour le conteneur de la grille
-  const gridRef = useRef<HTMLDivElement>(null);
-  const [maxHeight, setMaxHeight] = useState<number>(0);
+  // Référence pour mesurer la hauteur de la section "fonctionnalités"
+  const featuresRef = useRef<HTMLDivElement>(null);
+  const [featuresTopOffset, setFeaturesTopOffset] = useState<number | null>(null);
 
-  // Calcule la hauteur maximale des enfants dans la grille
+  // Ajuste la hauteur de début des fonctionnalités
   useEffect(() => {
-    if (gridRef.current) {
-      const childHeights = Array.from(gridRef.current.children).map(
-        (child) => (child as HTMLElement).offsetHeight
-      );
-      setMaxHeight(Math.max(...childHeights));
+    if (featuresRef.current) {
+      setFeaturesTopOffset(featuresRef.current.offsetTop);
     }
-  }, [essentialCourses]); // Recalcule la hauteur si le slider "Essential" change
+  }, [featuresRef.current, essentialCourses]);
 
   const handleSubscribe = (plan: string, priceId?: string) => {
     if (plan === "Institution") {
@@ -174,15 +171,14 @@ export const Pricing = () => {
           </Label>
         </div>
 
-        <div
-          ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
           {basePricingData.map((plan, index) => (
             <div
               className="flex flex-col items-stretch h-full"
               key={index}
-              style={{ minHeight: `${maxHeight}px` }}
+              style={{
+                minHeight: `${featuresTopOffset}px`, // Alignement basé sur l'offset "Essential"
+              }}
             >
               <PricingCard
                 {...plan}
@@ -190,7 +186,7 @@ export const Pricing = () => {
                 onSubscribe={() => handleSubscribe(plan.title, plan.priceId)}
               >
                 {plan.title === "Essential" && (
-                  <div className="flex flex-col items-center mb-6">
+                  <div ref={featuresRef} className="flex flex-col items-center mb-6">
                     <span className="text-[#0c3d5e] font-semibold mb-2">
                       {essentialCourses[0]} parcours
                     </span>
