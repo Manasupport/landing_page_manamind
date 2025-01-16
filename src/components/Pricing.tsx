@@ -2,7 +2,7 @@ import { PricingCard } from "./PricingCard";
 import { toast } from "./ui/use-toast";
 import { useNavigate } from "react-router-dom";
 import { Switch } from "./ui/switch";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Label } from "./ui/label";
 import { Slider } from "./ui/slider";
 
@@ -27,6 +27,20 @@ export const Pricing = () => {
   const navigate = useNavigate();
   const [isAnnual, setIsAnnual] = useState(true);
   const [essentialCourses, setEssentialCourses] = useState([1]);
+
+  // Référence pour le conteneur de la grille
+  const gridRef = useRef<HTMLDivElement>(null);
+  const [maxHeight, setMaxHeight] = useState<number>(0);
+
+  // Calcule la hauteur maximale des enfants dans la grille
+  useEffect(() => {
+    if (gridRef.current) {
+      const childHeights = Array.from(gridRef.current.children).map(
+        (child) => (child as HTMLElement).offsetHeight
+      );
+      setMaxHeight(Math.max(...childHeights));
+    }
+  }, [essentialCourses]); // Recalcule la hauteur si le slider "Essential" change
 
   const handleSubscribe = (plan: string, priceId?: string) => {
     if (plan === "Institution") {
@@ -84,7 +98,6 @@ export const Pricing = () => {
       title: "Starter",
       monthlyPrice: "0 €",
       description: "Parfait pour prendre en main l'outil",
-      paddingTop: "pt-24", // Ajout d'espace pour aligner les fonctionnalités avec Essential
       features: [
         { text: "1 parcours", included: true },
         { text: "Jusqu'à 50 participants", included: true },
@@ -113,7 +126,6 @@ export const Pricing = () => {
       title: "Professional",
       monthlyPrice: "130 €",
       description: "Idéal pour animer des programmes ou départements académiques.",
-      paddingTop: "pt-16", // Ajout d'espace pour aligner les fonctionnalités avec Essential
       features: [
         { text: "Jusqu'à 15 parcours simultanés", included: true },
         { text: "Jusqu'à 150 participants par parcours", included: true },
@@ -132,7 +144,6 @@ export const Pricing = () => {
       title: "Institution",
       monthlyPrice: "Sur demande",
       description: "Solution sur mesure pour une institution",
-      paddingTop: "pt-16", // Ajout d'espace pour aligner les fonctionnalités avec Essential
       features: [
         { text: "100% modulable", included: true },
         { text: "Fonctionnalités d'édition, d'execution et d'administration personnalisables", included: true },
@@ -163,9 +174,16 @@ export const Pricing = () => {
           </Label>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
+        <div
+          ref={gridRef}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch"
+        >
           {basePricingData.map((plan, index) => (
-            <div className={`${plan.paddingTop} flex flex-col items-stretch`} key={index}>
+            <div
+              className="flex flex-col items-stretch h-full"
+              key={index}
+              style={{ minHeight: `${maxHeight}px` }}
+            >
               <PricingCard
                 {...plan}
                 price={getPriceDisplay(plan.monthlyPrice, plan.title)}
