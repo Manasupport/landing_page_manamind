@@ -84,7 +84,7 @@ export const Pricing = () => {
       title: "Starter",
       monthlyPrice: "0 €",
       description: "Parfait pour prendre en main l'outil",
-      paddingTop: "pt-16", // Ajout d'espace pour aligner les fonctionnalités avec Essential
+      paddingTop: "pt-24", // Ajout d'espace pour aligner les fonctionnalités avec Essential
       features: [
         { text: "1 parcours", included: true },
         { text: "Jusqu'à 50 participants", included: true },
