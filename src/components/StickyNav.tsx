@@ -59,3 +59,25 @@ export const StickyNav = () => {
             Nos offres
           </Button>
           <Button
+            variant="ghost"
+            onClick={() => scrollToSection("help-offer")}
+            className="text-white hover:underline hover:bg-transparent hover:text-white"
+          >
+            Contactez-nous
+          </Button>
+        </div>
+
+        {/* Connexion Button */}
+        <div>
+          <Button
+            variant="ghost"
+            onClick={() => (window.location.href = "https://app.manamind.fr")}
+            className="text-white hover:underline hover:bg-transparent hover:text-white"
+          >
+            Connexion
+          </Button>
+        </div>
+      </div>
+    </nav>
+  );
+};
