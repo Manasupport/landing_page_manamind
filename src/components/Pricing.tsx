@@ -84,7 +84,7 @@ export const Pricing = () => {
       title: "Starter",
       monthlyPrice: "0 €",
       description: "Parfait pour prendre en main l'outil",
-      paddingTop: "pt-10", // Ajouter un espace en haut pour l'alignement
+      paddingTop: "pt-16", // Ajout d'espace pour aligner les fonctionnalités avec Essential
       features: [
         { text: "1 parcours", included: true },
         { text: "Jusqu'à 50 participants", included: true },
@@ -113,7 +113,7 @@ export const Pricing = () => {
       title: "Professional",
       monthlyPrice: "130 €",
       description: "Idéal pour animer des programmes ou départements académiques.",
-      paddingTop: "pt-10", // Ajouter un espace en haut pour l'alignement
+      paddingTop: "pt-16", // Ajout d'espace pour aligner les fonctionnalités avec Essential
       features: [
         { text: "Jusqu'à 15 parcours simultanés", included: true },
         { text: "Jusqu'à 150 participants par parcours", included: true },
@@ -132,7 +132,7 @@ export const Pricing = () => {
       title: "Institution",
       monthlyPrice: "Sur demande",
       description: "Solution sur mesure pour une institution",
-      paddingTop: "pt-10", // Ajouter un espace en haut pour l'alignement
+      paddingTop: "pt-16", // Ajout d'espace pour aligner les fonctionnalités avec Essential
       features: [
         { text: "100% modulable", included: true },
         { text: "Fonctionnalités d'édition, d'execution et d'administration personnalisables", included: true },
@@ -170,7 +170,26 @@ export const Pricing = () => {
                 {...plan}
                 price={getPriceDisplay(plan.monthlyPrice, plan.title)}
                 onSubscribe={() => handleSubscribe(plan.title, plan.priceId)}
-              />
+              >
+                {plan.title === "Essential" && (
+                  <div className="flex flex-col items-center mb-6">
+                    <span className="text-[#0c3d5e] font-semibold mb-2">
+                      {essentialCourses[0]} parcours
+                    </span>
+                    <Label className="text-sm text-gray-600 mb-2">
+                      Choisis le nombre de parcours désiré
+                    </Label>
+                    <Slider
+                      value={essentialCourses}
+                      onValueChange={setEssentialCourses}
+                      max={5}
+                      min={1}
+                      step={1}
+                      className="w-3/4"
+                    />
+                  </div>
+                )}
+              </PricingCard>
             </div>
           ))}
         </div>
