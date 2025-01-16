@@ -1,3 +1,28 @@
+import { PricingCard } from "./PricingCard";
+import { toast } from "./ui/use-toast";
+import { useNavigate } from "react-router-dom";
+import { Switch } from "./ui/switch";
+import { useState } from "react";
+import { Label } from "./ui/label";
+import { Slider } from "./ui/slider";
+
+const getEssentialPriceId = (courses: number, isAnnual: boolean) => {
+  const priceMap = {
+    1: { monthly: "price_1QXeWuEEI50AF5TQBvSRiqYk", yearly: "price_1QXeYkEEI50AF5TQemBkiRCS" },
+    2: { monthly: "price_1QXeXGEEI50AF5TQMVSPcWyc", yearly: "price_1QXeZdEEI50AF5TQs0umy4oM" },
+    3: { monthly: "price_1QXeXUEEI50AF5TQ5s0VBj6E", yearly: "price_1QXea0EEI50AF5TQE2WPOqUv" },
+    4: { monthly: "price_1QXeXgEEI50AF5TQVqzmiuRd", yearly: "price_1QXeaHEEI50AF5TQK0q2bfG7" },
+    5: { monthly: "price_1QXeY0EEI50AF5TQPIEYVWdu", yearly: "price_1QXeaYEEI50AF5TQuQUNTIn2" },
+  };
+  return priceMap[courses]?.[isAnnual ? "yearly" : "monthly"];
+};
+
+const getProfessionalPriceId = (isAnnual: boolean) => {
+  return isAnnual
+    ? "price_1QY1FbEEI50AF5TQQ4QNdRlH"
+    : "price_1QY1FGEEI50AF5TQDpoUSNbT";
+};
+
 export const Pricing = () => {
   const navigate = useNavigate();
   const [isAnnual, setIsAnnual] = useState(true);
@@ -59,6 +84,7 @@ export const Pricing = () => {
       title: "Starter",
       monthlyPrice: "0 €",
       description: "Parfait pour prendre en main l'outil",
+      paddingTop: "pt-24", // Ajout d'espace pour aligner les fonctionnalités avec Essential
       features: [
         { text: "1 parcours", included: true },
         { text: "Jusqu'à 50 participants", included: true },
@@ -87,6 +113,7 @@ export const Pricing = () => {
       title: "Professional",
       monthlyPrice: "130 €",
       description: "Idéal pour animer des programmes ou départements académiques.",
+      paddingTop: "pt-16", // Ajout d'espace pour aligner les fonctionnalités avec Essential
       features: [
         { text: "Jusqu'à 15 parcours simultanés", included: true },
         { text: "Jusqu'à 150 participants par parcours", included: true },
@@ -105,6 +132,7 @@ export const Pricing = () => {
       title: "Institution",
       monthlyPrice: "Sur demande",
       description: "Solution sur mesure pour une institution",
+      paddingTop: "pt-16", // Ajout d'espace pour aligner les fonctionnalités avec Essential
       features: [
         { text: "100% modulable", included: true },
         { text: "Fonctionnalités d'édition, d'execution et d'administration personnalisables", included: true },
@@ -137,10 +165,7 @@ export const Pricing = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
           {basePricingData.map((plan, index) => (
-            <div
-              key={index}
-              className="flex flex-col h-full items-stretch border border-gray-200 rounded-lg p-4"
-            >
+            <div className={`${plan.paddingTop} flex flex-col items-stretch`} key={index}>
               <PricingCard
                 {...plan}
                 price={getPriceDisplay(plan.monthlyPrice, plan.title)}
