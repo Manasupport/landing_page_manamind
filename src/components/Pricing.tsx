@@ -84,6 +84,7 @@ export const Pricing = () => {
       title: "Starter",
       monthlyPrice: "0 €",
       description: "Parfait pour prendre en main l'outil",
+      paddingTop: "pt-10", // Ajouter un espace en haut pour l'alignement
       features: [
         { text: "1 parcours", included: true },
         { text: "Jusqu'à 50 participants", included: true },
@@ -112,6 +113,7 @@ export const Pricing = () => {
       title: "Professional",
       monthlyPrice: "130 €",
       description: "Idéal pour animer des programmes ou départements académiques.",
+      paddingTop: "pt-10", // Ajouter un espace en haut pour l'alignement
       features: [
         { text: "Jusqu'à 15 parcours simultanés", included: true },
         { text: "Jusqu'à 150 participants par parcours", included: true },
@@ -130,6 +132,7 @@ export const Pricing = () => {
       title: "Institution",
       monthlyPrice: "Sur demande",
       description: "Solution sur mesure pour une institution",
+      paddingTop: "pt-10", // Ajouter un espace en haut pour l'alignement
       features: [
         { text: "100% modulable", included: true },
         { text: "Fonctionnalités d'édition, d'execution et d'administration personnalisables", included: true },
@@ -162,12 +165,8 @@ export const Pricing = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
           {basePricingData.map((plan, index) => (
-            <div className="flex flex-col items-stretch" key={index}>
-              {plan.title === "Essential" && (
-                <div className="mb-6 h-[60px]">{/* Ajout d'un espace pour aligner */}</div>
-              )}
+            <div className={`${plan.paddingTop} flex flex-col items-stretch`} key={index}>
               <PricingCard
-                key={plan.title}
                 {...plan}
                 price={getPriceDisplay(plan.monthlyPrice, plan.title)}
                 onSubscribe={() => handleSubscribe(plan.title, plan.priceId)}
