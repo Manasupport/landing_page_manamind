@@ -33,16 +33,16 @@ export const Hero = () => {
               <TypeAnimation
                 sequence={[
                   "expériences engageantes.",
-                  500, // Temps avant le passage au texte suivant (plus rapide)
+                  1000, // Temps avant le passage au texte suivant (plus rapide)
                   "compétences boostées.",
-                  500,
+                  1000,
                   "projets mémorables.",
-                  500,
+                  1000,
                   "formations impactantes.",
-                  500,
+                  1000,
                 ]}
                 wrapper="span"
-                speed={70} // Vitesse de saisie (augmenté pour aller plus vite)
+                speed={60} // Vitesse de saisie (augmenté pour aller plus vite)
                 className="font-bold"
                 style={{ color: "#71c088" }}
                 repeat={Infinity}
