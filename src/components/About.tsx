@@ -30,7 +30,7 @@ export const About = () => {
 
       {/* Texte sous l'ordinateur */}
       <div className="text-center mb-8">
-        <h2 className="text-xl md:text-2xl font-semibold bg-gradient-to-r from-[#71c088] to-[#a3d7b3] text-transparent bg-clip-text">
+        <h2 className="text-3xl md:text-4xl font-bold text-white">
           Approuvé par des milliers d'utilisateurs dans les meilleurs établissements d'enseignement supérieur
         </h2>
       </div>
@@ -41,17 +41,28 @@ export const About = () => {
           className="flex gap-12 animate-scroll items-center"
           initial={{ x: "100%" }}
           animate={{ x: "-100%" }}
-          transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+          transition={{ repeat: Infinity, duration: 12, ease: "linear" }}
         >
-          {["mines.jpg", "skema.jpg", "UC.jpg", "X.png", "EM.jpg", "ENPC.jpg", "escp.jpg"].map((logo, index) => (
-            <div key={index} className="flex-shrink-0 flex items-center justify-center w-[150px] h-[100px]">
-              <img
-                src={`/lovable-uploads/${logo}`}
-                alt={`Partenaire ${index + 1}`}
-                className="h-full w-auto object-contain"
-              />
-            </div>
-          ))}
+          {Array(2) // Duplication pour un défilement continu
+            .fill([
+              "mines.jpg",
+              "skema.jpg",
+              "UC.jpg",
+              "X.png",
+              "EM.jpg",
+              "ENPC.jpg",
+              "escp.jpg",
+            ])
+            .flat()
+            .map((logo, index) => (
+              <div key={index} className="flex-shrink-0 flex items-center justify-center w-[250px] h-[200px]">
+                <img
+                  src={`/lovable-uploads/${logo}`}
+                  alt={`Partenaire ${index + 1}`}
+                  className="h-full w-auto object-contain"
+                />
+              </div>
+            ))}
         </motion.div>
       </div>
 
@@ -60,7 +71,7 @@ export const About = () => {
         {`
           .animate-scroll {
             display: flex;
-            animation: scroll 20s linear infinite;
+            animation: scroll 12s linear infinite;
           }
 
           @keyframes scroll {
