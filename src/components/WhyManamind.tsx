@@ -36,11 +36,11 @@ export const WhyManamind = () => {
   return (
     <section className="py-20 px-4 text-white" style={{ backgroundColor: "#0c3d5e" }}>
       <div className="max-w-7xl mx-auto">
-        {/* Titre principal modifié */}
-        <h2 className="text-3xl md:text-4xl text-center mb-16 font-bold text-white">
+        {/* Titre principal avec taille réduite */}
+        <h2 className="text-2xl md:text-3xl text-center mb-16 font-bold text-white">
           Manamind propose une expérience d'apprentissage innovante et créatrice de valeur pour chaque partie prenante.
         </h2>
-        
+
         <div className="grid md:grid-cols-3 gap-12">
           {features.map((feature, index) => (
             <motion.div
