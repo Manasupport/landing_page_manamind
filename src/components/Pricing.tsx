@@ -28,17 +28,6 @@ export const Pricing = () => {
   const [isAnnual, setIsAnnual] = useState(true);
   const [essentialCourses, setEssentialCourses] = useState([1]);
 
-  // Référence pour mesurer la hauteur de la section "fonctionnalités"
-  const featuresRef = useRef<HTMLDivElement>(null);
-  const [featuresTopOffset, setFeaturesTopOffset] = useState<number | null>(null);
-
-  // Ajuste la hauteur de début des fonctionnalités
-  useEffect(() => {
-    if (featuresRef.current) {
-      setFeaturesTopOffset(featuresRef.current.offsetTop);
-    }
-  }, [featuresRef.current, essentialCourses]);
-
   const handleSubscribe = (plan: string, priceId?: string) => {
     if (plan === "Institution") {
       window.open("https://calendar.app.google/8PzSHhTa8sLE9XWf7", "_blank");
@@ -95,6 +84,7 @@ export const Pricing = () => {
       title: "Starter",
       monthlyPrice: "0 €",
       description: "Parfait pour prendre en main l'outil",
+      extraSpace: "mt-8", // Ajout d'espace blanc
       features: [
         { text: "1 parcours", included: true },
         { text: "Jusqu'à 50 participants", included: true },
@@ -103,12 +93,12 @@ export const Pricing = () => {
         { text: "Assistance standard", included: true },
       ],
       buttonText: "Essayer gratuitement",
-      extraSpace: true, // Ajout d'espace blanc
     },
     {
       title: "Essential",
       monthlyPrice: "10 €",
       description: "Solution pour enseignants et équipes pédagogiques",
+      extraSpace: "", // Pas d'espace ajouté
       features: [
         { text: "Jusqu'à 5 parcours simultanés", included: true },
         { text: "Jusqu'à 80 participants par parcours", included: true },
@@ -119,16 +109,16 @@ export const Pricing = () => {
       ],
       buttonText: "Je m'abonne",
       priceId: getEssentialPriceId(essentialCourses[0], isAnnual),
-      extraSpace: false,
     },
     {
       title: "Professional",
       monthlyPrice: "130 €",
       description: "Idéal pour animer des programmes ou départements académiques.",
+      extraSpace: "mt-8", // Ajout d'espace blanc
       features: [
         { text: "Jusqu'à 15 parcours simultanés", included: true },
         { text: "Jusqu'à 150 participants par parcours", included: true },
-        { text: "Toutes les fonctionnalités d'édition, d'execution et d'administration ", included: true },
+        { text: "Toutes les fonctionnalités d'édition, d'execution et d'administration", included: true },
         { text: "Tableaux de bord de reporting et de pilotage consolidés", included: true },
         { text: "IA pour le design de parcours", included: true },
         { text: "Centre de ressources générique", included: true },
@@ -138,12 +128,12 @@ export const Pricing = () => {
       buttonText: "Je m'abonne",
       popular: true,
       priceId: getProfessionalPriceId(isAnnual),
-      extraSpace: true, // Ajout d'espace blanc
     },
     {
       title: "Institution",
       monthlyPrice: "Sur demande",
       description: "Solution sur mesure pour une institution",
+      extraSpace: "mt-8", // Ajout d'espace blanc
       features: [
         { text: "100% modulable", included: true },
         { text: "Fonctionnalités d'édition, d'execution et d'administration personnalisables", included: true },
@@ -155,7 +145,6 @@ export const Pricing = () => {
         { text: "Assistance spécialisée avec un chef de projet dédié", included: true },
       ],
       buttonText: "Prendre rendez-vous",
-      extraSpace: true, // Ajout d'espace blanc
     },
   ];
 
@@ -165,19 +154,46 @@ export const Pricing = () => {
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-[#0c3d5e]">
           Découvrez nos offres
         </h2>
+        <div className="flex items-center justify-center gap-4 mb-12">
+          <Label htmlFor="pricing-toggle" className={!isAnnual ? "font-bold" : ""}>
+            Mensuel
+          </Label>
+          <Switch id="pricing-toggle" checked={isAnnual} onCheckedChange={setIsAnnual} />
+          <Label htmlFor="pricing-toggle" className={isAnnual ? "font-bold" : ""}>
+            Annuel (-10%)
+          </Label>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
           {basePricingData.map((plan, index) => (
             <div
+              className={`flex flex-col items-stretch h-full ${plan.extraSpace}`}
               key={index}
-              className={`flex flex-col items-stretch h-full ${
-                plan.extraSpace ? "mt-8" : ""
-              }`} // Ajout de marge conditionnel
             >
               <PricingCard
                 {...plan}
                 price={getPriceDisplay(plan.monthlyPrice, plan.title)}
                 onSubscribe={() => handleSubscribe(plan.title, plan.priceId)}
-              />
+              >
+                {plan.title === "Essential" && (
+                  <div ref={featuresRef} className="flex flex-col items-center mb-6">
+                    <span className="text-[#0c3d5e] font-semibold mb-2">
+                      {essentialCourses[0]} parcours
+                    </span>
+                    <Label className="text-sm text-gray-600 mb-2">
+                      Choisis le nombre de parcours désiré
+                    </Label>
+                    <Slider
+                      value={essentialCourses}
+                      onValueChange={setEssentialCourses}
+                      max={5}
+                      min={1}
+                      step={1}
+                      className="w-3/4"
+                    />
+                  </div>
+                )}
+              </PricingCard>
             </div>
           ))}
         </div>
