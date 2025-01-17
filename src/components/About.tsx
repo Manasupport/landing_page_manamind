@@ -36,20 +36,21 @@ export const About = () => {
       </div>
 
       {/* Défilement des logos */}
-      <div className="overflow-hidden py-4 bg-[#0b3a53]">
+      <div className="overflow-hidden py-8 bg-[#0b3a53]">
         <motion.div
-          className="flex gap-8 animate-scroll"
+          className="flex gap-12 animate-scroll items-center"
           initial={{ x: "100%" }}
           animate={{ x: "-100%" }}
-          transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
+          transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
         >
           {["mines.jpg", "skema.jpg", "UC.jpg", "X.png", "EM.jpg", "ENPC.jpg", "escp.jpg"].map((logo, index) => (
-            <img
-              key={index}
-              src={`/lovable-uploads/${logo}`} // Remplacez avec les chemins réels des logos
-              alt={`Partenaire ${index + 1}`}
-              className="h-16 w-auto object-contain"
-            />
+            <div key={index} className="flex-shrink-0 flex items-center justify-center w-[150px] h-[100px]">
+              <img
+                src={`/lovable-uploads/${logo}`}
+                alt={`Partenaire ${index + 1}`}
+                className="h-full w-auto object-contain"
+              />
+            </div>
           ))}
         </motion.div>
       </div>
@@ -59,7 +60,7 @@ export const About = () => {
         {`
           .animate-scroll {
             display: flex;
-            animation: scroll 15s linear infinite;
+            animation: scroll 20s linear infinite;
           }
 
           @keyframes scroll {
