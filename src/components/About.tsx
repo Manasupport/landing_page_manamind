@@ -2,6 +2,24 @@ import React from "react";
 import { motion } from "framer-motion";
 
 export const About = () => {
+  const logos = [
+    "mines.jpg",
+    "skema.jpg",
+    "UC.jpg",
+    "X.png",
+    "EM.jpg",
+    "ENPC.jpg",
+    "escp.jpg",
+  ];
+
+  // Génère une liste aléatoire pour chaque cycle
+  const shuffleLogos = () => {
+    return logos
+      .sort(() => 0.5 - Math.random()) // Mélange les logos aléatoirement
+      .concat(logos) // Duplique la liste pour un défilement continu
+      .concat(logos); // Ajoute une troisième copie pour assurer le remplissage
+  };
+
   return (
     <section id="about" className="py-20 min-h-screen bg-[#0c3d5e] text-white overflow-hidden">
       {/* Texte d'introduction */}
@@ -34,39 +52,28 @@ export const About = () => {
 
       {/* Texte sous l'ordinateur */}
       <div className="text-center mb-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-white">
+        <h1 className="text-2xl md:text-3xl font-bold mb-6 text-white">
           Approuvé par des milliers d'utilisateurs dans les meilleurs établissements d'enseignement supérieur
-        </h2>
+        </h1>
       </div>
 
       {/* Défilement des logos */}
-      <div className="overflow-hidden py-8 bg-[#0b3a53]">
+      <div className="overflow-hidden py-8 bg-[#0c3d5e]">
         <motion.div
           className="flex gap-12 animate-scroll items-center"
           initial={{ x: "100%" }}
           animate={{ x: "-100%" }}
-          transition={{ repeat: Infinity, duration: 18, ease: "linear" }}
+          transition={{ repeat: Infinity, duration: 16, ease: "linear" }}
         >
-          {Array(3) // Triplication pour éviter les espaces vides
-            .fill([
-              "mines.jpg",
-              "skema.jpg",
-              "UC.jpg",
-              "X.png",
-              "EM.jpg",
-              "ENPC.jpg",
-              "escp.jpg",
-            ])
-            .flat()
-            .map((logo, index) => (
-              <div key={index} className="flex-shrink-0 flex items-center justify-center w-[250px] h-[200px]">
-                <img
-                  src={`/lovable-uploads/${logo}`}
-                  alt={`Partenaire ${index + 1}`}
-                  className="h-full w-auto object-contain"
-                />
-              </div>
-            ))}
+          {shuffleLogos().map((logo, index) => (
+            <div key={index} className="flex-shrink-0 flex items-center justify-center w-[200px] h-[150px]">
+              <img
+                src={`/lovable-uploads/${logo}`}
+                alt={`Partenaire ${index + 1}`}
+                className="h-full w-auto object-contain"
+              />
+            </div>
+          ))}
         </motion.div>
       </div>
 
@@ -75,7 +82,7 @@ export const About = () => {
         {`
           .animate-scroll {
             display: flex;
-            animation: scroll 18s linear infinite;
+            animation: scroll 16s linear infinite;
           }
 
           @keyframes scroll {
