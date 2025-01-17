@@ -22,7 +22,7 @@ export const About = () => {
       {/* GIF MacBook réduit et rapide */}
       <div className="flex justify-center items-center mx-auto">
         <img
-          src="/lovable-uploads/macbookbase.gif"
+          src="/lovable-uploads/macbook-screen-full.gif"
           alt="Animation GIF MacBook Manamind"
           className="w-[60%] h-auto rounded-lg shadow-2xl"
           style={{ animation: "gif-speed 1s infinite linear" }}
