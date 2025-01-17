@@ -14,8 +14,9 @@ export const About = () => {
         <h1 className="text-2xl md:text-3xl font-bold mb-6 bg-gradient-to-r from-[#71c088] to-[#a3d7b3] text-transparent bg-clip-text">
           L’expérience d'apprentissage innovante qui booste l’engagement et les compétences.
         </h1>
-        <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          Manamind est une application conçue pour créer et animer des parcours d'apprentissage sur mesure, centrés sur le développement des compétences.
+        <p className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+          Manamind est une application conçue pour créer et animer des parcours d'apprentissage
+          sur mesure, centrés sur le développement des compétences.
         </p>
       </motion.div>
 
@@ -41,9 +42,9 @@ export const About = () => {
           className="flex gap-12 animate-scroll items-center"
           initial={{ x: "100%" }}
           animate={{ x: "-100%" }}
-          transition={{ repeat: Infinity, duration: 12, ease: "linear" }}
+          transition={{ repeat: Infinity, duration: 18, ease: "linear" }}
         >
-          {Array(2) // Duplication pour un défilement continu
+          {Array(3) // Triplication pour éviter les espaces vides
             .fill([
               "mines.jpg",
               "skema.jpg",
@@ -71,7 +72,7 @@ export const About = () => {
         {`
           .animate-scroll {
             display: flex;
-            animation: scroll 12s linear infinite;
+            animation: scroll 18s linear infinite;
           }
 
           @keyframes scroll {
