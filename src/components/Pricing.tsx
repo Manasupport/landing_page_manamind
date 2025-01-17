@@ -141,6 +141,7 @@ export const Pricing = () => {
       title: "Institution",
       monthlyPrice: "Sur demande",
       description: "Solution sur mesure pour une institution",
+      extraSpace: "mt-8"
       features: [
         { text: "100% modulable", included: true },
         { text: "Fonctionnalités d'édition, d'execution et d'administration personnalisables", included: true },
