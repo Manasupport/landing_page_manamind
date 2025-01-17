@@ -11,11 +11,15 @@ export const About = () => {
         transition={{ duration: 0.6 }}
         className="container mx-auto px-4 mb-12 text-center"
       >
-        <h1 className="text-2xl md:text-3xl font-bold mb-6 bg-gradient-to-r from-[#71c088] to-[#a3d7b3] text-transparent bg-clip-text">
+        {/* Titre principal en blanc */}
+        <h1 className="text-2xl md:text-3xl font-bold mb-6 text-white">
           L’expérience d'apprentissage innovante qui booste l’engagement et les compétences.
         </h1>
-        <p className="text-xl md:text-2xl text-gray-300 max-w-[650px] mx-auto leading-relaxed">
-          Manamind est une application conçue pour créer et animer des parcours d'apprentissage sur mesure, centrés sur le développement des compétences.
+
+        {/* Texte secondaire ajusté */}
+        <p className="text-xl md:text-2xl text-gray-300 max-w-[900px] mx-auto leading-relaxed">
+          Manamind est une application conçue pour créer et animer des parcours d'apprentissage sur mesure,
+          centrés sur le développement des compétences.
         </p>
       </motion.div>
 
