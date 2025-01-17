@@ -43,7 +43,7 @@ export const About = () => {
           animate={{ x: "-100%" }}
           transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
         >
-          {["logo1.png", "logo2.png", "logo3.png", "logo4.png", "logo5.png"].map((logo, index) => (
+          {["mines.jpg", "skema.jpg", "UC.jpg", "X.jpg", "EM.jpg", "ENPC.jpg", "ESCP.jpg"].map((logo, index) => (
             <img
               key={index}
               src={`/lovable-uploads/${logo}`} // Remplacez avec les chemins réels des logos
