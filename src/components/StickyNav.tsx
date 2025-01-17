@@ -70,9 +70,9 @@ export const StickyNav = () => {
         {/* Connexion Button */}
         <div>
           <Button
-            variant="ghost"
             onClick={() => (window.location.href = "https://app.manamind.fr")}
-            className="text-white hover:underline hover:bg-transparent hover:text-white"
+            size="lg"
+            className="bg-[#0c3d5e] text-white hover:bg-[#09314c] hover:scale-105 transition-all duration-300 px-6 py-2 rounded-lg font-bold shadow-lg"
           >
             Connexion
           </Button>
