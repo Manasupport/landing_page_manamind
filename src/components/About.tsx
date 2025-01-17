@@ -12,13 +12,8 @@ export const About = () => {
     "escp.jpg",
   ];
 
-  // Génère une liste aléatoire pour chaque cycle
-  const shuffleLogos = () => {
-    return logos
-      .sort(() => 0.5 - Math.random()) // Mélange les logos aléatoirement
-      .concat(logos) // Duplique la liste pour un défilement continu
-      .concat(logos); // Ajoute une troisième copie pour assurer le remplissage
-  };
+  // Génère un carrousel infini en doublant les logos
+  const repeatedLogos = [...logos, ...logos, ...logos];
 
   return (
     <section id="about" className="py-20 min-h-screen bg-[#0c3d5e] text-white overflow-hidden">
@@ -60,13 +55,18 @@ export const About = () => {
       {/* Défilement des logos */}
       <div className="overflow-hidden py-8 bg-[#0c3d5e]">
         <motion.div
-          className="flex gap-12 animate-scroll items-center"
-          initial={{ x: "100%" }}
+          className="flex items-center gap-8"
+          initial={{ x: "0%" }}
           animate={{ x: "-100%" }}
-          transition={{ repeat: Infinity, duration: 16, ease: "linear" }}
+          transition={{
+            repeat: Infinity,
+            duration: 20, // Réduit la vitesse
+            ease: "linear",
+          }}
+          style={{ display: "flex", whiteSpace: "nowrap" }}
         >
-          {shuffleLogos().map((logo, index) => (
-            <div key={index} className="flex-shrink-0 flex items-center justify-center w-[200px] h-[150px]">
+          {repeatedLogos.map((logo, index) => (
+            <div key={index} className="flex-shrink-0 w-[200px] h-[150px] flex items-center justify-center">
               <img
                 src={`/lovable-uploads/${logo}`}
                 alt={`Partenaire ${index + 1}`}
@@ -76,25 +76,6 @@ export const About = () => {
           ))}
         </motion.div>
       </div>
-
-      {/* Animation CSS pour le défilement horizontal */}
-      <style>
-        {`
-          .animate-scroll {
-            display: flex;
-            animation: scroll 16s linear infinite;
-          }
-
-          @keyframes scroll {
-            0% {
-              transform: translateX(100%);
-            }
-            100% {
-              transform: translateX(-100%);
-            }
-          }
-        `}
-      </style>
     </section>
   );
 };
