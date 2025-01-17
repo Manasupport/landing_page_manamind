@@ -19,26 +19,56 @@ export const About = () => {
         </p>
       </motion.div>
 
-      {/* GIF MacBook réduit et rapide */}
-      <div className="flex justify-center items-center mx-auto">
+      {/* GIF MacBook */}
+      <div className="flex justify-center items-center mx-auto mb-12">
         <img
           src="/lovable-uploads/macbook-screen-full.gif"
           alt="Animation GIF MacBook Manamind"
           className="w-[60%] h-auto rounded-lg shadow-2xl"
-          style={{ animation: "gif-speed 1s infinite linear" }}
         />
       </div>
 
-      {/* Animation pour accélérer le GIF */}
+      {/* Texte sous l'ordinateur */}
+      <div className="text-center mb-8">
+        <h2 className="text-xl md:text-2xl font-semibold bg-gradient-to-r from-[#71c088] to-[#a3d7b3] text-transparent bg-clip-text">
+          Approuvé par des milliers d'utilisateurs dans les meilleurs établissements d'enseignement supérieur
+        </h2>
+      </div>
+
+      {/* Défilement des logos */}
+      <div className="overflow-hidden py-4 bg-[#0b3a53]">
+        <motion.div
+          className="flex gap-8 animate-scroll"
+          initial={{ x: "100%" }}
+          animate={{ x: "-100%" }}
+          transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
+        >
+          {["logo1.png", "logo2.png", "logo3.png", "logo4.png", "logo5.png"].map((logo, index) => (
+            <img
+              key={index}
+              src={`/lovable-uploads/${logo}`} // Remplacez avec les chemins réels des logos
+              alt={`Partenaire ${index + 1}`}
+              className="h-16 w-auto object-contain"
+            />
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Animation CSS pour le défilement horizontal */}
       <style>
         {`
-          @keyframes gif-speed {
-            0% { transform: scale(1); }
-            100% { transform: scale(1); }
+          .animate-scroll {
+            display: flex;
+            animation: scroll 15s linear infinite;
           }
 
-          img {
-            animation-duration: 0.5s !important;
+          @keyframes scroll {
+            0% {
+              transform: translateX(100%);
+            }
+            100% {
+              transform: translateX(-100%);
+            }
           }
         `}
       </style>
