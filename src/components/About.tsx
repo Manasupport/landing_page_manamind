@@ -14,10 +14,8 @@ export const About = () => {
         <h1 className="text-2xl md:text-3xl font-bold mb-6 bg-gradient-to-r from-[#71c088] to-[#a3d7b3] text-transparent bg-clip-text">
           L’expérience d'apprentissage innovante qui booste l’engagement et les compétences.
         </h1>
-        <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          Manamind est une application conçue pour créer et animer des parcours d'apprentissage
-          sur mesure, centrés sur le développement des compétences.
-        </p>
+        <p className="text-xl md:text-2xl text-gray-300 max-w-[800px] mx-auto leading-relaxed">
+          Manamind est une application conçue pour créer et animer des parcours d'apprentissage sur mesure, centrés sur le développement des compétences.
         </p>
       </motion.div>
 
