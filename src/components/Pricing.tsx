@@ -84,6 +84,7 @@ export const Pricing = () => {
       title: "Starter",
       monthlyPrice: "0 €",
       description: "Parfait pour prendre en main l'outil",
+      extraSpace: "mt-12", // Espacement ajouté pour aligner les fonctionnalités
       features: [
         { text: "1 parcours", included: true },
         { text: "Jusqu'à 50 participants", included: true },
@@ -92,12 +93,12 @@ export const Pricing = () => {
         { text: "Assistance standard", included: true },
       ],
       buttonText: "Essayer gratuitement",
-      extraSpace: "mt-16", // Ajustement pour aligner avec Essential
     },
     {
       title: "Essential",
       monthlyPrice: "10 €",
       description: "Solution pour enseignants et équipes pédagogiques",
+      extraSpace: "", // Aucun espace nécessaire ici
       features: [
         { text: "Jusqu'à 5 parcours simultanés", included: true },
         { text: "Jusqu'à 80 participants par parcours", included: true },
@@ -113,6 +114,7 @@ export const Pricing = () => {
       title: "Professional",
       monthlyPrice: "130 €",
       description: "Idéal pour animer des programmes ou départements académiques.",
+      extraSpace: "mt-12", // Espacement ajouté pour aligner les fonctionnalités
       features: [
         { text: "Jusqu'à 15 parcours simultanés", included: true },
         { text: "Jusqu'à 150 participants par parcours", included: true },
@@ -126,12 +128,12 @@ export const Pricing = () => {
       buttonText: "Je m'abonne",
       popular: true,
       priceId: getProfessionalPriceId(isAnnual),
-      extraSpace: "mt-12", // Ajustement pour aligner avec Essential
     },
     {
       title: "Institution",
       monthlyPrice: "Sur demande",
       description: "Solution sur mesure pour une institution",
+      extraSpace: "mt-12", // Espacement ajouté pour aligner les fonctionnalités
       features: [
         { text: "100% modulable", included: true },
         { text: "Fonctionnalités d'édition, d'execution et d'administration personnalisables", included: true },
@@ -143,7 +145,6 @@ export const Pricing = () => {
         { text: "Assistance spécialisée avec un chef de projet dédié", included: true },
       ],
       buttonText: "Prendre rendez-vous",
-      extraSpace: "mt-12", // Ajustement pour aligner avec Essential
     },
   ];
 
@@ -166,14 +167,33 @@ export const Pricing = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
           {basePricingData.map((plan, index) => (
             <div
-              className={`flex flex-col items-stretch h-full ${plan.extraSpace || ""}`}
+              className={`flex flex-col items-stretch h-full ${plan.extraSpace}`}
               key={index}
             >
               <PricingCard
                 {...plan}
                 price={getPriceDisplay(plan.monthlyPrice, plan.title)}
                 onSubscribe={() => handleSubscribe(plan.title, plan.priceId)}
-              />
+              >
+                {plan.title === "Essential" && (
+                  <div ref={featuresRef} className="flex flex-col items-center mb-6">
+                    <span className="text-[#0c3d5e] font-semibold mb-2">
+                      {essentialCourses[0]} parcours
+                    </span>
+                    <Label className="text-sm text-gray-600 mb-2">
+                      Choisis le nombre de parcours désiré
+                    </Label>
+                    <Slider
+                      value={essentialCourses}
+                      onValueChange={setEssentialCourses}
+                      max={5}
+                      min={1}
+                      step={1}
+                      className="w-3/4"
+                    />
+                  </div>
+                )}
+              </PricingCard>
             </div>
           ))}
         </div>
