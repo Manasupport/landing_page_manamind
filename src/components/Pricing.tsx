@@ -28,6 +28,17 @@ export const Pricing = () => {
   const [isAnnual, setIsAnnual] = useState(true);
   const [essentialCourses, setEssentialCourses] = useState([1]);
 
+  // Référence pour mesurer la hauteur de la section "fonctionnalités"
+  const featuresRef = useRef<HTMLDivElement>(null);
+  const [featuresTopOffset, setFeaturesTopOffset] = useState<number | null>(null);
+
+  // Ajuste la hauteur de début des fonctionnalités
+  useEffect(() => {
+    if (featuresRef.current) {
+      setFeaturesTopOffset(featuresRef.current.offsetTop);
+    }
+  }, [featuresRef.current, essentialCourses]);
+
   const handleSubscribe = (plan: string, priceId?: string) => {
     if (plan === "Institution") {
       window.open("https://calendar.app.google/8PzSHhTa8sLE9XWf7", "_blank");
@@ -84,7 +95,6 @@ export const Pricing = () => {
       title: "Starter",
       monthlyPrice: "0 €",
       description: "Parfait pour prendre en main l'outil",
-      extraSpace: "mt-12", // Espacement ajouté pour aligner les fonctionnalités
       features: [
         { text: "1 parcours", included: true },
         { text: "Jusqu'à 50 participants", included: true },
@@ -93,12 +103,12 @@ export const Pricing = () => {
         { text: "Assistance standard", included: true },
       ],
       buttonText: "Essayer gratuitement",
+      extraSpace: "mt-16", // Espace ajouté pour aligner avec Essential
     },
     {
       title: "Essential",
       monthlyPrice: "10 €",
       description: "Solution pour enseignants et équipes pédagogiques",
-      extraSpace: "", // Aucun espace nécessaire ici
       features: [
         { text: "Jusqu'à 5 parcours simultanés", included: true },
         { text: "Jusqu'à 80 participants par parcours", included: true },
@@ -109,12 +119,12 @@ export const Pricing = () => {
       ],
       buttonText: "Je m'abonne",
       priceId: getEssentialPriceId(essentialCourses[0], isAnnual),
+      extraSpace: "", // Pas d'espace nécessaire ici
     },
     {
       title: "Professional",
       monthlyPrice: "130 €",
       description: "Idéal pour animer des programmes ou départements académiques.",
-      extraSpace: "mt-12", // Espacement ajouté pour aligner les fonctionnalités
       features: [
         { text: "Jusqu'à 15 parcours simultanés", included: true },
         { text: "Jusqu'à 150 participants par parcours", included: true },
@@ -127,13 +137,12 @@ export const Pricing = () => {
       ],
       buttonText: "Je m'abonne",
       popular: true,
-      priceId: getProfessionalPriceId(isAnnual),
+      extraSpace: "mt-12", // Espace ajouté pour aligner avec Essential
     },
     {
       title: "Institution",
       monthlyPrice: "Sur demande",
       description: "Solution sur mesure pour une institution",
-      extraSpace: "mt-12", // Espacement ajouté pour aligner les fonctionnalités
       features: [
         { text: "100% modulable", included: true },
         { text: "Fonctionnalités d'édition, d'execution et d'administration personnalisables", included: true },
@@ -145,6 +154,7 @@ export const Pricing = () => {
         { text: "Assistance spécialisée avec un chef de projet dédié", included: true },
       ],
       buttonText: "Prendre rendez-vous",
+      extraSpace: "mt-12", // Espace ajouté pour aligner avec Essential
     },
   ];
 
