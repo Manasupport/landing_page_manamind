@@ -102,8 +102,8 @@ export const Pricing = () => {
         { text: "Centre de ressources générique", included: true },
         { text: "Assistance standard", included: true },
       ],
+      extraSpace: "mt-16",
       buttonText: "Essayer gratuitement",
-      extraSpace: "mt-16", // Espace ajouté pour aligner avec Essential
     },
     {
       title: "Essential",
@@ -119,7 +119,6 @@ export const Pricing = () => {
       ],
       buttonText: "Je m'abonne",
       priceId: getEssentialPriceId(essentialCourses[0], isAnnual),
-      extraSpace: "", // Pas d'espace nécessaire ici
     },
     {
       title: "Professional",
@@ -137,7 +136,7 @@ export const Pricing = () => {
       ],
       buttonText: "Je m'abonne",
       popular: true,
-      extraSpace: "mt-12", // Espace ajouté pour aligner avec Essential
+      priceId: getProfessionalPriceId(isAnnual),
     },
     {
       title: "Institution",
@@ -154,7 +153,6 @@ export const Pricing = () => {
         { text: "Assistance spécialisée avec un chef de projet dédié", included: true },
       ],
       buttonText: "Prendre rendez-vous",
-      extraSpace: "mt-12", // Espace ajouté pour aligner avec Essential
     },
   ];
 
@@ -177,8 +175,11 @@ export const Pricing = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
           {basePricingData.map((plan, index) => (
             <div
-              className={`flex flex-col items-stretch h-full ${plan.extraSpace}`}
+              className="flex flex-col items-stretch h-full"
               key={index}
+              style={{
+                minHeight: `${featuresTopOffset}px`, // Alignement basé sur l'offset "Essential"
+              }}
             >
               <PricingCard
                 {...plan}
