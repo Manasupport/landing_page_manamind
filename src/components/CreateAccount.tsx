@@ -20,7 +20,6 @@ export const CreateAccount = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted with data:", { formData, selectedPlan, priceId, numberOfCourses });
 
     if (!accountType) {
       toast({
@@ -60,8 +59,16 @@ export const CreateAccount = () => {
       if (selectedPlan === "Starter") {
         window.location.href = "https://app.manamind.fr";
       } else {
+        if (!priceId) {
+          toast({
+            title: "Erreur",
+            description: "Identifiant de l'offre manquant",
+            variant: "destructive",
+          });
+          return;
+        }
+
         try {
-          console.log("Creating checkout session with:", { priceId, email: formData.email });
           const { data, error } = await supabase.functions.invoke('create-checkout', {
             body: { 
               priceId, 
@@ -71,15 +78,24 @@ export const CreateAccount = () => {
 
           if (error) {
             console.error("Checkout error:", error);
-            throw error;
-          }
-          
-          if (!data?.url) {
-            console.error("No checkout URL received");
-            throw new Error("URL de paiement manquante");
+            toast({
+              title: "Erreur lors de la redirection vers le paiement",
+              description: error.message,
+              variant: "destructive",
+            });
+            return;
           }
 
-          console.log("Redirecting to Stripe:", data.url);
+          if (!data?.url) {
+            console.error("No checkout URL received");
+            toast({
+              title: "Erreur lors de la redirection vers le paiement",
+              description: "URL de paiement manquante",
+              variant: "destructive",
+            });
+            return;
+          }
+
           window.location.href = data.url;
         } catch (checkoutError) {
           console.error("Checkout error:", checkoutError);
@@ -99,8 +115,6 @@ export const CreateAccount = () => {
       });
     }
   };
-
-  // ... keep existing code (JSX for the form and UI components)
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#71c088]/10 to-[#0c3d5e]/10 py-12 px-4">
