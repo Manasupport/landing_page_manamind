@@ -21,7 +21,6 @@ export type Database = {
           "Plan choisi": string | null
           Prenom: string | null
           "Statut de l'abonnement": string | null
-          "Type de compte": string | null
         }
         Insert: {
           "créer le"?: string
@@ -34,7 +33,6 @@ export type Database = {
           "Plan choisi"?: string | null
           Prenom?: string | null
           "Statut de l'abonnement"?: string | null
-          "Type de compte"?: string | null
         }
         Update: {
           "créer le"?: string
@@ -47,7 +45,6 @@ export type Database = {
           "Plan choisi"?: string | null
           Prenom?: string | null
           "Statut de l'abonnement"?: string | null
-          "Type de compte"?: string | null
         }
         Relationships: []
       }
