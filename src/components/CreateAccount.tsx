@@ -47,6 +47,9 @@ export const CreateAccount = () => {
           data: {
             first_name: formData.firstName,
             last_name: formData.lastName,
+            accountType: accountType,
+            plan: selectedPlan,
+            numberOfCourses: numberOfCourses
           },
         },
       });
