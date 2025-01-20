@@ -37,7 +37,7 @@ export const Pricing = () => {
     if (featuresRef.current) {
       setFeaturesTopOffset(featuresRef.current.offsetTop);
     }
-  }, [featuresRef.current, essentialCourses]);
+  }, [featuresRef.current]);
 
   const handleSubscribe = (plan: string, priceId?: string) => {
     if (plan === "Institution") {
@@ -95,6 +95,7 @@ export const Pricing = () => {
       title: "Starter",
       monthlyPrice: "0 €",
       description: "Parfait pour prendre en main l'outil",
+      extraSpace: "mt-16", // Espacement supplémentaire
       features: [
         { text: "1 parcours", included: true },
         { text: "Jusqu'à 50 participants", included: true },
@@ -108,6 +109,7 @@ export const Pricing = () => {
       title: "Essential",
       monthlyPrice: "10 €",
       description: "Solution pour enseignants et équipes pédagogiques",
+      extraSpace: "", // Pas d'espace supplémentaire ici
       features: [
         { text: "Jusqu'à 5 parcours simultanés", included: true },
         { text: "Jusqu'à 80 participants par parcours", included: true },
@@ -123,6 +125,7 @@ export const Pricing = () => {
       title: "Professional",
       monthlyPrice: "130 €",
       description: "Idéal pour animer des programmes ou départements académiques.",
+      extraSpace: "mt-10",
       features: [
         { text: "Jusqu'à 15 parcours simultanés", included: true },
         { text: "Jusqu'à 150 participants par parcours", included: true },
@@ -141,6 +144,7 @@ export const Pricing = () => {
       title: "Institution",
       monthlyPrice: "Sur demande",
       description: "Solution sur mesure pour une institution",
+      extraSpace: "mt-10",
       features: [
         { text: "100% modulable", included: true },
         { text: "Fonctionnalités d'édition, d'execution et d'administration personnalisables", included: true },
@@ -174,7 +178,7 @@ export const Pricing = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
           {basePricingData.map((plan, index) => (
             <div
-              className="flex flex-col items-stretch h-full"
+              className={`flex flex-col items-stretch h-full ${plan.extraSpace || ""}`}
               key={index}
               style={{
                 minHeight: `${featuresTopOffset}px`, // Alignement basé sur l'offset "Essential"
@@ -185,8 +189,14 @@ export const Pricing = () => {
                 price={getPriceDisplay(plan.monthlyPrice, plan.title)}
                 onSubscribe={() => handleSubscribe(plan.title, plan.priceId)}
               >
+                {plan.features.map((feature, featureIndex) => (
+                  <div key={featureIndex} className="flex items-center space-x-2">
+                    {feature.text}
+                  </div>
+                ))}
+
                 {plan.title === "Essential" && (
-                  <div ref={featuresRef} className="flex flex-col items-center mb-6">
+                  <div className="flex flex-col items-center mb-6">
                     <span className="text-[#0c3d5e] font-semibold mb-2">
                       {essentialCourses[0]} parcours
                     </span>
