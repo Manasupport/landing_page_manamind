@@ -95,7 +95,6 @@ export const Pricing = () => {
       title: "Starter",
       monthlyPrice: "0 €",
       description: "Parfait pour prendre en main l'outil",
-      extraSpace: "mt-500",
       features: [
         { text: "1 parcours", included: true },
         { text: "Jusqu'à 50 participants", included: true },
@@ -103,7 +102,6 @@ export const Pricing = () => {
         { text: "Centre de ressources générique", included: true },
         { text: "Assistance standard", included: true },
       ],
-      extraSpace: "mt-16",
       buttonText: "Essayer gratuitement",
     },
     {
