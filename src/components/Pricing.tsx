@@ -95,7 +95,7 @@ export const Pricing = () => {
       title: "Starter",
       monthlyPrice: "0 €",
       description: "Parfait pour prendre en main l'outil",
-      extraSpace: "mt-16", // Ajout d'espaces supplémentaires
+      extraSpace: "mt-60", // Ajout d'espaces supplémentaires
       features: [
         { text: "1 parcours", included: true },
         { text: "Jusqu'à 50 participants", included: true },
