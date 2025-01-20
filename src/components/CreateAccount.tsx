@@ -47,9 +47,6 @@ export const CreateAccount = () => {
           data: {
             first_name: formData.firstName,
             last_name: formData.lastName,
-            accountType: accountType,
-            plan: selectedPlan,
-            numberOfCourses: numberOfCourses
           },
         },
       });
@@ -59,15 +56,6 @@ export const CreateAccount = () => {
       if (selectedPlan === "Starter") {
         window.location.href = "https://app.manamind.fr";
       } else {
-        if (!priceId) {
-          toast({
-            title: "Erreur",
-            description: "Identifiant de l'offre manquant",
-            variant: "destructive",
-          });
-          return;
-        }
-
         try {
           const { data, error } = await supabase.functions.invoke('create-checkout', {
             body: { 
@@ -76,26 +64,10 @@ export const CreateAccount = () => {
             }
           });
 
-          if (error) {
-            console.error("Checkout error:", error);
-            toast({
-              title: "Erreur lors de la redirection vers le paiement",
-              description: error.message,
-              variant: "destructive",
-            });
-            return;
-          }
+          if (error) throw error;
+          if (!data?.url) throw new Error("URL de paiement manquante");
 
-          if (!data?.url) {
-            console.error("No checkout URL received");
-            toast({
-              title: "Erreur lors de la redirection vers le paiement",
-              description: "URL de paiement manquante",
-              variant: "destructive",
-            });
-            return;
-          }
-
+          console.log("Redirecting to Stripe:", data.url);
           window.location.href = data.url;
         } catch (checkoutError) {
           console.error("Checkout error:", checkoutError);
