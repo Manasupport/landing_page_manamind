@@ -20,6 +20,7 @@ export const CreateAccount = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("Form submitted with:", { formData, selectedPlan, priceId, numberOfCourses });
 
     if (!accountType) {
       toast({
@@ -47,6 +48,9 @@ export const CreateAccount = () => {
           data: {
             first_name: formData.firstName,
             last_name: formData.lastName,
+            accountType: accountType,
+            numberOfCourses: numberOfCourses,
+            plan: selectedPlan
           },
         },
       });
@@ -56,33 +60,32 @@ export const CreateAccount = () => {
       if (selectedPlan === "Starter") {
         window.location.href = "https://app.manamind.fr";
       } else {
-        try {
-          const { data, error } = await supabase.functions.invoke('create-checkout', {
-            body: { 
-              priceId, 
-              email: formData.email 
-            }
-          });
+        console.log("Creating checkout session with:", { priceId, email: formData.email });
+        const { data, error } = await supabase.functions.invoke('create-checkout', {
+          body: { 
+            priceId, 
+            email: formData.email 
+          }
+        });
 
-          if (error) throw error;
-          if (!data?.url) throw new Error("URL de paiement manquante");
-
-          console.log("Redirecting to Stripe:", data.url);
-          window.location.href = data.url;
-        } catch (checkoutError) {
-          console.error("Checkout error:", checkoutError);
-          toast({
-            title: "Erreur lors de la redirection vers le paiement",
-            description: "Une erreur est survenue. Veuillez réessayer.",
-            variant: "destructive",
-          });
+        if (error) {
+          console.error("Checkout error:", error);
+          throw error;
         }
+        
+        if (!data?.url) {
+          console.error("Missing checkout URL in response:", data);
+          throw new Error("URL de paiement manquante");
+        }
+
+        console.log("Redirecting to Stripe:", data.url);
+        window.location.href = data.url;
       }
     } catch (error) {
       console.error("Account creation error:", error);
       toast({
         title: "Erreur",
-        description: "Une erreur est survenue lors de la création du compte. Veuillez réessayer.",
+        description: "Une erreur est survenue. Veuillez réessayer.",
         variant: "destructive",
       });
     }
