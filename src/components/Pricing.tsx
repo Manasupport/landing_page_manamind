@@ -28,9 +28,11 @@ export const Pricing = () => {
   const [isAnnual, setIsAnnual] = useState(true);
   const [essentialCourses, setEssentialCourses] = useState([1]);
 
+  // Référence pour mesurer la hauteur de la section "fonctionnalités"
   const featuresRef = useRef<HTMLDivElement>(null);
   const [featuresTopOffset, setFeaturesTopOffset] = useState<number | null>(null);
 
+  // Ajuste la hauteur de début des fonctionnalités
   useEffect(() => {
     if (featuresRef.current) {
       setFeaturesTopOffset(featuresRef.current.offsetTop);
@@ -43,13 +45,31 @@ export const Pricing = () => {
       return;
     }
 
-    navigate("/create-account", {
-      state: {
-        selectedPlan: plan,
-        priceId: priceId,
-        numberOfCourses: plan === "Essential" ? essentialCourses[0] : plan === "Professional" ? 15 : 1,
-      },
-    });
+    if (plan === "Starter") {
+      navigate("/create-account", {
+        state: {
+          selectedPlan: plan,
+          numberOfCourses: 1,
+        },
+      });
+      return;
+    }
+
+    if (priceId) {
+      navigate("/create-account", {
+        state: {
+          selectedPlan: plan,
+          priceId: priceId,
+          numberOfCourses: plan === "Essential" ? essentialCourses[0] : 15,
+        },
+      });
+    } else {
+      toast({
+        title: "Erreur d'abonnement",
+        description: "Impossible de récupérer l'identifiant de l'offre.",
+        variant: "destructive",
+      });
+    }
   };
 
   const getPriceDisplay = (monthlyPrice: string, title: string) => {
@@ -157,7 +177,7 @@ export const Pricing = () => {
               className="flex flex-col items-stretch h-full"
               key={index}
               style={{
-                minHeight: `${featuresTopOffset}px`,
+                minHeight: `${featuresTopOffset}px`, // Alignement basé sur l'offset "Essential"
               }}
             >
               <PricingCard

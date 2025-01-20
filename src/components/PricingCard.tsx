@@ -29,6 +29,14 @@ export const PricingCard = ({
   onSubscribe,
   children,
 }: PricingCardProps) => {
+  const handleClick = () => {
+    if (title === "Institution") {
+      window.open("https://calendar.app.google/8PzSHhTa8sLE9XWf7", "_blank");
+    } else {
+      onSubscribe();
+    }
+  };
+
   return (
     <Card
       className={`relative flex flex-col h-full transition-all duration-200 hover:shadow-lg ${
@@ -43,7 +51,7 @@ export const PricingCard = ({
       <CardHeader className="flex-none pb-6">
         <CardTitle className="text-2xl font-bold text-[#0c3d5e]">{title}</CardTitle>
         <CardDescription className="text-xl font-semibold mt-2">{price}</CardDescription>
-        <p className="text-gray-600 mt-2 mb-8">{description}</p>
+        <p className="text-gray-600 min-h-[48px] mt-2">{description}</p>
       </CardHeader>
       <CardContent className="flex-grow flex flex-col">
         {children}
@@ -77,7 +85,7 @@ export const PricingCard = ({
         </ul>
         
         <Button
-          onClick={onSubscribe}
+          onClick={handleClick}
           className={`w-full mt-auto ${
             popular 
               ? "bg-manamind hover:bg-manamind-dark text-white" 
