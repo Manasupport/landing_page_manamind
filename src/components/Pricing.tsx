@@ -28,17 +28,6 @@ export const Pricing = () => {
   const [isAnnual, setIsAnnual] = useState(true);
   const [essentialCourses, setEssentialCourses] = useState([1]);
 
-  // Référence pour mesurer la hauteur de la section "fonctionnalités"
-  const featuresRef = useRef<HTMLDivElement>(null);
-  const [featuresTopOffset, setFeaturesTopOffset] = useState<number | null>(null);
-
-  // Ajuste la hauteur de début des fonctionnalités
-  useEffect(() => {
-    if (featuresRef.current) {
-      setFeaturesTopOffset(featuresRef.current.offsetTop);
-    }
-  }, [featuresRef.current, essentialCourses]);
-
   const handleSubscribe = (plan: string, priceId?: string) => {
     if (plan === "Institution") {
       window.open("https://calendar.app.google/8PzSHhTa8sLE9XWf7", "_blank");
@@ -103,6 +92,7 @@ export const Pricing = () => {
         { text: "Assistance standard", included: true },
       ],
       buttonText: "Essayer gratuitement",
+      extraSpace: "mt-16", // Ajustement pour aligner avec Essential
     },
     {
       title: "Essential",
@@ -136,6 +126,7 @@ export const Pricing = () => {
       buttonText: "Je m'abonne",
       popular: true,
       priceId: getProfessionalPriceId(isAnnual),
+      extraSpace: "mt-12", // Ajustement pour aligner avec Essential
     },
     {
       title: "Institution",
@@ -152,6 +143,7 @@ export const Pricing = () => {
         { text: "Assistance spécialisée avec un chef de projet dédié", included: true },
       ],
       buttonText: "Prendre rendez-vous",
+      extraSpace: "mt-12", // Ajustement pour aligner avec Essential
     },
   ];
 
@@ -174,36 +166,14 @@ export const Pricing = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
           {basePricingData.map((plan, index) => (
             <div
-              className="flex flex-col items-stretch h-full"
+              className={`flex flex-col items-stretch h-full ${plan.extraSpace || ""}`}
               key={index}
-              style={{
-                minHeight: `${featuresTopOffset}px`, // Alignement basé sur l'offset "Essential"
-              }}
             >
               <PricingCard
                 {...plan}
                 price={getPriceDisplay(plan.monthlyPrice, plan.title)}
                 onSubscribe={() => handleSubscribe(plan.title, plan.priceId)}
-              >
-                {plan.title === "Essential" && (
-                  <div ref={featuresRef} className="flex flex-col items-center mb-6">
-                    <span className="text-[#0c3d5e] font-semibold mb-2">
-                      {essentialCourses[0]} parcours
-                    </span>
-                    <Label className="text-sm text-gray-600 mb-2">
-                      Choisis le nombre de parcours désiré
-                    </Label>
-                    <Slider
-                      value={essentialCourses}
-                      onValueChange={setEssentialCourses}
-                      max={5}
-                      min={1}
-                      step={1}
-                      className="w-3/4"
-                    />
-                  </div>
-                )}
-              </PricingCard>
+              />
             </div>
           ))}
         </div>
