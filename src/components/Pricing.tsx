@@ -127,7 +127,7 @@ export const Pricing = () => {
         { text: "Centre de ressources générique", included: true },
         { text: "Tableaux de bord de reporting et de pilotage consolidés", included: true },
         { text: "IA pour le design de parcours", included: true },
-        { text: "Export des données, parfait pour l'auditabilit", included: true },
+        { text: "Export des données, parfait pour l'auditabilité", included: true },
         { text: "Assistance prioritaire", included: true },
       ],
       buttonText: "Je m'abonne",
