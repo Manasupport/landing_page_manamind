@@ -17,6 +17,7 @@ interface PricingCardProps {
   onSubscribe: () => void;
   children?: React.ReactNode;
   priceId?: string;
+  extraSpace?: string;
 }
 
 export const PricingCard = ({
@@ -28,6 +29,7 @@ export const PricingCard = ({
   popular,
   onSubscribe,
   children,
+  extraSpace,
 }: PricingCardProps) => {
   const handleClick = () => {
     if (title === "Institution") {
@@ -39,9 +41,9 @@ export const PricingCard = ({
 
   return (
     <Card
-      className={`relative flex flex-col h-full transition-all duration-200 hover:shadow-lg ${
+      className={`relative h-full flex flex-col transition-all duration-200 hover:shadow-lg ${
         popular ? "border-manamind shadow-md scale-105" : ""
-      }`}
+      } ${extraSpace}`}
     >
       {popular && (
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-manamind text-white px-4 py-1 rounded-full text-sm font-medium">

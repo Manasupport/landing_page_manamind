@@ -172,10 +172,10 @@ export const Pricing = () => {
           </Label>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {basePricingData.map((plan, index) => (
             <div
-              className={`flex flex-col h-full ${plan.extraSpace || ""}`}
+              className="h-full"
               key={index}
               style={{
                 minHeight: `${featuresTopOffset}px`,
