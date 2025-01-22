@@ -49,7 +49,7 @@ export const About = () => {
       {/* Texte sous l'ordinateur */}
       <div className="text-center mb-8">
         <h1 className="text-2xl md:text-3xl font-bold mb-6 text-white">
-          Approuvé par des milliers d'utilisateurs dans les meilleurs établissements d'enseignement supérieur
+          Approuvé par des milliers d'utilisateurs dans les établissements d'enseignement supérieur les plus prestigieux.
         </h1>
       </div>
 
