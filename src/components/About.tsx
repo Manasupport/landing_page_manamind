@@ -3,13 +3,13 @@ import { motion } from "framer-motion";
 
 export const About = () => {
   const logos = [
-    "mines.jpg",
-    "skema.jpg",
-    "UC.jpg",
-    "X.png",
-    "EM.jpg",
-    "ENPC.jpg",
-    "escp.jpg",
+    "mines.png",
+    "skema.png",
+    "UC.png",
+    "x1.png",
+    "EM.png",
+    "enpc.png",
+    "escp.png",
   ];
 
   // Génère un carrousel infini en doublant les logos
