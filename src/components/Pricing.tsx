@@ -92,7 +92,6 @@ export const Pricing = () => {
       title: "Starter",
       monthlyPrice: "0 €",
       description: "Parfait pour prendre en main l'outil",
-      extraSpace: "mt-24",
       features: [
         { text: "1 parcours", included: true },
         { text: "Jusqu'à 50 participants", included: true },
@@ -106,7 +105,6 @@ export const Pricing = () => {
       title: "Essential",
       monthlyPrice: "10 €",
       description: "Solution pour enseignants et équipes pédagogiques",
-      extraSpace: "",
       features: [
         { text: "Jusqu'à 5 parcours simultanés", included: true },
         { text: "Jusqu'à 80 participants par parcours", included: true },
@@ -122,7 +120,6 @@ export const Pricing = () => {
       title: "Professional",
       monthlyPrice: "130 €",
       description: "Idéal pour animer des programmes ou départements académiques.",
-      extraSpace: "mt-24",
       features: [
         { text: "Jusqu'à 15 parcours simultanés", included: true },
         { text: "Jusqu'à 150 participants par parcours", included: true },
@@ -141,7 +138,6 @@ export const Pricing = () => {
       title: "Institution",
       monthlyPrice: "Sur demande",
       description: "Solution sur mesure pour une institution",
-      extraSpace: "mt-24",
       features: [
         { text: "100% modulable", included: true },
         { text: "Fonctionnalités d'édition, d'execution et d'administration personnalisables", included: true },
@@ -175,7 +171,7 @@ export const Pricing = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {basePricingData.map((plan, index) => (
             <div
-              className="h-full"
+              className="h-full flex flex-col"
               key={index}
               style={{
                 minHeight: `${featuresTopOffset}px`,
