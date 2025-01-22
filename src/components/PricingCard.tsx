@@ -58,7 +58,7 @@ export const PricingCard = ({
       <CardContent className="flex-grow flex flex-col">
         {children}
         
-        {shouldAddSpacing && <div className="h-28" />}
+        {shouldAddSpacing && <div className="h-24" />}
         
         <ul className="space-y-4 mb-8 flex-grow">
           {features.map((feature, index) => (
