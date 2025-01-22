@@ -7,12 +7,12 @@ export const ConsultationSection = () => {
       className="py-20 px-4 bg-gradient-to-br from-slate-50 to-white"
     >
       <div className="max-w-6xl mx-auto flex flex-col items-center text-center md:text-left md:flex-row md:items-center gap-12">
-        {/* Image centrée */}
+        {/* Image centrée avec animation */}
         <div className="flex-shrink-0">
           <img
             src="/lovable-uploads/dd891a06-c72e-4778-bc5f-a1c07003345f.png"
             alt="Yanis from Manamind"
-            className="rounded-full w-48 h-48 object-cover shadow-lg"
+            className="rounded-full w-40 h-40 object-cover shadow-lg transition-transform duration-300 hover:scale-105"
           />
         </div>
 
@@ -30,7 +30,7 @@ export const ConsultationSection = () => {
           <div className="flex justify-center md:justify-start">
             <Button
               size="lg"
-              className="bg-[#71c088] hover:bg-[#5ea374] text-white px-6 py-3 rounded-lg shadow-md"
+              className="bg-[#71c088] hover:bg-[#5ea374] text-white px-6 py-3 rounded-lg shadow-md transition-shadow duration-300 hover:shadow-lg"
               onClick={() =>
                 window.open("https://calendar.app.google/8PzSHhTa8sLE9XWf7", "_blank")
               }
