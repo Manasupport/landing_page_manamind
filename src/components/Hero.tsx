@@ -22,7 +22,7 @@ export const Hero = () => {
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
       >
-        <source src="/lovable-uploads/206779_small.mp4" type="video/mp4" />
+        <source src="/lovable-uploads/7021943_Meeting_Office_1920x1080.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
