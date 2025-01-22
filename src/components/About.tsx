@@ -10,6 +10,7 @@ export const About = () => {
     "em.png",
     "enpc.png",
     "escp.png",
+    "dauphine.png"
   ];
 
   // Génère un carrousel infini en doublant les logos
