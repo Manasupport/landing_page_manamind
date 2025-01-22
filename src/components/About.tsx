@@ -5,9 +5,9 @@ export const About = () => {
   const logos = [
     "mines.png",
     "skema.png",
-    "UC.png",
+    "uc.png",
     "x1.png",
-    "EM.png",
+    "em.png",
     "enpc.png",
     "escp.png",
   ];
