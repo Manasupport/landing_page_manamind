@@ -33,7 +33,7 @@ export const ConsultationSection = () => {
         <div className="flex-shrink-0 relative">
           <div className="rounded-full bg-gradient-to-tr from-[#71c088] via-[#5ea374] to-[#4d9365] w-56 h-56 md:w-64 md:h-64 flex items-center justify-center shadow-lg">
             <img
-              src="/lovable-uploads/dd891a06-c72e-4778-bc5f-a1c07003345f.png"
+              src="/lovable-uploads/dd891a06-c72e-4778-bc5f-a1c07003345a.JPG"
               alt="Yanis from Manamind"
               className="rounded-full w-48 h-48 md:w-56 md:h-56 object-cover border-4 border-white shadow-md"
             />
