@@ -47,21 +47,21 @@ export const StickyNav = () => {
           <Button
             variant="ghost"
             onClick={() => scrollToSection("about")}
-            className="text-white hover:underline hover:bg-transparent hover:text-white"
+            className="text-white font-bold hover:underline hover:bg-transparent hover:text-white"
           >
             À propos de Manamind
           </Button>
           <Button
             variant="ghost"
             onClick={() => scrollToSection("pricing")}
-            className="text-white hover:underline hover:bg-transparent hover:text-white"
+            className="text-white font-bold hover:underline hover:bg-transparent hover:text-white"
           >
             Nos offres
           </Button>
           <Button
             variant="ghost"
             onClick={() => scrollToSection("help-offer")}
-            className="text-white hover:underline hover:bg-transparent hover:text-white"
+            className="text-white font-bold hover:underline hover:bg-transparent hover:text-white"
           >
             Contactez-nous
           </Button>
