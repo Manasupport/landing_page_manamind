@@ -36,12 +36,12 @@ export const About = () => {
         </p>
       </motion.div>
 
-      {/* GIF MacBook */}
+      {/* GIF sans cadre ni ombre */}
       <div className="flex justify-center items-center mx-auto mb-12">
         <img
           src="/lovable-uploads/macbook-screen-full.gif"
           alt="Animation GIF MacBook Manamind"
-          className="w-[60%] h-auto rounded-lg shadow-2xl"
+          className="w-[60%] h-auto"
         />
       </div>
 
