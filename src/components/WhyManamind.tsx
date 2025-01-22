@@ -28,7 +28,7 @@ export const WhyManamind = () => {
       points: [
         { text: "- Intégrer des référentiels de compétences (ex. RNCP, France compétences, Fiches métiers…) aux parcours d'apprentissage." },
         { text: "- Automatiser l'évaluation des compétences." },
-        { text: "- Simplifier les processus d'audit (AoL)." },
+        { text: "- Simplifier les processus d'audit AOL (Assurance of Learning)." },
       ],
     },
   ];
