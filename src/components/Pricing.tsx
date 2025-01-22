@@ -99,7 +99,7 @@ export const Pricing = () => {
         { text: "Centre de ressources générique", included: true },
         { text: "Assistance standard", included: true },
       ],
-      buttonText: "Essayer gratuitement",
+      buttonText: "J'essaye gratuitement",
     },
     {
       title: "Essential",
@@ -148,7 +148,7 @@ export const Pricing = () => {
         { text: "Export des données, parfait pour l'auditabilité", included: true },
         { text: "Assistance spécialisée avec un chef de projet dédié", included: true },
       ],
-      buttonText: "Prendre rendez-vous",
+      buttonText: "Je prends rendez-vous",
     },
   ];
 
