@@ -188,7 +188,7 @@ export const Pricing = () => {
                       {essentialCourses[0]} parcours
                     </span>
                     <Label className="text-sm text-gray-600 mb-2">
-                      Choisis le nombre de parcours désiré
+                      Je choisis le nombre de parcours désiré
                     </Label>
                     <Slider
                       value={essentialCourses}
