@@ -119,7 +119,7 @@ export const Pricing = () => {
     {
       title: "Professional",
       monthlyPrice: "130 €",
-      description: "Idéal pour animer des programmes ou départements académiques.",
+      description: "Idéal pour animer des programmes/départements.",
       features: [
         { text: "Jusqu'à 15 parcours simultanés", included: true },
         { text: "Jusqu'à 150 participants par parcours", included: true },
@@ -137,7 +137,7 @@ export const Pricing = () => {
     {
       title: "Institution",
       monthlyPrice: "Sur demande",
-      description: "Solution 100% sur mesure pour une institution académique ou professionnelle",
+      description: "Solution 100% sur mesure pour une institution.",
       features: [
         { text: "100% modulable", included: true },
         { text: "Fonctionnalités d'édition, d'execution et d'administration personnalisables", included: true },
