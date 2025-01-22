@@ -27,12 +27,9 @@ export const Pricing = () => {
   const navigate = useNavigate();
   const [isAnnual, setIsAnnual] = useState(true);
   const [essentialCourses, setEssentialCourses] = useState([1]);
-
-  // Référence pour mesurer la hauteur de la section "fonctionnalités"
   const featuresRef = useRef<HTMLDivElement>(null);
   const [featuresTopOffset, setFeaturesTopOffset] = useState<number | null>(null);
 
-  // Ajuste la hauteur de début des fonctionnalités
   useEffect(() => {
     if (featuresRef.current) {
       setFeaturesTopOffset(featuresRef.current.offsetTop);
@@ -95,7 +92,7 @@ export const Pricing = () => {
       title: "Starter",
       monthlyPrice: "0 €",
       description: "Parfait pour prendre en main l'outil",
-      extraSpace: "mt-600", // Ajout d'espaces supplémentaires
+      extraSpace: "mt-24", // Ajusté pour aligner avec Essential
       features: [
         { text: "1 parcours", included: true },
         { text: "Jusqu'à 50 participants", included: true },
@@ -125,7 +122,7 @@ export const Pricing = () => {
       title: "Professional",
       monthlyPrice: "130 €",
       description: "Idéal pour animer des programmes ou départements académiques.",
-      extraSpace: "mt-12", // Ajout d'espaces supplémentaires
+      extraSpace: "mt-24", // Ajusté pour aligner avec Essential
       features: [
         { text: "Jusqu'à 15 parcours simultanés", included: true },
         { text: "Jusqu'à 150 participants par parcours", included: true },
@@ -144,7 +141,7 @@ export const Pricing = () => {
       title: "Institution",
       monthlyPrice: "Sur demande",
       description: "Solution sur mesure pour une institution",
-      extraSpace: "mt-12", // Ajout d'espaces supplémentaires
+      extraSpace: "mt-24", // Ajusté pour aligner avec Essential
       features: [
         { text: "100% modulable", included: true },
         { text: "Fonctionnalités d'édition, d'execution et d'administration personnalisables", included: true },
@@ -181,7 +178,7 @@ export const Pricing = () => {
               className={`flex flex-col items-stretch h-full ${plan.extraSpace || ""}`}
               key={index}
               style={{
-                minHeight: `${featuresTopOffset}px`, // Alignement basé sur l'offset "Essential"
+                minHeight: `${featuresTopOffset}px`,
               }}
             >
               <PricingCard
