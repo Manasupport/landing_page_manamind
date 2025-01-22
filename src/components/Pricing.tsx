@@ -91,7 +91,7 @@ export const Pricing = () => {
     {
       title: "Starter",
       monthlyPrice: "0 €",
-      description: "Parfait pour prendre en main l'outil",
+      description: "Solution idéale pour une prise en main intuitive et rapide de l’outil.",
       features: [
         { text: "1 parcours", included: true },
         { text: "Jusqu'à 50 participants", included: true },
