@@ -40,6 +40,7 @@ export const CreateAccount = () => {
     }
 
     try {
+      // Créer le compte utilisateur
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email: formData.email,
         password: Math.random().toString(36).slice(-8),
@@ -47,11 +48,31 @@ export const CreateAccount = () => {
           data: {
             first_name: formData.firstName,
             last_name: formData.lastName,
+            plan: selectedPlan,
+            numberOfCourses: numberOfCourses,
+            accountType: accountType,
           },
         },
       });
 
       if (authError) throw authError;
+
+      // Notifier les administrateurs
+      try {
+        await supabase.functions.invoke('notify-admin', {
+          body: {
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            email: formData.email,
+            plan: selectedPlan,
+            numberOfCourses: numberOfCourses,
+            accountType: accountType,
+          }
+        });
+      } catch (notifyError) {
+        console.error("Error notifying admin:", notifyError);
+        // Continue execution even if notification fails
+      }
 
       if (selectedPlan === "Starter") {
         window.location.href = "https://app.manamind.fr";
