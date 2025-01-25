@@ -37,7 +37,7 @@ export const Contact = () => {
               className="h-8 mx-auto"
             />
             <p className="text-xs text-white font-quattrocento">
-              une solution originale designé par
+              une solution originale designée par
             </p>
             <img
               src="/lovable-uploads/8a236523-7325-450e-af98-859d2716368d.png"
