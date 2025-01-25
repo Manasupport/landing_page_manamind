@@ -20,6 +20,7 @@ export const CreateAccount = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("Starting account creation with data:", { formData, accountType, selectedPlan, numberOfCourses });
 
     if (!accountType) {
       toast({
@@ -40,35 +41,43 @@ export const CreateAccount = () => {
     }
 
     try {
-      // Créer le compte utilisateur
+      // Créer le compte utilisateur avec les métadonnées
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email: formData.email,
         password: Math.random().toString(36).slice(-8),
         options: {
           data: {
-            first_name: formData.firstName,
-            last_name: formData.lastName,
-            plan: selectedPlan,
-            numberOfCourses: numberOfCourses,
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            plan: selectedPlan || "Starter",
+            numberOfCourses: numberOfCourses || 1,
             accountType: accountType,
           },
         },
       });
 
+      console.log("Auth response:", authData, authError);
+
       if (authError) throw authError;
 
       // Notifier les administrateurs
       try {
-        await supabase.functions.invoke('notify-admin', {
+        const { data: notifyData, error: notifyError } = await supabase.functions.invoke('notify-admin', {
           body: {
             firstName: formData.firstName,
             lastName: formData.lastName,
             email: formData.email,
-            plan: selectedPlan,
-            numberOfCourses: numberOfCourses,
+            plan: selectedPlan || "Starter",
+            numberOfCourses: numberOfCourses || 1,
             accountType: accountType,
           }
         });
+
+        console.log("Notify admin response:", notifyData, notifyError);
+
+        if (notifyError) {
+          console.error("Error notifying admin:", notifyError);
+        }
       } catch (notifyError) {
         console.error("Error notifying admin:", notifyError);
         // Continue execution even if notification fails
