@@ -121,7 +121,7 @@ export const CreateAccount = () => {
     <div className="relative min-h-screen overflow-hidden">
       {/* Vidéo en arrière-plan */}
       <video
-        className="absolute top-0 left-0 w-full h-full object-cover"
+        className="absolute top-0 left-0 w-full h-full object-cover opacity-40"
         src="/lovable-uploads/7021943_Meeting_Office_1920x1080.mp4"
         autoPlay
         loop
@@ -183,8 +183,12 @@ export const CreateAccount = () => {
                         : "border-gray-200 hover:border-[#71c088] hover:bg-[#71c088]/5"
                     }`}
                   >
-                    <type.icon className={`h-8 w-8 mb-3 text-[#71c088]`} />
-                    <span className="font-medium text-[#71c088]">{type.label}</span>
+                    <type.icon
+                      className={`h-8 w-8 mb-3 ${
+                        accountType === type.value ? "text-[#71c088]" : "text-gray-500"
+                      }`}
+                    />
+                    <span className="font-medium text-gray-900">{type.label}</span>
                   </button>
                 ))}
               </div>
@@ -240,12 +244,12 @@ export const CreateAccount = () => {
             </div>
           )}
 
-          <p className="text-center text-sm mt-8">
+          <p className="text-center text-sm text-gray-600 mt-8">
             <a
               href="https://app.manamind.fr"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-black hover:underline"
+              className="text-[#71c088] hover:underline"
             >
               J'ai déjà un compte, je me connecte
             </a>
