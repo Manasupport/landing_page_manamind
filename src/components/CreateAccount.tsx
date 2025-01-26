@@ -122,7 +122,7 @@ export const CreateAccount = () => {
       {/* Vidéo en arrière-plan */}
       <video
         className="absolute top-0 left-0 w-full h-full object-cover"
-        src="/lovable-uploads/7021943_Meeting_Office_1920x1080.mp44"
+        src="/lovable-uploads/7021943_Meeting_Office_1920x1080.mp4"
         autoPlay
         loop
         muted
