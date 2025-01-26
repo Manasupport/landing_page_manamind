@@ -121,8 +121,8 @@ export const CreateAccount = () => {
     <div className="relative min-h-screen overflow-hidden">
       {/* Vidéo en arrière-plan */}
       <video
-        className="absolute top-0 left-0 w-full h-full object-cover opacity-40"
-        src="/lovable-uploads/7021943_Meeting_Office_1920x1080.mp4"
+        className="absolute top-0 left-0 w-full h-full object-cover"
+        src="/lovable-uploads/7021943_Meeting_Office_1920x1080.mp44"
         autoPlay
         loop
         muted
