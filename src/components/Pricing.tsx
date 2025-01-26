@@ -47,6 +47,7 @@ export const Pricing = () => {
         state: {
           selectedPlan: plan,
           numberOfCourses: 1,
+          isAnnual: isAnnual,
         },
       });
       return;
@@ -58,6 +59,7 @@ export const Pricing = () => {
           selectedPlan: plan,
           priceId: priceId,
           numberOfCourses: plan === "Essential" ? essentialCourses[0] : 15,
+          isAnnual: isAnnual,
         },
       });
     } else {

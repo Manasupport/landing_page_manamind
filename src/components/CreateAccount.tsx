@@ -8,7 +8,7 @@ import { BookOpen, GraduationCap, Building, Users } from "lucide-react";
 export const CreateAccount = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { selectedPlan, priceId, numberOfCourses } = location.state || {};
+  const { selectedPlan, priceId, numberOfCourses, isAnnual } = location.state || {};
 
   const [step, setStep] = useState(1);
   const [accountType, setAccountType] = useState("");
@@ -63,7 +63,7 @@ export const CreateAccount = () => {
             lastName: formData.lastName,
             plan: selectedPlan || "Starter",
             numberOfCourses: numberOfCourses || 1,
-            accountType: accountType,
+            accountType: isAnnual ? "annuel" : "mensuel",
             subscriptionStatus: initialStatus,
           },
         },
@@ -79,7 +79,7 @@ export const CreateAccount = () => {
             email: formData.email,
             plan: selectedPlan || "Starter",
             numberOfCourses: numberOfCourses || 1,
-            accountType: accountType,
+            accountType: isAnnual ? "annuel" : "mensuel",
           },
         });
 
@@ -275,4 +275,5 @@ export const CreateAccount = () => {
       </div>
     </div>
   );
+
 };
