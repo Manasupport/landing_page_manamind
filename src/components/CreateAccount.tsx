@@ -249,7 +249,7 @@ export const CreateAccount = () => {
               href="https://app.manamind.fr"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#71c088] hover:underline"
+              className="text-[#000000] hover:underline"
             >
               J'ai déjà un compte, je me connecte
             </a>
