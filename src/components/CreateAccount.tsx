@@ -17,7 +17,7 @@ export const CreateAccount = () => {
     lastName: "",
     email: "",
   });
-  const [acceptTerms, setAcceptTerms] = useState(false); // État pour la case à cocher
+  const [acceptTerms, setAcceptTerms] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,6 +51,9 @@ export const CreateAccount = () => {
     }
 
     try {
+      // Set initial subscription status based on plan
+      const initialStatus = selectedPlan === "Starter" ? "active" : "pending";
+      
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email: formData.email,
         password: Math.random().toString(36).slice(-8),
@@ -61,6 +64,7 @@ export const CreateAccount = () => {
             plan: selectedPlan || "Starter",
             numberOfCourses: numberOfCourses || 1,
             accountType: accountType,
+            subscriptionStatus: initialStatus,
           },
         },
       });
