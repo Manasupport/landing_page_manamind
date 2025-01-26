@@ -17,6 +17,7 @@ export const CreateAccount = () => {
     lastName: "",
     email: "",
   });
+  const [acceptTerms, setAcceptTerms] = useState(false); // État pour la case à cocher
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,8 +41,16 @@ export const CreateAccount = () => {
       return;
     }
 
+    if (!acceptTerms) {
+      toast({
+        title: "Conditions d'utilisation requises",
+        description: "Vous devez accepter les conditions d'utilisation pour continuer",
+        variant: "destructive",
+      });
+      return;
+    }
+
     try {
-      // Créer le compte utilisateur avec les métadonnées
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email: formData.email,
         password: Math.random().toString(36).slice(-8),
@@ -56,11 +65,8 @@ export const CreateAccount = () => {
         },
       });
 
-      console.log("Auth response:", authData, authError);
-
       if (authError) throw authError;
 
-      // Notifier les administrateurs
       try {
         const { data: notifyData, error: notifyError } = await supabase.functions.invoke("notify-admin", {
           body: {
@@ -73,11 +79,7 @@ export const CreateAccount = () => {
           },
         });
 
-        console.log("Notify admin response:", notifyData, notifyError);
-
-        if (notifyError) {
-          console.error("Error notifying admin:", notifyError);
-        }
+        if (notifyError) console.error("Error notifying admin:", notifyError);
       } catch (notifyError) {
         console.error("Error notifying admin:", notifyError);
       }
@@ -96,10 +98,8 @@ export const CreateAccount = () => {
           if (error) throw error;
           if (!data?.url) throw new Error("URL de paiement manquante");
 
-          console.log("Redirecting to Stripe:", data.url);
           window.location.href = data.url;
         } catch (checkoutError) {
-          console.error("Checkout error:", checkoutError);
           toast({
             title: "Erreur lors de la redirection vers le paiement",
             description: "Une erreur est survenue. Veuillez réessayer.",
@@ -108,7 +108,6 @@ export const CreateAccount = () => {
         }
       }
     } catch (error) {
-      console.error("Account creation error:", error);
       toast({
         title: "Erreur",
         description: "Une erreur est survenue lors de la création du compte. Veuillez réessayer.",
@@ -137,12 +136,8 @@ export const CreateAccount = () => {
               alt="Manamind Logo"
               className="h-16 w-16 mx-auto mb-6"
             />
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              Créez votre compte Manamind
-            </h1>
-            <p className="text-gray-600">
-              Rejoignez la communauté de Manaminders et transformez l'apprentissage
-            </p>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Créez votre compte Manamind</h1>
+            <p className="text-gray-600">Rejoignez la communauté de Manaminders et transformez l'apprentissage</p>
             <div className="flex justify-center gap-4 mt-6">
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center ${
@@ -227,6 +222,24 @@ export const CreateAccount = () => {
                     required
                   />
                 </div>
+                {/* Case à cocher */}
+                <div>
+                  <label className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      checked={acceptTerms}
+                      onChange={(e) => setAcceptTerms(e.target.checked)}
+                      className="h-4 w-4 text-[#71c088] border-gray-300 rounded focus:ring-[#71c088]"
+                      required
+                    />
+                    <span className="text-gray-700">
+                      J'accepte les{" "}
+                      <a href="https://www.manamindconditions.fr" target="_blank" className="text-[#71c088] underline">
+                        conditions d'utilisation de Manamind
+                      </a>
+                    </span>
+                  </label>
+                </div>
                 <div className="flex gap-4 pt-4">
                   <Button
                     type="button"
@@ -244,7 +257,7 @@ export const CreateAccount = () => {
             </div>
           )}
 
-          <p className="text-center text-sm text-gray-600 mt-8">
+          <p className="text-center text-sm mt-8">
             <a
               href="https://app.manamind.fr"
               target="_blank"
