@@ -18,9 +18,11 @@ const getEssentialPriceId = (courses: number, isAnnual: boolean) => {
 };
 
 const getProfessionalPriceId = (isAnnual: boolean) => {
-  return isAnnual
+  const priceId = isAnnual
     ? "price_1QY1FbEEI50AF5TQQ4QNdRlH"
     : "price_1QY1FGEEI50AF5TQDpoUSNbT";
+  console.log('Professional Plan Price ID:', priceId, 'isAnnual:', isAnnual);
+  return priceId;
 };
 
 export const Pricing = () => {
@@ -37,12 +39,15 @@ export const Pricing = () => {
   }, [featuresRef.current, essentialCourses]);
 
   const handleSubscribe = (plan: string, priceId?: string) => {
+    console.log('Handling subscription for plan:', plan, 'priceId:', priceId);
+
     if (plan === "Institution") {
       window.open("https://calendar.app.google/8PzSHhTa8sLE9XWf7", "_blank");
       return;
     }
 
     if (plan === "Starter") {
+      console.log('Navigating to create-account for Starter plan');
       navigate("/create-account", {
         state: {
           selectedPlan: plan,
@@ -53,22 +58,25 @@ export const Pricing = () => {
       return;
     }
 
-    if (priceId) {
-      navigate("/create-account", {
-        state: {
-          selectedPlan: plan,
-          priceId: priceId,
-          numberOfCourses: plan === "Essential" ? essentialCourses[0] : 15,
-          isAnnual: isAnnual,
-        },
-      });
-    } else {
+    if (!priceId) {
+      console.error('No price ID provided for plan:', plan);
       toast({
         title: "Erreur d'abonnement",
         description: "Impossible de récupérer l'identifiant de l'offre.",
         variant: "destructive",
       });
+      return;
     }
+
+    console.log('Navigating to create-account with price ID:', priceId);
+    navigate("/create-account", {
+      state: {
+        selectedPlan: plan,
+        priceId: priceId,
+        numberOfCourses: plan === "Essential" ? essentialCourses[0] : 15,
+        isAnnual: isAnnual,
+      },
+    });
   };
 
   const getPriceDisplay = (monthlyPrice: string, title: string) => {
@@ -93,7 +101,7 @@ export const Pricing = () => {
     {
       title: "Starter",
       monthlyPrice: "0 €",
-      description: "Solution idéale pour une prise en main intuitive et rapide de l’outil.",
+      description: "Solution idéale pour une prise en main intuitive et rapide de l'outil.",
       features: [
         { text: "1 parcours", included: true },
         { text: "Jusqu'à 50 participants", included: true },
