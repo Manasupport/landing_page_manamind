@@ -36,9 +36,7 @@ export const Pricing = () => {
     }
   }, [featuresRef.current, essentialCourses]);
 
-  const handleSubscribe = (plan: string) => {
-    let priceId;
-
+  const handleSubscribe = (plan: string, priceId?: string) => {
     if (plan === "Institution") {
       window.open("https://calendar.app.google/8PzSHhTa8sLE9XWf7", "_blank");
       return;
@@ -46,19 +44,14 @@ export const Pricing = () => {
 
     if (plan === "Starter") {
       navigate("/create-account", {
-        state: { selectedPlan: plan, numberOfCourses: 1, isAnnual: isAnnual },
+        state: {
+          selectedPlan: plan,
+          numberOfCourses: 1,
+          isAnnual: isAnnual,
+        },
       });
       return;
     }
-
-    if (plan === "Essential") {
-      priceId = getEssentialPriceId(essentialCourses[0], isAnnual);
-    } else if (plan === "Professional") {
-      priceId = getProfessionalPriceId(isAnnual);
-    }
-
-    // 🚀 Vérification avant la redirection
-    console.log("Plan:", plan, "Price ID:", priceId);
 
     if (priceId) {
       navigate("/create-account", {
@@ -123,6 +116,7 @@ export const Pricing = () => {
         { text: "Assistance prioritaire", included: true },
       ],
       buttonText: "Je m'abonne",
+      priceId: getEssentialPriceId(essentialCourses[0], isAnnual),
     },
     {
       title: "Professional",
@@ -131,7 +125,7 @@ export const Pricing = () => {
       features: [
         { text: "Jusqu'à 15 parcours simultanés", included: true },
         { text: "Jusqu'à 150 participants par parcours", included: true },
-        { text: "Toutes les fonctionnalités d'édition, d'exécution et d'administration", included: true },
+        { text: "Toutes les fonctionnalités d'édition, d'execution et d'administration ", included: true },
         { text: "Centre de ressources générique", included: true },
         { text: "Tableaux de bord de reporting et de pilotage consolidés", included: true },
         { text: "IA pour le design de parcours", included: true },
@@ -140,6 +134,7 @@ export const Pricing = () => {
       ],
       buttonText: "Je m'abonne",
       popular: true,
+      priceId: getProfessionalPriceId(isAnnual),
     },
     {
       title: "Institution",
@@ -147,7 +142,7 @@ export const Pricing = () => {
       description: "Solution 100% sur mesure pour une institution.",
       features: [
         { text: "100% modulable", included: true },
-        { text: "Fonctionnalités d'édition, d'exécution et d'administration personnalisables", included: true },
+        { text: "Fonctionnalités d'édition, d'execution et d'administration personnalisables", included: true },
         { text: "Centre de ressources personnalisable", included: true },
         { text: "Tableaux de bord de reporting et de pilotage consolidés", included: true },
         { text: "IA pour le design de parcours", included: true },
@@ -165,15 +160,50 @@ export const Pricing = () => {
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-[#0c3d5e]">
           Découvrez nos offres d'abonnements
         </h2>
+        <div className="flex items-center justify-center gap-4 mb-12">
+          <Label htmlFor="pricing-toggle" className={!isAnnual ? "font-bold" : ""}>
+            Mensuel
+          </Label>
+          <Switch id="pricing-toggle" checked={isAnnual} onCheckedChange={setIsAnnual} />
+          <Label htmlFor="pricing-toggle" className={isAnnual ? "font-bold" : ""}>
+            Annuel (-10%)
+          </Label>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {basePricingData.map((plan, index) => (
-            <PricingCard
+            <div
+              className="h-full flex flex-col"
               key={index}
-              {...plan}
-              price={getPriceDisplay(plan.monthlyPrice, plan.title)}
-              onSubscribe={() => handleSubscribe(plan.title)}
-            />
+              style={{
+                minHeight: `${featuresTopOffset}px`,
+              }}
+            >
+              <PricingCard
+                {...plan}
+                price={getPriceDisplay(plan.monthlyPrice, plan.title)}
+                onSubscribe={() => handleSubscribe(plan.title, plan.priceId)}
+              >
+                {plan.title === "Essential" && (
+                  <div ref={featuresRef} className="flex flex-col items-center mb-6">
+                    <span className="text-[#0c3d5e] font-semibold mb-2">
+                      {essentialCourses[0]} parcours
+                    </span>
+                    <Label className="text-sm text-gray-600 mb-2">
+                      Choisis ton nombre de parcours
+                    </Label>
+                    <Slider
+                      value={essentialCourses}
+                      onValueChange={setEssentialCourses}
+                      max={5}
+                      min={1}
+                      step={1}
+                      className="w-3/4"
+                    />
+                  </div>
+                )}
+              </PricingCard>
+            </div>
           ))}
         </div>
       </div>
