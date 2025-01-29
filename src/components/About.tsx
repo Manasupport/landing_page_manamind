@@ -17,7 +17,7 @@ export const About = () => {
   const repeatedLogos = [...logos, ...logos, ...logos];
 
   return (
-    <section id="about" className="py-20 min-h-screen bg-[#0c3d5e] text-white overflow-hidden">
+    <section id="about" className="py-20 min-h-screen bg-[#0c3d5e] text-white overflow-hidden relative">
       {/* Texte d'introduction */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -79,10 +79,15 @@ export const About = () => {
       </div>
 
       {/* Texte sous les logos */}
-      <div className="text-center mt-4">
-        <p className="text-lg text-gray-300">
+      <div className="text-center mt-6">
+        <p className="text-xl text-gray-300">
           Manamind est considérée par <span className="font-semibold">94%*</span> des étudiants comme un vecteur d'expérience engageante.
         </p>
+      </div>
+
+      {/* Note en bas à droite */}
+      <div className="absolute bottom-4 right-4 text-xs text-gray-400">
+        * d'après les apprenants du MIB Dauphine - PSL Spring 2024
       </div>
     </section>
   );
