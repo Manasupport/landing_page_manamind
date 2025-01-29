@@ -158,7 +158,7 @@ export const Pricing = () => {
     <section id="pricing" className="py-20 px-4 bg-gradient-to-br from-slate-50 to-white">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-[#0c3d5e]">
-          Découvrez nos offres
+          Découvrez nos offres d'abonnements
         </h2>
         <div className="flex items-center justify-center gap-4 mb-12">
           <Label htmlFor="pricing-toggle" className={!isAnnual ? "font-bold" : ""}>
