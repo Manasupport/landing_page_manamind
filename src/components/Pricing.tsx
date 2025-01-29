@@ -8,7 +8,7 @@ import { Slider } from "./ui/slider";
 
 const getEssentialPriceId = (courses: number, isAnnual: boolean) => {
   const priceMap = {
-    1: { monthly: "price_1Qmc4GEEI50AF5TQswoQ36zs", yearly: "price_1QXeYkEEI50AF5TQemBkiRCS" },
+    1: { monthly: "price_1QXeWuEEI50AF5TQBvSRiqYk", yearly: "price_1QXeYkEEI50AF5TQemBkiRCS" },
     2: { monthly: "price_1QXeXGEEI50AF5TQMVSPcWyc", yearly: "price_1QXeZdEEI50AF5TQs0umy4oM" },
     3: { monthly: "price_1QXeXUEEI50AF5TQ5s0VBj6E", yearly: "price_1QXea0EEI50AF5TQE2WPOqUv" },
     4: { monthly: "price_1QXeXgEEI50AF5TQVqzmiuRd", yearly: "price_1QXeaHEEI50AF5TQK0q2bfG7" },
