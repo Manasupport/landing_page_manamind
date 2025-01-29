@@ -81,7 +81,7 @@ export const About = () => {
       {/* Texte sous les logos */}
       <div className="text-center mt-6">
         <p className="text-xl text-gray-300">
-          Manamind est considérée par <span className="font-semibold">94%*</span> des apprenants comme un vecteur d'expérience engageante.
+          Manamind est reconnue par <span className="font-semibold">94%*</span> des apprenants comme un vecteur d'expérience engageante.
         </p>
       </div>
 
