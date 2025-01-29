@@ -86,8 +86,8 @@ export const About = () => {
       </div>
 
       {/* Note en bas à droite */}
-      <div className="absolute bottom-4 right-4 text-xs text-gray-400">
-        * d'après les apprenants du MIB Dauphine - PSL Spring 2024
+      <div className="absolute bottom-3 right-4 text-xs text-gray-400">
+        * Enquête de satisfaction soumise aux apprenants Spring 2024
       </div>
     </section>
   );
