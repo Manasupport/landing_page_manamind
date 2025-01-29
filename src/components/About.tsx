@@ -77,6 +77,13 @@ export const About = () => {
           ))}
         </motion.div>
       </div>
+
+      {/* Texte sous les logos */}
+      <div className="text-center mt-4">
+        <p className="text-lg text-gray-300">
+          Manamind est considérée par <span className="font-semibold">94%*</span> des étudiants comme un vecteur d'expérience engageante.
+        </p>
+      </div>
     </section>
   );
 };
