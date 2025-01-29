@@ -1,5 +1,4 @@
-import { Lightbulb, Users, BarChart, ArrowRight } from "lucide-react";
-import { Button } from "./ui/button";
+import { Lightbulb, Users, BarChart } from "lucide-react";
 import { motion } from "framer-motion";
 
 export const WhyManamind = () => {
@@ -71,35 +70,6 @@ export const WhyManamind = () => {
             </motion.div>
           ))}
         </div>
-
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="mt-20 bg-gradient-to-r from-[#71c088]/20 to-[#a3d7b3]/20 rounded-2xl p-8 md:p-12 text-center backdrop-blur-sm border border-white/10"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Prêt à transformer votre apprentissage ?</h2>
-          <p className="text-xl text-gray-300 mb-8">
-            Manamind : considérée par 94%* des étudiants comme un vecteur d'expérience engageante
-          </p>
-          <Button
-            size="lg"
-            onClick={() => {
-              const section = document.getElementById("pricing");
-              if (section) {
-                section.scrollIntoView({ behavior: "smooth" });
-              }
-            }}
-            className="bg-[#71c088] hover:bg-[#5a9a6e] text-white group"
-          >
-            Commencer maintenant
-            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-          </Button>
-          <p className="text-xs text-gray-400 mt-4 italic">
-            * Questionnaire soumis aux étudiants utilisateurs de Manamind Spring 2024.
-          </p>
-        </motion.div>
       </div>
     </section>
   );
