@@ -19,7 +19,7 @@ serve(async (req) => {
     const event = stripe.webhooks.constructEvent(
       body,
       signature || '',
-      Deno.env.get('STRIPE_WEBHOOK_SECRET') || ''
+      Deno.env.get('whsec_ulZrYWvq9NL8qVp6AwavmEaHMEozKjZD') || ''
     );
 
     console.log('Processing event:', event.type);
