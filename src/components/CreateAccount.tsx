@@ -65,33 +65,45 @@ export const CreateAccount = () => {
             accountType: isAnnual ? "annuel" : "mensuel",
             subscriptionStatus: initialStatus,
           },
+          emailRedirectTo: 'https://app.manamind.fr'
         },
       });
 
       if (authError) throw authError;
 
-      try {
-        // Notify admin
-        const { data: notifyData, error: notifyError } = await supabase.functions.invoke("notify-admin", {
-          body: {
-            firstName: formData.firstName,
-            lastName: formData.lastName,
-            email: formData.email,
-            plan: selectedPlan || "Starter",
-            numberOfCourses: numberOfCourses || 1,
-            accountType: isAnnual ? "annuel" : "mensuel",
-          },
-        });
-
-        if (notifyError) console.error("Error notifying admin:", notifyError);
-      } catch (notifyError) {
-        console.error("Error notifying admin:", notifyError);
-      }
-
       if (selectedPlan === "Starter") {
+        try {
+          // Send welcome email for Starter plan
+          const { data: welcomeData, error: welcomeError } = await supabase.functions.invoke("send-welcome-email", {
+            body: {
+              firstName: formData.firstName,
+              email: formData.email,
+            },
+          });
+
+          if (welcomeError) console.error("Error sending welcome email:", welcomeError);
+
+          // Notify admin for Starter plan
+          const { data: notifyData, error: notifyError } = await supabase.functions.invoke("notify-admin", {
+            body: {
+              firstName: formData.firstName,
+              lastName: formData.lastName,
+              email: formData.email,
+              plan: selectedPlan || "Starter",
+              numberOfCourses: numberOfCourses || 1,
+              accountType: isAnnual ? "annuel" : "mensuel",
+            },
+          });
+
+          if (notifyError) console.error("Error notifying admin:", notifyError);
+        } catch (error) {
+          console.error("Error in Starter plan notifications:", error);
+        }
+
         window.location.href = "https://app.manamind.fr";
       } else {
         try {
+          console.log("Creating checkout session with priceId:", priceId);
           const { data, error } = await supabase.functions.invoke("create-checkout", {
             body: {
               priceId,
@@ -102,8 +114,10 @@ export const CreateAccount = () => {
           if (error) throw error;
           if (!data?.url) throw new Error("URL de paiement manquante");
 
+          console.log("Redirecting to Stripe checkout URL:", data.url);
           window.location.href = data.url;
         } catch (checkoutError) {
+          console.error("Checkout error:", checkoutError);
           toast({
             title: "Erreur lors de la redirection vers le paiement",
             description: "Une erreur est survenue. Veuillez réessayer.",
@@ -112,6 +126,7 @@ export const CreateAccount = () => {
         }
       }
     } catch (error) {
+      console.error("Account creation error:", error);
       toast({
         title: "Erreur",
         description: "Une erreur est survenue lors de la création du compte. Veuillez réessayer.",

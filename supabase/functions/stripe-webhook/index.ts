@@ -19,7 +19,7 @@ serve(async (req) => {
     const event = stripe.webhooks.constructEvent(
       body,
       signature || '',
-      Deno.env.get('whsec_ulZrYWvq9NL8qVp6AwavmEaHMEozKjZD') || ''
+      Deno.env.get('STRIPE_WEBHOOK_SECRET') || ''
     );
 
     console.log('Processing event:', event.type);
@@ -35,6 +35,7 @@ serve(async (req) => {
           const customer = await stripe.customers.retrieve(customerId);
           
           if ('email' in customer) {
+            // Update profile status
             const { data: profiles, error: profileError } = await supabase
               .from('profiles')
               .update({
@@ -47,6 +48,48 @@ serve(async (req) => {
             if (profileError) {
               console.error('Error updating profile:', profileError);
               throw profileError;
+            }
+
+            // Send welcome email
+            try {
+              const { data: userData, error: userError } = await supabase
+                .from('profiles')
+                .select('*')
+                .eq('email', customer.email)
+                .single();
+
+              if (userError) throw userError;
+
+              await fetch(`${Deno.env.get('SUPABASE_URL')}/functions/v1/send-welcome-email`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${Deno.env.get('SUPABASE_ANON_KEY')}`,
+                },
+                body: JSON.stringify({
+                  firstName: userData.Prenom,
+                  email: userData.email,
+                }),
+              });
+
+              // Notify admin
+              await fetch(`${Deno.env.get('SUPABASE_URL')}/functions/v1/notify-admin`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${Deno.env.get('SUPABASE_ANON_KEY')}`,
+                },
+                body: JSON.stringify({
+                  firstName: userData.Prenom,
+                  lastName: userData.Nom,
+                  email: userData.email,
+                  plan: userData["Plan choisi"],
+                  numberOfCourses: userData["Nombre de parcours"],
+                  accountType: userData["Type de compte"],
+                }),
+              });
+            } catch (error) {
+              console.error('Error sending welcome email:', error);
             }
 
             console.log('Profile updated successfully:', profiles);

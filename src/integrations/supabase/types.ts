@@ -12,7 +12,6 @@ export type Database = {
       profiles: {
         Row: {
           "créer le": string
-          "Date de reconduction de l'abonnement": string | null
           email: string | null
           id: string
           "modifié le": string
@@ -25,7 +24,6 @@ export type Database = {
         }
         Insert: {
           "créer le"?: string
-          "Date de reconduction de l'abonnement"?: string | null
           email?: string | null
           id: string
           "modifié le"?: string
@@ -38,7 +36,6 @@ export type Database = {
         }
         Update: {
           "créer le"?: string
-          "Date de reconduction de l'abonnement"?: string | null
           email?: string | null
           id?: string
           "modifié le"?: string
