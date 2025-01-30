@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 export const WhyManamind = () => {
   const features = [
     {
-      title: "Pilotage pour les encadrants",
+      title: "Pilotage pour\nles encadrants",
       icon: Lightbulb,
       points: [
         { text: "- Concevoir et personnaliser facilement des parcours d'apprentissage." },
@@ -13,7 +13,7 @@ export const WhyManamind = () => {
       ],
     },
     {
-      title: "Expérience pour les apprenants",
+      title: "Expérience pour\nles apprenants",
       icon: Users,
       points: [
         { text: "- Impliquer les apprenants dans des parcours engageants et collaboratifs." },
@@ -22,7 +22,7 @@ export const WhyManamind = () => {
       ],
     },
     {
-      title: "Auditabilité pour l'institution",
+      title: "Auditabilité pour\nl'institution",
       icon: BarChart,
       points: [
         { text: "- Intégrer des référentiels de compétences (ex. RNCP, France compétences, Fiches métiers…) aux parcours d'apprentissage." },
@@ -35,7 +35,6 @@ export const WhyManamind = () => {
   return (
     <section className="py-20 px-4 text-white" style={{ backgroundColor: "#0c3d5e" }}>
       <div className="max-w-7xl mx-auto">
-        {/* Titre principal avec taille réduite */}
         <h2 className="text-2xl md:text-3xl text-center mb-16 font-bold text-white">
           Manamind propose une expérience d'apprentissage innovante et créatrice de valeur pour chaque partie prenante.
         </h2>
@@ -55,7 +54,7 @@ export const WhyManamind = () => {
                   <div className="w-20 h-20 rounded-full bg-manamind/20 flex items-center justify-center mb-6 group-hover:bg-manamind/30 transition-colors">
                     <feature.icon className="w-10 h-10 text-manamind" />
                   </div>
-                  <h3 className="text-2xl font-semibold leading-tight text-manamind">
+                  <h3 className="text-2xl font-semibold leading-tight text-manamind whitespace-pre-line">
                     {feature.title}
                   </h3>
                   <ul className="space-y-6 text-left">
