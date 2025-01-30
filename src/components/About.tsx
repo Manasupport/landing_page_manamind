@@ -78,15 +78,15 @@ export const About = () => {
         </motion.div>
       </div>
 
-      {/* Texte sous les logos */}
-      <div className="text-center mt-6">
+      {/* Texte sous les logos avec réduction de l'espace */}
+      <div className="text-center mt-2">
         <p className="text-xl text-gray-300">
           Manamind est reconnue par <span className="font-semibold">94%*</span> des apprenants comme un vecteur d'expérience engageante.
         </p>
       </div>
 
-      {/* Note en bas à droite */}
-      <div className="absolute bottom-1 right-4 text-xs text-gray-400">
+      {/* Note en bas à droite avec un espacement réduit */}
+      <div className="absolute bottom-2 right-4 text-xs text-gray-400">
         * Enquête de satisfaction soumise aux apprenants Spring 2024
       </div>
     </section>
