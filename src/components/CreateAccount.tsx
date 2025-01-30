@@ -181,9 +181,9 @@ export const CreateAccount = () => {
               <div className="grid grid-cols-2 gap-4">
                 {[
                   { label: "Enseignant", value: "enseignant", icon: GraduationCap },
-                  { label: "Equipe pédagogique / Institution", value: "vacataire", icon: Users },
-                  { label: "Directeur de Master / Programme", value: "master", icon: BookOpen },
-                  { label: "Autre", value: "institution", icon: Building },
+                  { label: "Equipe pédagogique / Institution", value: "Institution", icon: Users },
+                  { label: "Directeur de Master / Programme", value: "Dir Master", icon: BookOpen },
+                  { label: "Autre", value: "Autre", icon: Building },
                 ].map((type) => (
                   <button
                     key={type.value}
