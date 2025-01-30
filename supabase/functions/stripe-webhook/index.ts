@@ -50,7 +50,7 @@ serve(async (req) => {
               throw profileError;
             }
 
-            // Send welcome email
+            // Send welcome email after payment confirmation
             try {
               const { data: userData, error: userError } = await supabase
                 .from('profiles')
@@ -72,7 +72,7 @@ serve(async (req) => {
                 }),
               });
 
-              // Notify admin
+              // Notify admin after payment confirmation
               await fetch(`${Deno.env.get('SUPABASE_URL')}/functions/v1/notify-admin`, {
                 method: 'POST',
                 headers: {

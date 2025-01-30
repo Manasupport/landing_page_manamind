@@ -62,10 +62,12 @@ export const CreateAccount = () => {
             lastName: formData.lastName,
             plan: selectedPlan || "Starter",
             numberOfCourses: numberOfCourses || 1,
-            accountType: isAnnual ? "annuel" : "mensuel",
+            accountType: accountType,
             subscriptionStatus: initialStatus,
           },
-          emailRedirectTo: 'https://app.manamind.fr'
+          emailRedirectTo: 'https://app.manamind.fr',
+          // Disable email confirmation
+          emailConfirmation: false
         },
       });
 
@@ -91,7 +93,7 @@ export const CreateAccount = () => {
               email: formData.email,
               plan: selectedPlan || "Starter",
               numberOfCourses: numberOfCourses || 1,
-              accountType: isAnnual ? "annuel" : "mensuel",
+              accountType: accountType,
             },
           });
 
