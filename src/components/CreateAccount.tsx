@@ -65,9 +65,7 @@ export const CreateAccount = () => {
             accountType: accountType,
             subscriptionStatus: initialStatus,
           },
-          emailRedirectTo: 'https://app.manamind.fr',
-          // Disable email confirmation
-          emailConfirmation: false
+          emailRedirectTo: 'https://app.manamind.fr'
         },
       });
 
@@ -292,5 +290,4 @@ export const CreateAccount = () => {
       </div>
     </div>
   );
-
 };
