@@ -9,7 +9,8 @@ const corsHeaders = {
 
 // Liste des Price IDs autorisés (définis dans Stripe)
 const validPriceIds = new Set([
-  "price_1QXeWuEEI50AF5TQBvSRiqYk", // Essential 1 parcours monthly
+  // Essential
+  "price_1Qmc4GEEI50AF5TQswoQ36zs", // Essential 1 parcours monthly
   "price_1QXeYkEEI50AF5TQemBkiRCS", // Essential 1 parcours yearly
   "price_1QXeXGEEI50AF5TQMVSPcWyc", // Essential 2 parcours monthly
   "price_1QXeZdEEI50AF5TQs0umy4oM", // Essential 2 parcours yearly
@@ -19,6 +20,10 @@ const validPriceIds = new Set([
   "price_1QXeaHEEI50AF5TQK0q2bfG7", // Essential 4 parcours yearly
   "price_1QXeY0EEI50AF5TQPIEYVWdu", // Essential 5 parcours monthly
   "price_1QXeaYEEI50AF5TQuQUNTIn2", // Essential 5 parcours yearly
+
+  // Professional (ajout des plans manquants)
+  "price_1QY1FGEEI50AF5TQDpoUSNbT", // Professional monthly
+  "price_1QY1FbEEI50AF5TQQ4QNdRlH", // Professional yearly
 ]);
 
 serve(async (req) => {
