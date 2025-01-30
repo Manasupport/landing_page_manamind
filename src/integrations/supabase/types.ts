@@ -17,6 +17,7 @@ export type Database = {
           "modifié le": string
           Nom: string | null
           "Nombre de parcours": number | null
+          periodité: string | null
           "Plan choisi": string
           Prenom: string | null
           "Statut de l'abonnement": string | null
@@ -29,6 +30,7 @@ export type Database = {
           "modifié le"?: string
           Nom?: string | null
           "Nombre de parcours"?: number | null
+          periodité?: string | null
           "Plan choisi"?: string
           Prenom?: string | null
           "Statut de l'abonnement"?: string | null
@@ -41,6 +43,7 @@ export type Database = {
           "modifié le"?: string
           Nom?: string | null
           "Nombre de parcours"?: number | null
+          periodité?: string | null
           "Plan choisi"?: string
           Prenom?: string | null
           "Statut de l'abonnement"?: string | null

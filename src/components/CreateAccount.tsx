@@ -21,7 +21,7 @@ export const CreateAccount = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Starting account creation with data:", { formData, accountType, selectedPlan, numberOfCourses });
+    console.log("Starting account creation with data:", { formData, accountType, selectedPlan, numberOfCourses, isAnnual });
 
     if (!accountType) {
       toast({
@@ -64,6 +64,7 @@ export const CreateAccount = () => {
             numberOfCourses: numberOfCourses || 1,
             accountType: accountType,
             subscriptionStatus: initialStatus,
+            isAnnual: isAnnual || false,
           },
           emailRedirectTo: 'https://app.manamind.fr'
         },
@@ -135,9 +136,10 @@ export const CreateAccount = () => {
     }
   };
 
+  // ... keep existing code (JSX for the form UI)
+
   return (
     <div className="relative min-h-screen overflow-hidden">
-      {/* Vidéo en arrière-plan */}
       <video
         className="absolute top-0 left-0 w-full h-full object-cover opacity-40"
         src="/lovable-uploads/lavideo.mp4"
@@ -146,7 +148,6 @@ export const CreateAccount = () => {
         muted
       ></video>
 
-      {/* Contenu par-dessus la vidéo */}
       <div className="relative z-10 min-h-screen bg-gradient-to-b from-[#71c088]/10 to-[#0c3d5e]/10 py-12 px-4">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-12">
@@ -241,7 +242,6 @@ export const CreateAccount = () => {
                     required
                   />
                 </div>
-                {/* Case à cocher */}
                 <div>
                   <label className="flex items-center space-x-2">
                     <input
