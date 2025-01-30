@@ -21,7 +21,7 @@ const validPriceIds = new Set([
   "price_1QXeY0EEI50AF5TQPIEYVWdu", // Essential 5 parcours monthly
   "price_1QXeaYEEI50AF5TQuQUNTIn2", // Essential 5 parcours yearly
 
-  // Professional
+  // Professional (ajout des plans manquants)
   "price_1QY1FGEEI50AF5TQDpoUSNbT", // Professional monthly
   "price_1QY1FbEEI50AF5TQQ4QNdRlH", // Professional yearly
 ]);
@@ -63,7 +63,7 @@ serve(async (req) => {
     // Création de la session Stripe Checkout
     console.log('Creating checkout session...');
     const session = await stripe.checkout.sessions.create({
-      customer_email: email, // Associe l'email au client Stripe
+      customer_email: email, // Envoi de l'email pour associer le client
       line_items: [
         {
           price: priceId, // Utilisation du priceId validé
@@ -71,14 +71,9 @@ serve(async (req) => {
         },
       ],
       mode: 'subscription', // Mode d'abonnement
-      success_url: 'https://app.manamind.fr', // URL après paiement réussi
+      success_url: 'https://app.manamind.fr', // URL de succès après paiement
       cancel_url: `${req.headers.get('origin')}/pricing`, // URL en cas d'annulation
-      allow_promotion_codes: true, // Autorise les codes promo
-
-      // 🏢 Ajout des champs TVA et adresse
-      tax_id_collection: { enabled: true }, // Active la saisie du numéro de TVA
-      billing_address_collection: "required", // Adresse de facturation obligatoire
-      customer_creation: "if_required", // Crée un client Stripe si nécessaire
+      allow_promotion_codes: true, // Autorise les codes promotionnels
     });
 
     console.log('Checkout session created:', session.url);
@@ -87,6 +82,7 @@ serve(async (req) => {
       { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 200 }
     );
   } catch (error) {
+    // Gestion des erreurs avec des logs pour le débogage
     console.error('Error in create-checkout:', error);
     return new Response(
       JSON.stringify({ error: error.message }),
