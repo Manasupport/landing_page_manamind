@@ -180,7 +180,7 @@ export const CreateAccount = () => {
               <h2 className="text-2xl font-bold text-center mb-8">Choisissez votre type de compte</h2>
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { label: "Enseignant", value: "permanent", icon: GraduationCap },
+                  { label: "Enseignant", value: "enseignant", icon: GraduationCap },
                   { label: "Equipe pédagogique / Institution", value: "vacataire", icon: Users },
                   { label: "Directeur de Master / Programme", value: "master", icon: BookOpen },
                   { label: "Autre", value: "institution", icon: Building },
