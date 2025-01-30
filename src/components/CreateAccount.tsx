@@ -71,18 +71,6 @@ export const CreateAccount = () => {
       if (authError) throw authError;
 
       try {
-        // Send welcome email
-        const { error: emailError } = await supabase.functions.invoke("send-welcome-email", {
-          body: {
-            firstName: formData.firstName,
-            email: formData.email,
-          },
-        });
-
-        if (emailError) {
-          console.error("Error sending welcome email:", emailError);
-        }
-
         // Notify admin
         const { data: notifyData, error: notifyError } = await supabase.functions.invoke("notify-admin", {
           body: {
