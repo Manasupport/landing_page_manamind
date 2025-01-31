@@ -101,7 +101,7 @@ export const CreateAccount = () => {
           console.error("Error in Starter plan notifications:", error);
         }
 
-        navigate("/success");
+        window.location.href = "https://app.manamind.fr";
       } else {
         try {
           console.log("Creating checkout session with priceId:", priceId);
@@ -135,6 +135,8 @@ export const CreateAccount = () => {
       });
     }
   };
+
+  // ... keep existing code (JSX for the form UI)
 
   return (
     <div className="relative min-h-screen overflow-hidden">
