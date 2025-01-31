@@ -45,9 +45,10 @@ export const WhyManamind = () => {
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
+              whileHover={{ scale: 1.05 }} // Ajout de l'effet de zoom
+              transition={{ duration: 0.3 }}
               viewport={{ once: true }}
-              className="group hover:scale-105 transition-transform duration-300"
+              className="group"
             >
               <div className="bg-white/5 rounded-2xl p-8 h-full backdrop-blur-sm border border-white/10 hover:border-manamind/30 transition-colors">
                 <div className="flex flex-col items-center text-center space-y-6">
