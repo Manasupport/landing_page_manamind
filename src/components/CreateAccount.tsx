@@ -66,7 +66,6 @@ export const CreateAccount = () => {
             subscriptionStatus: initialStatus,
             isAnnual: isAnnual || false,
           },
-          emailRedirectTo: 'https://app.manamind.fr'
         },
       });
 
@@ -74,6 +73,7 @@ export const CreateAccount = () => {
 
       if (selectedPlan === "Starter") {
         try {
+          console.log("Sending welcome email for Starter plan user");
           // Send welcome email for Starter plan
           const { data: welcomeData, error: welcomeError } = await supabase.functions.invoke("send-welcome-email", {
             body: {
@@ -82,7 +82,12 @@ export const CreateAccount = () => {
             },
           });
 
-          if (welcomeError) console.error("Error sending welcome email:", welcomeError);
+          if (welcomeError) {
+            console.error("Error sending welcome email:", welcomeError);
+            throw welcomeError;
+          }
+
+          console.log("Welcome email sent successfully:", welcomeData);
 
           // Notify admin for Starter plan
           const { data: notifyData, error: notifyError } = await supabase.functions.invoke("notify-admin", {
@@ -99,6 +104,11 @@ export const CreateAccount = () => {
           if (notifyError) console.error("Error notifying admin:", notifyError);
         } catch (error) {
           console.error("Error in Starter plan notifications:", error);
+          toast({
+            title: "Erreur",
+            description: "Une erreur est survenue lors de l'envoi de l'email de bienvenue. Notre équipe a été notifiée.",
+            variant: "destructive",
+          });
         }
 
         navigate("/success");
