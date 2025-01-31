@@ -15,16 +15,24 @@ interface WelcomeEmailRequest {
 }
 
 const handler = async (req: Request): Promise<Response> => {
+  console.log("Starting welcome email handler");
+
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    console.log("Received welcome email request");
+    console.log("Parsing request body");
     const { firstName, email }: WelcomeEmailRequest = await req.json();
-    console.log("Email data:", { firstName, email });
+    console.log("Received request data:", { firstName, email });
 
+    if (!firstName || !email) {
+      console.error("Missing required fields:", { firstName, email });
+      throw new Error("firstName and email are required");
+    }
+
+    console.log("Sending email via Resend");
     const emailResponse = await resend.emails.send({
       from: "Manamind <onboarding@resend.dev>",
       to: [email],
@@ -51,7 +59,7 @@ const handler = async (req: Request): Promise<Response> => {
       `,
     });
 
-    console.log("Welcome email sent successfully:", emailResponse);
+    console.log("Email sent successfully:", emailResponse);
 
     return new Response(JSON.stringify(emailResponse), {
       status: 200,
@@ -61,9 +69,17 @@ const handler = async (req: Request): Promise<Response> => {
       },
     });
   } catch (error: any) {
-    console.error("Error sending welcome email:", error);
+    console.error("Error in send-welcome-email function:", error);
+    console.error("Error details:", {
+      message: error.message,
+      stack: error.stack,
+    });
+
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        error: error.message,
+        details: "An error occurred while sending the welcome email" 
+      }),
       {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },

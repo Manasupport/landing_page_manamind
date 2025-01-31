@@ -72,14 +72,14 @@ export const CreateAccount = () => {
       if (authError) throw authError;
 
       if (selectedPlan === "Starter") {
+        console.log("Sending welcome email for Starter plan user");
+        
         try {
-          console.log("Sending welcome email for Starter plan user");
-          // Send welcome email for Starter plan
           const { data: welcomeData, error: welcomeError } = await supabase.functions.invoke("send-welcome-email", {
-            body: {
+            body: JSON.stringify({
               firstName: formData.firstName,
               email: formData.email,
-            },
+            }),
           });
 
           if (welcomeError) {
@@ -89,8 +89,8 @@ export const CreateAccount = () => {
 
           console.log("Welcome email sent successfully:", welcomeData);
 
-          // Notify admin for Starter plan
-          const { data: notifyData, error: notifyError } = await supabase.functions.invoke("notify-admin", {
+          // Notify admin
+          const { error: notifyError } = await supabase.functions.invoke("notify-admin", {
             body: {
               firstName: formData.firstName,
               lastName: formData.lastName,
@@ -101,17 +101,21 @@ export const CreateAccount = () => {
             },
           });
 
-          if (notifyError) console.error("Error notifying admin:", notifyError);
+          if (notifyError) {
+            console.error("Error notifying admin:", notifyError);
+          }
+
+          navigate("/success");
         } catch (error) {
           console.error("Error in Starter plan notifications:", error);
           toast({
-            title: "Erreur",
+            title: "Erreur lors de l'envoi de l'email",
             description: "Une erreur est survenue lors de l'envoi de l'email de bienvenue. Notre équipe a été notifiée.",
             variant: "destructive",
           });
+          // Still navigate to success page even if email fails
+          navigate("/success");
         }
-
-        navigate("/success");
       } else {
         try {
           console.log("Creating checkout session with priceId:", priceId);
