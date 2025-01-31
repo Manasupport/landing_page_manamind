@@ -88,6 +88,12 @@ serve(async (req) => {
                   accountType: userData["Type de compte"],
                 }),
               });
+
+              // Redirect to success page
+              return new Response(
+                JSON.stringify({ url: `${req.headers.get('origin')}/success` }),
+                { headers: { 'Content-Type': 'application/json' }, status: 200 }
+              );
             } catch (error) {
               console.error('Error sending welcome email:', error);
             }
