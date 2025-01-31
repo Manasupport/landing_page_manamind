@@ -101,7 +101,7 @@ export const CreateAccount = () => {
           console.error("Error in Starter plan notifications:", error);
         }
 
-        window.location.href = "https://app.manamind.fr";
+        navigate("/success");
       } else {
         try {
           console.log("Creating checkout session with priceId:", priceId);

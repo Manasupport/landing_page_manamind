@@ -88,6 +88,9 @@ serve(async (req) => {
                   accountType: userData["Type de compte"],
                 }),
               });
+
+              // Redirect to success page
+              return Response.redirect('https://manamind.fr/success', 303);
             } catch (error) {
               console.error('Error sending welcome email:', error);
             }
