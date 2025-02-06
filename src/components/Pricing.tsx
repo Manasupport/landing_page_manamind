@@ -5,7 +5,6 @@ import { Switch } from "./ui/switch";
 import { useState, useEffect, useRef } from "react";
 import { Label } from "./ui/label";
 import { Slider } from "./ui/slider";
-import { supabase } from "@/integrations/supabase/client";
 
 const getEssentialPaymentLink = (courses: number, isAnnual: boolean) => {
   const linkMap = {
@@ -38,8 +37,8 @@ export const Pricing = () => {
     }
   }, [featuresRef.current, essentialCourses]);
 
-  const handleSubscribe = async (plan: string, paymentLink?: string) => {
-    console.log('Handling subscription for plan:', plan, 'paymentLink:', paymentLink);
+  const handleSubscribe = async (plan: string) => {
+    console.log('Handling subscription for plan:', plan);
     setIsLoading(true);
 
     try {
@@ -50,7 +49,6 @@ export const Pricing = () => {
       }
 
       if (plan === "Starter") {
-        console.log('Navigating to create-account for Starter plan');
         navigate("/create-account", {
           state: {
             selectedPlan: plan,
@@ -61,8 +59,13 @@ export const Pricing = () => {
         return;
       }
 
+      // Get the appropriate payment link based on the plan
+      const paymentLink = plan === "Essential" 
+        ? getEssentialPaymentLink(essentialCourses[0], isAnnual)
+        : getProfessionalPaymentLink(isAnnual);
+
       if (!paymentLink) {
-        console.error('No payment link provided for plan:', plan);
+        console.error('No payment link found for plan:', plan);
         toast({
           title: "Erreur de redirection",
           description: "Impossible de récupérer le lien de paiement.",
@@ -72,45 +75,16 @@ export const Pricing = () => {
         return;
       }
 
-      // Save user data to Supabase before redirecting
-      const { data: { user }, error: authError } = await supabase.auth.getUser();
-      
-      if (!user || authError) {
-        // If no user is logged in, redirect to create account
-        navigate("/create-account", {
-          state: {
-            selectedPlan: plan,
-            numberOfCourses: plan === "Essential" ? essentialCourses[0] : 15,
-            isAnnual: isAnnual,
-            redirectUrl: paymentLink,
-          },
-        });
-        return;
-      }
+      // Redirect to create account page with all necessary information
+      navigate("/create-account", {
+        state: {
+          selectedPlan: plan,
+          numberOfCourses: plan === "Essential" ? essentialCourses[0] : 15,
+          isAnnual: isAnnual,
+          paymentLink: paymentLink,
+        },
+      });
 
-      // If user is logged in, update their profile and redirect
-      const { error: updateError } = await supabase
-        .from('profiles')
-        .update({
-          "Plan choisi": plan,
-          "Nombre de parcours": plan === "Essential" ? essentialCourses[0] : 15,
-          "periodité": isAnnual ? "annuel" : "mensuel",
-        })
-        .eq('id', user.id);
-
-      if (updateError) {
-        console.error('Error updating profile:', updateError);
-        toast({
-          title: "Erreur de mise à jour",
-          description: "Une erreur est survenue lors de la mise à jour de votre profil.",
-          variant: "destructive",
-        });
-        setIsLoading(false);
-        return;
-      }
-
-      // Redirect to Stripe payment link
-      window.location.href = paymentLink;
     } catch (error) {
       console.error('Error in subscription process:', error);
       toast({
@@ -233,7 +207,7 @@ export const Pricing = () => {
               <PricingCard
                 {...plan}
                 price={getPriceDisplay(plan.monthlyPrice, plan.title)}
-                onSubscribe={() => handleSubscribe(plan.title, plan.paymentLink)}
+                onSubscribe={() => handleSubscribe(plan.title)}
                 isLoading={isLoading}
               >
                 {plan.title === "Essential" && (

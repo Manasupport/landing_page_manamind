@@ -8,7 +8,7 @@ import { BookOpen, GraduationCap, Building, Users } from "lucide-react";
 export const CreateAccount = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { selectedPlan, priceId, numberOfCourses, isAnnual } = location.state || {};
+  const { selectedPlan, priceId, numberOfCourses, isAnnual, paymentLink } = location.state || {};
 
   const [step, setStep] = useState(1);
   const [accountType, setAccountType] = useState("");
@@ -116,12 +116,15 @@ export const CreateAccount = () => {
           // Still navigate to success page even if email fails
           navigate("/success");
         }
+      } else if (paymentLink) {
+        // If we have a payment link from the pricing page, redirect to it
+        console.log("Redirecting to payment link:", paymentLink);
+        window.location.href = paymentLink;
       } else {
         try {
-          console.log("Creating checkout session with priceId:", priceId);
+          console.log("Creating checkout session");
           const { data, error } = await supabase.functions.invoke("create-checkout", {
             body: {
-              priceId,
               email: formData.email,
             },
           });
@@ -149,8 +152,6 @@ export const CreateAccount = () => {
       });
     }
   };
-
-  // ... keep existing code (JSX for the form UI)
 
   return (
     <div className="relative min-h-screen overflow-hidden">
