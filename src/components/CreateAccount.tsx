@@ -117,9 +117,11 @@ export const CreateAccount = () => {
           navigate("/success");
         }
       } else if (paymentLink) {
-        // If we have a payment link from the pricing page, redirect to it
-        console.log("Redirecting to payment link:", paymentLink);
-        window.location.href = paymentLink;
+        // Ajout du paramètre customer_email à l'URL de paiement Stripe
+        const stripeUrl = new URL(paymentLink);
+        stripeUrl.searchParams.append('prefilled_email', formData.email);
+        console.log("Redirecting to payment link with email:", stripeUrl.toString());
+        window.location.href = stripeUrl.toString();
       } else {
         try {
           console.log("Creating checkout session");
