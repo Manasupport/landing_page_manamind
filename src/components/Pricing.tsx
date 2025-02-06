@@ -5,30 +5,30 @@ import { Switch } from "./ui/switch";
 import { useState, useEffect, useRef } from "react";
 import { Label } from "./ui/label";
 import { Slider } from "./ui/slider";
+import { supabase } from "@/integrations/supabase/client";
 
-const getEssentialPriceId = (courses: number, isAnnual: boolean) => {
-  const priceMap = {
-    1: { monthly: "price_1Qmc4GEEI50AF5TQswoQ36zs", yearly: "price_1QXeYkEEI50AF5TQemBkiRCS" },
-    2: { monthly: "price_1QXeXGEEI50AF5TQMVSPcWyc", yearly: "price_1QXeZdEEI50AF5TQs0umy4oM" },
-    3: { monthly: "price_1QXeXUEEI50AF5TQ5s0VBj6E", yearly: "price_1QXea0EEI50AF5TQE2WPOqUv" },
-    4: { monthly: "price_1QXeXgEEI50AF5TQVqzmiuRd", yearly: "price_1QXeaHEEI50AF5TQK0q2bfG7" },
-    5: { monthly: "price_1QXeY0EEI50AF5TQPIEYVWdu", yearly: "price_1QXeaYEEI50AF5TQuQUNTIn2" },
+const getEssentialPaymentLink = (courses: number, isAnnual: boolean) => {
+  const linkMap = {
+    1: { monthly: "https://buy.stripe.com/3cseW96Ew8HS400007", yearly: "https://buy.stripe.com/14kdS5gf6e2c8gg7sB" },
+    2: { monthly: "https://buy.stripe.com/3cseW96Ew8HS400007", yearly: "https://buy.stripe.com/4gw7tHfb26zKeEE9AK" },
+    3: { monthly: "https://buy.stripe.com/7sIeW91kc3nyeEE7sy", yearly: "https://buy.stripe.com/3csaFT1kcbU47cc28j" },
+    4: { monthly: "https://buy.stripe.com/fZe8xL6Ew6zK6887sx", yearly: "https://buy.stripe.com/28og0de6Ye2cfII9AM" },
+    5: { monthly: "https://buy.stripe.com/bIYdS51kc0bm8ggaEI", yearly: "https://buy.stripe.com/dR615jbYQ3ny5446oB" },
   };
-  return priceMap[courses]?.[isAnnual ? "yearly" : "monthly"];
+  return linkMap[courses]?.[isAnnual ? "yearly" : "monthly"];
 };
 
-const getProfessionalPriceId = (isAnnual: boolean) => {
-  const priceId = isAnnual
-    ? "price_1QY1FbEEI50AF5TQQ4QNdRlH"
-    : "price_1QY1FGEEI50AF5TQDpoUSNbT";
-  console.log('Professional Plan Price ID:', priceId, 'isAnnual:', isAnnual);
-  return priceId;
+const getProfessionalPaymentLink = (isAnnual: boolean) => {
+  return isAnnual
+    ? "https://buy.stripe.com/cN229naUM0bmcwweUW"
+    : "https://buy.stripe.com/dR615j5Ase2c544fZ1";
 };
 
 export const Pricing = () => {
   const navigate = useNavigate();
   const [isAnnual, setIsAnnual] = useState(true);
   const [essentialCourses, setEssentialCourses] = useState([1]);
+  const [isLoading, setIsLoading] = useState(false);
   const featuresRef = useRef<HTMLDivElement>(null);
   const [featuresTopOffset, setFeaturesTopOffset] = useState<number | null>(null);
 
@@ -38,45 +38,88 @@ export const Pricing = () => {
     }
   }, [featuresRef.current, essentialCourses]);
 
-  const handleSubscribe = (plan: string, priceId?: string) => {
-    console.log('Handling subscription for plan:', plan, 'priceId:', priceId);
+  const handleSubscribe = async (plan: string, paymentLink?: string) => {
+    console.log('Handling subscription for plan:', plan, 'paymentLink:', paymentLink);
+    setIsLoading(true);
 
-    if (plan === "Institution") {
-      window.open("https://calendar.app.google/8PzSHhTa8sLE9XWf7", "_blank");
-      return;
-    }
+    try {
+      if (plan === "Institution") {
+        window.open("https://calendar.app.google/8PzSHhTa8sLE9XWf7", "_blank");
+        setIsLoading(false);
+        return;
+      }
 
-    if (plan === "Starter") {
-      console.log('Navigating to create-account for Starter plan');
-      navigate("/create-account", {
-        state: {
-          selectedPlan: plan,
-          numberOfCourses: 1,
-          isAnnual: isAnnual,
-        },
-      });
-      return;
-    }
+      if (plan === "Starter") {
+        console.log('Navigating to create-account for Starter plan');
+        navigate("/create-account", {
+          state: {
+            selectedPlan: plan,
+            numberOfCourses: 1,
+            isAnnual: isAnnual,
+          },
+        });
+        return;
+      }
 
-    if (!priceId) {
-      console.error('No price ID provided for plan:', plan);
+      if (!paymentLink) {
+        console.error('No payment link provided for plan:', plan);
+        toast({
+          title: "Erreur de redirection",
+          description: "Impossible de récupérer le lien de paiement.",
+          variant: "destructive",
+        });
+        setIsLoading(false);
+        return;
+      }
+
+      // Save user data to Supabase before redirecting
+      const { data: { user }, error: authError } = await supabase.auth.getUser();
+      
+      if (!user || authError) {
+        // If no user is logged in, redirect to create account
+        navigate("/create-account", {
+          state: {
+            selectedPlan: plan,
+            numberOfCourses: plan === "Essential" ? essentialCourses[0] : 15,
+            isAnnual: isAnnual,
+            redirectUrl: paymentLink,
+          },
+        });
+        return;
+      }
+
+      // If user is logged in, update their profile and redirect
+      const { error: updateError } = await supabase
+        .from('profiles')
+        .update({
+          "Plan choisi": plan,
+          "Nombre de parcours": plan === "Essential" ? essentialCourses[0] : 15,
+          "periodité": isAnnual ? "annuel" : "mensuel",
+        })
+        .eq('id', user.id);
+
+      if (updateError) {
+        console.error('Error updating profile:', updateError);
+        toast({
+          title: "Erreur de mise à jour",
+          description: "Une erreur est survenue lors de la mise à jour de votre profil.",
+          variant: "destructive",
+        });
+        setIsLoading(false);
+        return;
+      }
+
+      // Redirect to Stripe payment link
+      window.location.href = paymentLink;
+    } catch (error) {
+      console.error('Error in subscription process:', error);
       toast({
-        title: "Erreur d'abonnement",
-        description: "Impossible de récupérer l'identifiant de l'offre.",
+        title: "Erreur",
+        description: "Une erreur est survenue. Veuillez réessayer.",
         variant: "destructive",
       });
-      return;
+      setIsLoading(false);
     }
-
-    console.log('Navigating to create-account with price ID:', priceId);
-    navigate("/create-account", {
-      state: {
-        selectedPlan: plan,
-        priceId: priceId,
-        numberOfCourses: plan === "Essential" ? essentialCourses[0] : 15,
-        isAnnual: isAnnual,
-      },
-    });
   };
 
   const getPriceDisplay = (monthlyPrice: string, title: string) => {
@@ -123,8 +166,8 @@ export const Pricing = () => {
         { text: "Tableaux de bord de reporting et de pilotage", included: true },
         { text: "Assistance prioritaire", included: true },
       ],
-      buttonText: "Je m'abonne",
-      priceId: getEssentialPriceId(essentialCourses[0], isAnnual),
+      buttonText: isLoading ? "Redirection en cours..." : "Je m'abonne",
+      paymentLink: getEssentialPaymentLink(essentialCourses[0], isAnnual),
     },
     {
       title: "Professional",
@@ -140,9 +183,9 @@ export const Pricing = () => {
         { text: "Export des données, parfait pour l'auditabilité", included: true },
         { text: "Assistance prioritaire", included: true },
       ],
-      buttonText: "Je m'abonne",
+      buttonText: isLoading ? "Redirection en cours..." : "Je m'abonne",
       popular: true,
-      priceId: getProfessionalPriceId(isAnnual),
+      paymentLink: getProfessionalPaymentLink(isAnnual),
     },
     {
       title: "Institution",
@@ -190,7 +233,8 @@ export const Pricing = () => {
               <PricingCard
                 {...plan}
                 price={getPriceDisplay(plan.monthlyPrice, plan.title)}
-                onSubscribe={() => handleSubscribe(plan.title, plan.priceId)}
+                onSubscribe={() => handleSubscribe(plan.title, plan.paymentLink)}
+                isLoading={isLoading}
               >
                 {plan.title === "Essential" && (
                   <div ref={featuresRef} className="flex flex-col items-center mb-6">

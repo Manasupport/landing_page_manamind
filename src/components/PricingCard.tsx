@@ -1,6 +1,6 @@
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
-import { Check } from "lucide-react";
+import { Check, Loader2 } from "lucide-react";
 
 interface PricingFeature {
   text: string;
@@ -16,7 +16,8 @@ interface PricingCardProps {
   popular?: boolean;
   onSubscribe: () => void;
   children?: React.ReactNode;
-  priceId?: string;
+  paymentLink?: string;
+  isLoading?: boolean;
 }
 
 export const PricingCard = ({
@@ -28,6 +29,7 @@ export const PricingCard = ({
   popular,
   onSubscribe,
   children,
+  isLoading,
 }: PricingCardProps) => {
   const handleClick = () => {
     if (title === "Institution") {
@@ -90,13 +92,21 @@ export const PricingCard = ({
         
         <Button
           onClick={handleClick}
+          disabled={isLoading}
           className={`w-full mt-auto ${
             popular 
               ? "bg-manamind hover:bg-manamind-dark text-white" 
               : "bg-[#0c3d5e] hover:bg-[#0a3450] text-white"
           }`}
         >
-          {buttonText}
+          {isLoading ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              {buttonText}
+            </>
+          ) : (
+            buttonText
+          )}
         </Button>
       </CardContent>
     </Card>
