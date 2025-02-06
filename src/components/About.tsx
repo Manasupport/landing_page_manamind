@@ -40,7 +40,7 @@ export const About = () => {
       {/* GIF sans cadre ni ombre */}
       <div className="flex justify-center items-center mx-auto mb-12">
         <img
-          src="/lovable-uploads/macbook-screen-full.gif"
+          src="/lovable-uploads/GIFMAC.gif"
           alt="Animation GIF MacBook Manamind"
           className="w-[60%] h-auto"
         />
