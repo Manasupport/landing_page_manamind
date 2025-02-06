@@ -11,7 +11,11 @@ const corsHeaders = {
 
 interface WelcomeEmailRequest {
   firstName: string;
+  lastName: string;
   email: string;
+  accountType: string;
+  numberOfCourses: number;
+  plan: string;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -24,12 +28,12 @@ const handler = async (req: Request): Promise<Response> => {
 
   try {
     console.log("Parsing request body");
-    const { firstName, email }: WelcomeEmailRequest = await req.json();
-    console.log("Received request data:", { firstName, email });
+    const { firstName, lastName, email, accountType, numberOfCourses, plan }: WelcomeEmailRequest = await req.json();
+    console.log("Received request data:", { firstName, lastName, email, accountType, numberOfCourses, plan });
 
-    if (!firstName || !email) {
-      console.error("Missing required fields:", { firstName, email });
-      throw new Error("firstName and email are required");
+    if (!firstName || !lastName || !email || !accountType) {
+      console.error("Missing required fields");
+      throw new Error("All fields are required");
     }
 
     console.log("Sending email via Resend");
@@ -41,7 +45,17 @@ const handler = async (req: Request): Promise<Response> => {
         <div style="font-family: Arial, sans-serif; color: #333;">
           <h2>Bonjour ${firstName},</h2>
           
-          <p>Félicitations et bienvenue dans la communauté Manamind ! 🎉 Nous sommes ravis de vous compter parmi les Manaminders. Avec Manamind, vous allez pouvoir créer et animer des parcours d'apprentissage engageants et sur mesure.</p>
+          <p>Félicitations et bienvenue dans la communauté Manamind ! 🎉</p>
+          
+          <p>Voici un récapitulatif de votre inscription :</p>
+          <ul>
+            <li>Nom : ${lastName}</li>
+            <li>Prénom : ${firstName}</li>
+            <li>Email : ${email}</li>
+            <li>Type de compte : ${accountType}</li>
+            <li>Nombre de parcours : ${numberOfCourses}</li>
+            <li>Plan choisi : ${plan}</li>
+          </ul>
           
           <p><strong>Votre compte sera paramétré dans les 24 heures ouvrées.</strong> Vous recevrez un email avec le lien permettant d'accéder à votre espace et de débuter l'expérience Manamind.</p>
           

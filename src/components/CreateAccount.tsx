@@ -71,78 +71,92 @@ export const CreateAccount = () => {
 
       if (authError) throw authError;
 
-      if (selectedPlan === "Starter") {
-        console.log("Sending welcome email for Starter plan user");
-        
-        try {
-          const { data: welcomeData, error: welcomeError } = await supabase.functions.invoke("send-welcome-email", {
-            body: JSON.stringify({
-              firstName: formData.firstName,
-              email: formData.email,
-            }),
-          });
+      console.log("Sending welcome email and notifying admin");
+      
+      try {
+        // Send welcome email
+        const { data: welcomeData, error: welcomeError } = await supabase.functions.invoke("send-welcome-email", {
+          body: JSON.stringify({
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            email: formData.email,
+            accountType: accountType,
+            numberOfCourses: numberOfCourses || 1,
+            plan: selectedPlan || "Starter"
+          }),
+        });
 
-          if (welcomeError) {
-            console.error("Error sending welcome email:", welcomeError);
-            throw welcomeError;
-          }
-
-          console.log("Welcome email sent successfully:", welcomeData);
-
-          // Notify admin
-          const { error: notifyError } = await supabase.functions.invoke("notify-admin", {
-            body: {
-              firstName: formData.firstName,
-              lastName: formData.lastName,
-              email: formData.email,
-              plan: selectedPlan || "Starter",
-              numberOfCourses: numberOfCourses || 1,
-              accountType: accountType,
-            },
-          });
-
-          if (notifyError) {
-            console.error("Error notifying admin:", notifyError);
-          }
-
-          navigate("/success");
-        } catch (error) {
-          console.error("Error in Starter plan notifications:", error);
-          toast({
-            title: "Erreur lors de l'envoi de l'email",
-            description: "Une erreur est survenue lors de l'envoi de l'email de bienvenue. Notre équipe a été notifiée.",
-            variant: "destructive",
-          });
-          // Still navigate to success page even if email fails
-          navigate("/success");
+        if (welcomeError) {
+          console.error("Error sending welcome email:", welcomeError);
+          throw welcomeError;
         }
-      } else if (paymentLink) {
-        // Ajout du paramètre customer_email à l'URL de paiement Stripe
-        const stripeUrl = new URL(paymentLink);
-        stripeUrl.searchParams.append('prefilled_email', formData.email);
-        console.log("Redirecting to payment link with email:", stripeUrl.toString());
-        window.location.href = stripeUrl.toString();
-      } else {
-        try {
-          console.log("Creating checkout session");
-          const { data, error } = await supabase.functions.invoke("create-checkout", {
-            body: {
-              email: formData.email,
-            },
-          });
 
-          if (error) throw error;
-          if (!data?.url) throw new Error("URL de paiement manquante");
+        console.log("Welcome email sent successfully:", welcomeData);
 
-          console.log("Redirecting to Stripe checkout URL:", data.url);
-          window.location.href = data.url;
-        } catch (checkoutError) {
-          console.error("Checkout error:", checkoutError);
-          toast({
-            title: "Erreur lors de la redirection vers le paiement",
-            description: "Une erreur est survenue. Veuillez réessayer.",
-            variant: "destructive",
-          });
+        // Notify admin
+        const { error: notifyError } = await supabase.functions.invoke("notify-admin", {
+          body: {
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            email: formData.email,
+            plan: selectedPlan || "Starter",
+            numberOfCourses: numberOfCourses || 1,
+            accountType: accountType,
+          },
+        });
+
+        if (notifyError) {
+          console.error("Error notifying admin:", notifyError);
+          throw notifyError;
+        }
+
+        console.log("Admin notification sent successfully");
+
+        if (paymentLink) {
+          // Ajout du paramètre customer_email à l'URL de paiement Stripe
+          const stripeUrl = new URL(paymentLink);
+          stripeUrl.searchParams.append('prefilled_email', formData.email);
+          console.log("Redirecting to payment link with email:", stripeUrl.toString());
+          window.location.href = stripeUrl.toString();
+        } else if (selectedPlan === "Starter") {
+          navigate("/success");
+        } else {
+          try {
+            console.log("Creating checkout session");
+            const { data, error } = await supabase.functions.invoke("create-checkout", {
+              body: {
+                email: formData.email,
+              },
+            });
+
+            if (error) throw error;
+            if (!data?.url) throw new Error("URL de paiement manquante");
+
+            console.log("Redirecting to Stripe checkout URL:", data.url);
+            window.location.href = data.url;
+          } catch (checkoutError) {
+            console.error("Checkout error:", checkoutError);
+            toast({
+              title: "Erreur lors de la redirection vers le paiement",
+              description: "Une erreur est survenue. Veuillez réessayer.",
+              variant: "destructive",
+            });
+          }
+        }
+      } catch (error) {
+        console.error("Error in notifications:", error);
+        toast({
+          title: "Erreur lors de l'envoi des notifications",
+          description: "Une erreur est survenue lors de l'envoi des emails. Notre équipe a été notifiée.",
+          variant: "destructive",
+        });
+        // Still continue with the flow even if notifications fail
+        if (paymentLink) {
+          const stripeUrl = new URL(paymentLink);
+          stripeUrl.searchParams.append('prefilled_email', formData.email);
+          window.location.href = stripeUrl.toString();
+        } else if (selectedPlan === "Starter") {
+          navigate("/success");
         }
       }
     } catch (error) {

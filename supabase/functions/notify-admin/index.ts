@@ -26,13 +26,17 @@ const handler = async (req: Request): Promise<Response> => {
     const userData: UserData = await req.json();
     
     const emailHtml = `
-      <h2>Nouvel utilisateur inscrit sur Manamind</h2>
-      <p><strong>Nom:</strong> ${userData.lastName}</p>
-      <p><strong>Prénom:</strong> ${userData.firstName}</p>
-      <p><strong>Email:</strong> ${userData.email}</p>
-      <p><strong>Plan choisi:</strong> ${userData.plan}</p>
-      <p><strong>Nombre de parcours:</strong> ${userData.numberOfCourses}</p>
-      <p><strong>Type de compte:</strong> ${userData.accountType}</p>
+      <div style="font-family: Arial, sans-serif; color: #333;">
+        <h2>Nouvel utilisateur inscrit sur Manamind</h2>
+        <ul>
+          <li><strong>Nom:</strong> ${userData.lastName}</li>
+          <li><strong>Prénom:</strong> ${userData.firstName}</li>
+          <li><strong>Email:</strong> ${userData.email}</li>
+          <li><strong>Plan choisi:</strong> ${userData.plan}</li>
+          <li><strong>Nombre de parcours:</strong> ${userData.numberOfCourses}</li>
+          <li><strong>Type de compte:</strong> ${userData.accountType}</li>
+        </ul>
+      </div>
     `;
 
     const res = await fetch("https://api.resend.com/emails", {
