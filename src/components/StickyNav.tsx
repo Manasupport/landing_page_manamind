@@ -1,3 +1,4 @@
+
 import { useEffect } from "react";
 import { Button } from "./ui/button";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -6,7 +7,6 @@ export const StickyNav = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Gère le défilement automatique après le changement d'URL
   useEffect(() => {
     if (location.hash) {
       const element = document.getElementById(location.hash.replace("#", ""));
@@ -16,20 +16,18 @@ export const StickyNav = () => {
     }
   }, [location]);
 
-  // Fonction pour défiler vers une section spécifique
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
     } else {
-      navigate(`/#${id}`); // Change l'URL avec le hash
+      navigate(`/#${id}`);
     }
   };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#71c088]/80 backdrop-blur-sm shadow-sm">
       <div className="max-w-7xl mx-auto px-4 py-2 flex items-center">
-        {/* Logo - Scroll to Hero */}
         <button
           onClick={() => scrollToSection("hero")}
           className="flex-shrink-0 focus:outline-none cursor-pointer"
@@ -42,7 +40,6 @@ export const StickyNav = () => {
           />
         </button>
 
-        {/* Navigation Links */}
         <div className="flex-1 flex justify-center gap-4">
           <Button
             variant="ghost"
@@ -60,6 +57,13 @@ export const StickyNav = () => {
           </Button>
           <Button
             variant="ghost"
+            onClick={() => scrollToSection("faq")}
+            className="text-white font-bold hover:underline hover:bg-transparent hover:text-white"
+          >
+            FAQ
+          </Button>
+          <Button
+            variant="ghost"
             onClick={() => scrollToSection("help-offer")}
             className="text-white font-bold hover:underline hover:bg-transparent hover:text-white"
           >
@@ -67,7 +71,6 @@ export const StickyNav = () => {
           </Button>
         </div>
 
-        {/* Connexion Button */}
         <div>
           <Button
             onClick={() => (window.location.href = "https://app.manamind.fr")}
