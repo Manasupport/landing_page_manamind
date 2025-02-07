@@ -75,7 +75,7 @@ const handler = async (req: Request): Promise<Response> => {
             <!-- TEXTE INTRODUCTION -->
             <tr>
               <td align="center" style="color: #333; font-size: 16px; line-height: 1.6; padding: 0 20px;">
-                🎉 Félicitations ! Vous faites maintenant partie de la communauté Manamind.  
+                🎉 Félicitations ! Nous sommes ravis de vous compter parmi les Manaminders !  
                 Avec Manamind, vous allez pouvoir <strong>créer et animer des parcours d’apprentissage engageants et sur mesure.</strong>
               </td>
             </tr>
@@ -84,8 +84,7 @@ const handler = async (req: Request): Promise<Response> => {
             <tr>
               <td style="padding: 20px; background-color: #f9f9f9; border-radius: 8px; margin: 20px;">
                 <p style="color: #0c3d5e; font-size: 18px; font-weight: bold;">🛠️ Paramétrage en cours...</p>
-                <p style="color: #333; font-size: 14px;">Votre compte sera configuré sous <strong>24 heures ouvrées</strong>.  
-                Vous recevrez un email contenant <strong>votre lien d'accès</strong> pour commencer votre expérience Manamind.</p>
+                <p style="color: #333; font-size: 14px;">Si vous avez finalisé votre paiement, votre compte est en cours de configuration et sera paramétré sous 24 heures ouvrées. Vous recevrez un email contenant votre lien d'accès pour débuter votre expérience Manamind.</p>
               </td>
             </tr>
 
