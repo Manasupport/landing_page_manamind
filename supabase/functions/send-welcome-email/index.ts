@@ -50,7 +50,7 @@ const handler = async (req: Request): Promise<Response> => {
       html: 
         <div style="font-family: Arial, sans-serif; color: #333; padding: 20px;">
           <div style="text-align: center;">
-            <img src="/public/lovable-uploads/manamind.png" alt="Manamind Logo" width="150" />
+            <img src="lovable-uploads/Manamind.png" alt="Manamind Logo" width="150" />
             <h2 style="color: #2C3E50;">Bienvenue sur Manamind, ${firstName} !</h2>
           </div>
           <div style="background: #F7F9FC; padding: 15px; border-radius: 10px;">
