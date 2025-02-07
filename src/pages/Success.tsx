@@ -43,8 +43,7 @@ export const Success = () => {
           transition={{ delay: 0.4 }}
           className="text-gray-600 text-lg leading-relaxed mb-6"
         >
-          Votre compte sera paramétré sous 24 heures ouvrées. Vous recevrez un
-          email contenant le lien d’accès à votre espace Manamind. <br />
+          Nous avons bien enregistré votre demande et nous allons créer votre compte dés que possible, d’ici 24 heures ouvrées. <br />
           📩 Pensez à vérifier vos spams.
         </motion.p>
 
