@@ -61,7 +61,7 @@ const handler = async (req: Request): Promise<Response> => {
             <!-- LOGO -->
             <tr>
               <td align="center" style="padding-bottom: 20px;">
-                <img src="https://manamind.com/logo.png" alt="Manamind Logo" width="150" style="display: block;">
+                <img src=/"lovable-uploads/212l.png" alt="Manamind Logo" width="150" style="display: block;">
               </td>
             </tr>
 
