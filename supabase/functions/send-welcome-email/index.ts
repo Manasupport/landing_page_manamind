@@ -43,7 +43,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log("✉️ Sending email via Resend...");
     const emailResponse = await resend.emails.send({
-      from: "Manamind <no-reply@manamind.fr>",
+      from: "Manamind <no-reply@manamind.fr>", // Assurez-vous que ce domaine est validé sur Resend
       to: [email],
       subject: "🚀 Bienvenue sur Manamind – Votre compte est en cours de paramétrage !",
       html: `
@@ -72,23 +72,20 @@ const handler = async (req: Request): Promise<Response> => {
               </td>
             </tr>
 
-            <!-- INTRODUCTION -->
+            <!-- TEXTE INTRODUCTION -->
             <tr>
               <td align="center" style="color: #333; font-size: 16px; line-height: 1.6; padding: 0 20px;">
-                🎉 Félicitations ! Nous sommes ravis de vous compter parmi les Manaminders.  
-                Avec Manamind, vous allez pouvoir <strong>concevoir et animer des parcours d’apprentissage engageants et sur mesure.</strong>
+                🎉 Félicitations ! Vous faites maintenant partie de la communauté Manamind.  
+                Avec Manamind, vous allez pouvoir <strong>créer et animer des parcours d’apprentissage engageants et sur mesure.</strong>
               </td>
             </tr>
 
-            <!-- PARAMÉTRAGE DU COMPTE -->
+            <!-- INFO COMPTE -->
             <tr>
               <td style="padding: 20px; background-color: #f9f9f9; border-radius: 8px; margin: 20px;">
                 <p style="color: #0c3d5e; font-size: 18px; font-weight: bold;">🛠️ Paramétrage en cours...</p>
                 <p style="color: #333; font-size: 14px;">Votre compte sera configuré sous <strong>24 heures ouvrées</strong>.  
                 Vous recevrez un email contenant <strong>votre lien d'accès</strong> pour commencer votre expérience Manamind.</p>
-                <p style="color: #333; font-size: 14px;">⚠️ <strong>Si vous avez finalisé votre paiement</strong>, votre accès sera validé automatiquement.  
-                Si ce n'est pas encore fait, pensez à <strong>terminer votre paiement</strong> pour activer votre compte.</p>
-                <p style="color: #333; font-size: 14px;">📌 <strong>Le mot de passe que vous choisirez sera définitif.</strong> Pensez à bien le mémoriser.</p>
               </td>
             </tr>
 
@@ -97,7 +94,7 @@ const handler = async (req: Request): Promise<Response> => {
               <td align="center" style="padding: 20px;">
                 <a href="https://manamind.notion.site/c9d8acd29d8f464e9cbf786d4ab6fb95?v=aa38325d3c854f74b277cf850267d4a7&pvs=74" 
                    style="background-color: #71c088; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-size: 16px; display: inline-block;">
-                  📚 Accéder au Centre de Ressources
+                  📚 Découvrir le Centre de Ressources
                 </a>
               </td>
             </tr>
@@ -106,15 +103,14 @@ const handler = async (req: Request): Promise<Response> => {
             <tr>
               <td align="center" style="padding: 20px 0; font-size: 14px; color: #666;">
                 Besoin d’aide ? Contactez-nous à 
-                <a href="mailto:contact@mana.fr" style="color: #71c088; text-decoration: none;">contact@mana.fr</a>  
-                ou via l’icône de chat en bas à gauche de votre espace.
+                <a href="mailto:contact@mana.fr" style="color: #71c088; text-decoration: none;">contact@mana.fr</a>.
               </td>
             </tr>
 
             <!-- SIGNATURE -->
             <tr>
               <td align="center" style="padding-top: 10px; font-size: 14px; color: #333;">
-                🔹 Merci encore pour votre confiance, et bienvenue dans l’univers Manamind !  
+                🔹 Merci pour votre confiance, et bienvenue dans l’univers Manamind !  
                 <br><strong>L’équipe Manamind</strong>
               </td>
             </tr>
