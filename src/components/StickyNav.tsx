@@ -56,17 +56,17 @@ export const StickyNav = () => {
           </Button>
           <Button
             variant="ghost"
-            onClick={() => scrollToSection("faq")}
-            className="text-white font-bold hover:underline hover:bg-transparent hover:text-white"
-          >
-            FAQ
-          </Button>
-          <Button
-            variant="ghost"
             onClick={() => scrollToSection("help-offer")}
             className="text-white font-bold hover:underline hover:bg-transparent hover:text-white"
           >
             Contactez-nous
+          </Button>
+          <Button
+            variant="ghost"
+            onClick={() => scrollToSection("faq")}
+            className="text-white font-bold hover:underline hover:bg-transparent hover:text-white"
+          >
+            FAQ
           </Button>
         </div>
 
