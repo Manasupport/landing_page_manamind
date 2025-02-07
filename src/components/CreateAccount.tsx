@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { toast } from "./ui/use-toast";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -74,16 +75,16 @@ export const CreateAccount = () => {
       console.log("Sending welcome email and notifying admin");
       
       try {
-        // Send welcome email
+        // Send welcome email - Remove JSON.stringify
         const { data: welcomeData, error: welcomeError } = await supabase.functions.invoke("send-welcome-email", {
-          body: JSON.stringify({
+          body: {
             firstName: formData.firstName,
             lastName: formData.lastName,
             email: formData.email,
             accountType: accountType,
             numberOfCourses: numberOfCourses || 1,
             plan: selectedPlan || "Starter"
-          }),
+          },
         });
 
         if (welcomeError) {
@@ -93,7 +94,7 @@ export const CreateAccount = () => {
 
         console.log("Welcome email sent successfully:", welcomeData);
 
-        // Notify admin
+        // Notify admin - Remove JSON.stringify
         const { error: notifyError } = await supabase.functions.invoke("notify-admin", {
           body: {
             firstName: formData.firstName,

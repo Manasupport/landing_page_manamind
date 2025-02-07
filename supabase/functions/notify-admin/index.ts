@@ -1,3 +1,4 @@
+
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
@@ -25,7 +26,7 @@ const handler = async (req: Request): Promise<Response> => {
   try {
     const userData: UserData = await req.json();
     
-    const emailHtml = 
+    const emailHtml = `
       <div style="font-family: Arial, sans-serif; color: #333;">
         <h2>Nouvel utilisateur inscrit sur Manamind</h2>
         <ul>
@@ -37,13 +38,13 @@ const handler = async (req: Request): Promise<Response> => {
           <li><strong>Type de compte:</strong> ${userData.accountType}</li>
         </ul>
       </div>
-    ;
+    `;
 
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: Bearer ${RESEND_API_KEY},
+        Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
         from: "Manamind <onboarding@resend.dev>",
