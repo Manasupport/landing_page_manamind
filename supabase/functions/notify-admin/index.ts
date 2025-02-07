@@ -15,7 +15,7 @@ interface UserData {
   plan: string;
   numberOfCourses: number;
   accountType: string;
-  subscriptionPeriodicity: string;
+  subscriptionPeriodicity?: string;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -25,6 +25,7 @@ const handler = async (req: Request): Promise<Response> => {
 
   try {
     const userData: UserData = await req.json();
+    const subscriptionPeriodicity = userData.subscriptionPeriodicity || "Non spécifié";
     
     const emailHtml = `
       <div style="font-family: Arial, sans-serif; color: #333;">
@@ -36,7 +37,7 @@ const handler = async (req: Request): Promise<Response> => {
           <li><strong>Plan choisi:</strong> ${userData.plan}</li>
           <li><strong>Nombre de parcours:</strong> ${userData.numberOfCourses}</li>
           <li><strong>Type de compte:</strong> ${userData.accountType}</li>
-          <li><strong>Périodicité de l'abonnement:</strong> ${userData.subscriptionPeriodicity}</li>
+          <li><strong>Périodicité de l'abonnement:</strong> ${subscriptionPeriodicity}</li>
         </ul>
       </div>
     `;
