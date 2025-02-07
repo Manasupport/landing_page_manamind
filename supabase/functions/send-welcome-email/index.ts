@@ -27,6 +27,7 @@ interface WelcomeEmailRequest {
 const handler = async (req: Request): Promise<Response> => {
   console.log("📩 Starting welcome email handler");
 
+  // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
@@ -46,10 +47,10 @@ const handler = async (req: Request): Promise<Response> => {
       from: "Manamind <onboarding@resend.dev>",
       to: [email],
       subject: "Bienvenue sur Manamind - Votre compte est en cours de paramétrage !",
-      html: `
+      html: 
         <div style="font-family: Arial, sans-serif; color: #333; padding: 20px;">
           <div style="text-align: center;">
-            <img src="/lovable-uploads/212l.png" alt="Manamind Logo" width="150" />
+            <img src="lovable-uploads/212l.png" alt="Manamind Logo" width="150" />
             <h2 style="color: #2C3E50;">Bienvenue sur Manamind, ${firstName} !</h2>
           </div>
           <div style="background: #F7F9FC; padding: 15px; border-radius: 10px;">
@@ -69,7 +70,7 @@ const handler = async (req: Request): Promise<Response> => {
             <p><strong>L'équipe Manamind</strong></p>
           </div>
         </div>
-      `,
+      ,
     });
 
     console.log("✅ Email sent successfully:", JSON.stringify(emailResponse, null, 2));
