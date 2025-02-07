@@ -15,6 +15,7 @@ interface UserData {
   plan: string;
   numberOfCourses: number;
   accountType: string;
+  subscriptionPeriodicity: string;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -25,25 +26,31 @@ const handler = async (req: Request): Promise<Response> => {
   try {
     const userData: UserData = await req.json();
     
-    const emailHtml = 
-      <div style="font-family: Arial, sans-serif; color: #333;">
-        <h2>Nouvel utilisateur inscrit sur Manamind</h2>
-        <ul>
-          <li><strong>Nom:</strong> ${userData.lastName}</li>
-          <li><strong>Prénom:</strong> ${userData.firstName}</li>
-          <li><strong>Email:</strong> ${userData.email}</li>
-          <li><strong>Plan choisi:</strong> ${userData.plan}</li>
-          <li><strong>Nombre de parcours:</strong> ${userData.numberOfCourses}</li>
-          <li><strong>Type de compte:</strong> ${userData.accountType}</li>
-        </ul>
+    const emailHtml = `
+      <div style="font-family: Arial, sans-serif; color: #333; padding: 20px;">
+        <div style="text-align: center;">
+          <img src="/public/lovable-uploads/manamind.png" alt="Manamind Logo" width="150" />
+          <h2 style="color: #2C3E50;">Nouvel utilisateur inscrit sur Manamind</h2>
+        </div>
+        <div style="background: #F7F9FC; padding: 15px; border-radius: 10px;">
+          <ul style="list-style: none; padding: 0;">
+            <li><strong>Nom:</strong> <span style="color: #71c088;">${userData.lastName}</span></li>
+            <li><strong>Prénom:</strong> <span style="color: #71c088;">${userData.firstName}</span></li>
+            <li><strong>Email:</strong> <span style="color: #71c088;">${userData.email}</span></li>
+            <li><strong>Plan choisi:</strong> <span style="color: #71c088;">${userData.plan}</span></li>
+            <li><strong>Nombre de parcours:</strong> <span style="color: #71c088;">${userData.numberOfCourses}</span></li>
+            <li><strong>Type de compte:</strong> <span style="color: #71c088;">${userData.accountType}</span></li>
+            <li><strong>Périodicité de l'abonnement:</strong> <span style="color: #71c088;">${userData.subscriptionPeriodicity}</span></li>
+          </ul>
+        </div>
       </div>
-    ;
+    `;
 
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: Bearer ${RESEND_API_KEY},
+        Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
         from: "Manamind <onboarding@resend.dev>",
