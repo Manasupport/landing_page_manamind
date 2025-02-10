@@ -94,7 +94,7 @@ const getStarterEmail = (firstName: string) => `
       
       <tr>
         <td align="center" style="padding-bottom: 20px;">
-          <img src="https://your-public-url.com/logo.png" alt="Manamind Logo" width="150">
+          <img src="https://i.postimg.cc/W3wNygJs/MIND-BLC.png" alt="Manamind Logo" width="150">
         </td>
       </tr>
 
@@ -160,7 +160,7 @@ const getPaidPlanEmail = (firstName: string) => `
       
       <tr>
         <td align="center" style="padding-bottom: 20px;">
-          <img src="https://your-public-url.com/logo.png" alt="Manamind Logo" width="150">
+          <img src="https://i.postimg.cc/W3wNygJs/MIND-BLC.png" alt="Manamind Logo" width="150">
         </td>
       </tr>
 
