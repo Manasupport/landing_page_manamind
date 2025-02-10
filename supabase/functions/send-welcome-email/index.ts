@@ -185,6 +185,20 @@ const getPaidPlanEmail = (firstName: string) => `
           </a>
         </td>
       </tr>
+      <tr>
+        <td align="center" style="padding: 20px 0; font-size: 14px; color: #666;">
+          Besoin d’aide ? Contactez-nous à 
+          <a href="mailto:contact@mana.fr" style="color: #71c088;">contact@mana.fr</a>.
+        </td>
+      </tr>
+
+      <tr>
+        <td align="center" style="padding-top: 10px; font-size: 14px; color: #333;">
+          🔹 Merci pour votre confiance, et bienvenue dans l’univers Manamind !  
+          <br><strong>L’équipe Manamind</strong>
+        </td>
+      </tr>
+      
 
     </table>
   </body>
