@@ -105,12 +105,6 @@ const getStarterEmail = (firstName: string) => `
       </tr>
 
       <tr>
-        <td align="center" style="color: #333; font-size: 16px; line-height: 1.6;">
-          🎉 Félicitations ! Nous sommes ravis de vous compter parmi les Manaminders !
-        </td>
-      </tr>
-
-      <tr>
         <td style="padding: 20px; background-color: #f9f9f9; border-radius: 8px;">
           <p style="color: #0c3d5e; font-size: 18px; font-weight: bold;">🛠️ Paramétrage en cours...</p>
           <p>Votre compte est en cours de configuration et sera paramétré sous 24 heures ouvrées.</p>
@@ -179,10 +173,19 @@ const getPaidPlanEmail = (firstName: string) => `
       <tr>
         <td style="padding: 20px; background-color: #f9f9f9; border-radius: 8px;">
           <p style="color: #0c3d5e; font-size: 18px; font-weight: bold;">🛠️ Paramétrage en cours...</p>
-          <p>Si vous avez finalisé votre paiement, votre compte sera configuré sous 24 heures ouvrées.</p>
+          <p>Si vous avez finalisé votre paiement, votre compte est en cours de configuration et sera paramétré sous 24 heures ouvrées.</p>
+          <p>Vous recevrez un email contenant votre lien d'accès pour débuter votre expérience Manamind.</p>
         </td>
       </tr>
-      
+
+      <tr>
+        <td align="center">
+          <a href="https://manamind.notion.site" style="background-color: #71c088; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none;">
+            📚 Découvrir le Centre de Ressources
+          </a>
+        </td>
+      </tr>
+
     </table>
   </body>
   </html>
