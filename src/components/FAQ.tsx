@@ -1,13 +1,6 @@
-
 import React from "react";
 import { Button } from "./ui/button";
-import { ChevronDown, ChevronUp } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useNavigate } from "react-router-dom";
 
 export const FAQ = () => {
@@ -22,98 +15,131 @@ export const FAQ = () => {
 
         <div className="max-w-3xl mx-auto">
           <Accordion type="single" collapsible className="space-y-4">
+
+            {/* Question 1 */}
             <AccordionItem value="item-1" className="border rounded-lg p-4 shadow-sm">
               <AccordionTrigger className="flex justify-between w-full">
-                <span className="text-lg font-semibold text-left">Qu'est-ce que Manamind ?</span>
+                <span className="text-lg font-semibold text-left">Qu’est-ce que Manamind ?</span>
               </AccordionTrigger>
               <AccordionContent className="pt-4 text-gray-600">
-                Manamind est un outil conçu pour concevoir et animer des parcours d'apprentissage, intégrant des compétences adaptées aux défis académiques et professionnels. Il combine les atouts d'un outil de gestion de projets et d'une plateforme LMS pour créer une expérience d'apprentissage unique.
+                Manamind est une application pédagogique qui permet de concevoir, animer et suivre des programmes de formation interactifs. 
+                Que vous soyez une école, une université ou une entreprise, Manamind aide à créer des expériences d’apprentissage sur mesure pour engager les apprenants et maximiser l’impact des formations. 🎓🚀
               </AccordionContent>
             </AccordionItem>
 
+            {/* Question 2 */}
             <AccordionItem value="item-2" className="border rounded-lg p-4 shadow-sm">
               <AccordionTrigger className="flex justify-between w-full">
-                <span className="text-lg font-semibold text-left">Comment installer et configurer l'outil ?</span>
+                <span className="text-lg font-semibold text-left">À qui s’adresse Manamind ?</span>
               </AccordionTrigger>
-              <AccordionContent className="space-y-4">
-                <p className="text-gray-600">
-                  Manamind est une solution SaaS qui fonctionne directement en ligne sans installation. Des tutoriels sont disponibles pour la configuration, et nous proposons également des sessions de prise en main personnalisées.
-                </p>
-                <Button 
-                  onClick={() => navigate("/#help-offer")} 
-                  className="bg-[#71c088] hover:bg-[#5ea572] text-white"
-                >
-                  Je suis intéressé
-                </Button>
+              <AccordionContent className="pt-4 text-gray-600">
+                Manamind est conçu pour :
+                <ul className="list-disc pl-6 mt-2 space-y-2">
+                  <li><strong>Les encadrants</strong> : enseignants, professeurs, formateurs ou tuteurs.</li>
+                  <li><strong>Les apprenants</strong> : étudiants, professionnels en formation continue ou en reconversion.</li>
+                  <li><strong>Les institutions</strong> : écoles, universités, entreprises et centres de formation.</li>
+                </ul>
               </AccordionContent>
             </AccordionItem>
 
+            {/* Question 3 */}
             <AccordionItem value="item-3" className="border rounded-lg p-4 shadow-sm">
               <AccordionTrigger className="flex justify-between w-full">
-                <span className="text-lg font-semibold text-left">À qui s'adresse Manamind ?</span>
+                <span className="text-lg font-semibold text-left">Puis-je personnaliser mes parcours de formation ?</span>
               </AccordionTrigger>
-              <AccordionContent>
-                <div className="space-y-4 text-gray-600">
-                  <div>
-                    <h4 className="font-semibold mb-2">Académique :</h4>
-                    <ul className="list-disc pl-6 space-y-2">
-                      <li>Professeurs affiliés ➝ gestion des cours dans leur établissement</li>
-                      <li>Professeurs vacataires ➝ gestion centralisée des cours</li>
-                      <li>Directeurs de programme ➝ gestion des programmes académiques</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-2">Professionnel :</h4>
-                    <p className="italic">Contenu à venir</p>
-                  </div>
-                </div>
+              <AccordionContent className="pt-4 text-gray-600">
+                Oui ! Manamind permet d’intégrer vos propres contenus (vidéos, documents, quiz) et de collaborer avec des tuteurs et formateurs pour créer une expérience sur mesure.
               </AccordionContent>
             </AccordionItem>
 
+            {/* Question 4 */}
             <AccordionItem value="item-4" className="border rounded-lg p-4 shadow-sm">
+              <AccordionTrigger className="flex justify-between w-full">
+                <span className="text-lg font-semibold text-left">Comment souscrire à Manamind ?</span>
+              </AccordionTrigger>
+              <AccordionContent className="pt-4 text-gray-600">
+                C'est simple ! Cliquez sur <strong>"Je m'abonne"</strong>, choisissez votre offre, et nous nous occupons du reste. Notre équipe vous accueillera avec un café virtuel ☕️ 😊.
+              </AccordionContent>
+            </AccordionItem>
+
+            {/* Question 5 */}
+            <AccordionItem value="item-5" className="border rounded-lg p-4 shadow-sm">
+              <AccordionTrigger className="flex justify-between w-full">
+                <span className="text-lg font-semibold text-left">Est-ce qu’on peut tester avant de s’engager ?</span>
+              </AccordionTrigger>
+              <AccordionContent className="pt-4 text-gray-600">
+                Oui ! Avec notre <a href="/#pricing" className="text-[#71c088] font-semibold hover:underline">Plan Starter</a> gratuit, vous pouvez créer un parcours et inviter jusqu’à 50 participants. 
+                C’est une excellente façon de tester la plateforme sans engagement. 🚀
+              </AccordionContent>
+            </AccordionItem>
+
+            {/* Question 6 */}
+            <AccordionItem value="item-6" className="border rounded-lg p-4 shadow-sm">
               <AccordionTrigger className="flex justify-between w-full">
                 <span className="text-lg font-semibold text-left">Existe-t-il une version gratuite ?</span>
               </AccordionTrigger>
               <AccordionContent className="pt-4 text-gray-600">
-                Oui ! Manamind est gratuit jusqu'à 50 participants avec toutes les fonctionnalités essentielles.
+                Oui, notre <a href="/#pricing" className="text-[#71c088] font-semibold hover:underline">Plan Starter</a> est entièrement gratuit, sans engagement et sans frais cachés. 
+                Testez librement Manamind et découvrez toutes ses fonctionnalités ! 🎉
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="item-5" className="border rounded-lg p-4 shadow-sm">
-              <AccordionTrigger className="flex justify-between w-full">
-                <span className="text-lg font-semibold text-left">Le logiciel est-il en conformité avec le RGPD ?</span>
-              </AccordionTrigger>
-              <AccordionContent className="pt-4 text-gray-600">
-                Oui, Manamind est conforme au RGPD en partenariat avec Trustem. Nos données sont hébergées sur des serveurs sécurisés en Europe.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-6" className="border rounded-lg p-4 shadow-sm">
-              <AccordionTrigger className="flex justify-between w-full">
-                <span className="text-lg font-semibold text-left">Comment contacter l'assistance technique en cas de problème ?</span>
-              </AccordionTrigger>
-              <AccordionContent className="pt-4 text-gray-600">
-                Par chat intégré directement sur la plateforme ou par email à support@manamind.fr. Notre équipe répond sous 24h.
-              </AccordionContent>
-            </AccordionItem>
-
+            {/* Question 7 */}
             <AccordionItem value="item-7" className="border rounded-lg p-4 shadow-sm">
               <AccordionTrigger className="flex justify-between w-full">
-                <span className="text-lg font-semibold text-left">Comment résilier mon abonnement Manamind ?</span>
+                <span className="text-lg font-semibold text-left">Comment installer et configurer Manamind ?</span>
               </AccordionTrigger>
+             
+
+```tsx
               <AccordionContent className="pt-4 text-gray-600">
-                Vous pouvez demander la résiliation directement depuis votre espace personnel sur la plateforme ou en contactant notre support. Une confirmation de désengagement vous sera envoyée par e-mail, et votre abonnement prendra fin à l'issue de la période en cours.
+                Manamind est 100% en ligne, aucune installation nécessaire. Une fois votre compte créé, vous pouvez immédiatement commencer à concevoir vos parcours. 
+                Notre équipe est également disponible pour vous accompagner dans la prise en main. ✨
               </AccordionContent>
             </AccordionItem>
 
+            {/* Question 8 */}
             <AccordionItem value="item-8" className="border rounded-lg p-4 shadow-sm">
               <AccordionTrigger className="flex justify-between w-full">
-                <span className="text-lg font-semibold text-left">Que deviennent mes données après la résiliation ?</span>
+                <span className="text-lg font-semibold text-left">Comment contacter l’assistance en cas de besoin ?</span>
               </AccordionTrigger>
               <AccordionContent className="pt-4 text-gray-600">
-                Vos données sont conservées temporairement dans une base archive sécurisée, conformément aux réglementations RGPD. Elles seront supprimées définitivement après un délai prédéfini (ex. 6 mois). Vous pouvez aussi demander une suppression immédiate via notre support.
+                Notre chat intégré (la petite bulle verte en bas à droite) est accessible à tout moment, et bonne nouvelle : ce n’est pas un robot ! 💬
+                Un membre de notre équipe vous répondra rapidement pour vous aider. 🚀
               </AccordionContent>
             </AccordionItem>
+
+            {/* Question 9 */}
+            <AccordionItem value="item-9" className="border rounded-lg p-4 shadow-sm">
+              <AccordionTrigger className="flex justify-between w-full">
+                <span className="text-lg font-semibold text-left">Et si on a déjà un LMS (Learning Management System) ?</span>
+              </AccordionTrigger>
+              <AccordionContent className="pt-4 text-gray-600">
+                Aucun souci ! Manamind peut s’intégrer avec votre système existant grâce à nos connecteurs intelligents. Nous facilitons la transition sans casse-tête. 💡
+              </AccordionContent>
+            </AccordionItem>
+
+            {/* Question 10 */}
+            <AccordionItem value="item-10" className="border rounded-lg p-4 shadow-sm">
+              <AccordionTrigger className="flex justify-between w-full">
+                <span className="text-lg font-semibold text-left">Que se passe-t-il si je souhaite résilier mon abonnement ?</span>
+              </AccordionTrigger>
+              <AccordionContent className="pt-4 text-gray-600">
+                Vous pouvez résilier à tout moment via votre espace personnel ou en contactant notre support. Nous vous accompagnons dans la démarche et vous recevrez une confirmation par e-mail. 😊
+              </AccordionContent>
+            </AccordionItem>
+
+            {/* Question 11 */}
+            <AccordionItem value="item-11" className="border rounded-lg p-4 shadow-sm">
+              <AccordionTrigger className="flex justify-between w-full">
+                <span className="text-lg font-semibold text-left">Le logiciel est-il conforme au RGPD et que deviennent mes données après la résiliation ?</span>
+              </AccordionTrigger>
+              <AccordionContent className="pt-4 text-gray-600">
+                Oui, Manamind est entièrement conforme au RGPD. Vos données sont stockées en toute sécurité pendant la durée de votre abonnement + un délai de 2 ans. 
+                Si votre compte reste inactif pendant cette période, elles seront automatiquement supprimées. 🔐
+              </AccordionContent>
+            </AccordionItem>
+
           </Accordion>
         </div>
       </div>
