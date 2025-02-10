@@ -108,13 +108,13 @@ const getStarterEmail = (firstName: string) => `
         <td style="padding: 20px; background-color: #f9f9f9; border-radius: 8px;">
           <p style="color: #0c3d5e; font-size: 18px; font-weight: bold;">🛠️ Paramétrage en cours...</p>
           <p>Votre compte est en cours de configuration et sera paramétré sous 24 heures ouvrées.</p>
-          <p>💡 **Bonne nouvelle !** Avec le **Plan Starter**, vous bénéficiez gratuitement de toutes les fonctionnalités essentielles :</p>
+          <p>💡 Bonne nouvelle ! Avec le Plan Starter, vous bénéficiez gratuitement de toutes les fonctionnalités essentielles :</p>
           <ul>
-            <li>✔️ **1 parcours interactif**</li>
-            <li>✔️ **Jusqu'à 50 participants**</li>
-            <li>✔️ **Accès aux outils d'édition et d'animation**</li>
+            <li>✔️ 1 parcours interactif</li>
+            <li>✔️ Jusqu'à 50 participants</li>
+            <li>✔️ Accès aux outils d'édition et d'animation</li>
           </ul>
-          <p>**100% gratuit et sans engagement** – parfait pour tester Manamind en toute liberté ! 🚀</p>
+          <p>100% gratuit et sans engagement – parfait pour tester Manamind en toute liberté ! 🚀</p>
         </td>
       </tr>
 
