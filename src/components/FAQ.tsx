@@ -90,8 +90,6 @@ export const FAQ = () => {
                 <span className="text-lg font-semibold text-left">Comment installer et configurer Manamind ?</span>
               </AccordionTrigger>
              
-
-```tsx
               <AccordionContent className="pt-4 text-gray-600">
                 Manamind est 100% en ligne, aucune installation nécessaire. Une fois votre compte créé, vous pouvez immédiatement commencer à concevoir vos parcours. 
                 Notre équipe est également disponible pour vous accompagner dans la prise en main. ✨
