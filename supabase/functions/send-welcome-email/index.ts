@@ -152,7 +152,7 @@ const getStarterEmail = (firstName: string) => `
   </html>
 `;
 
-// 📩 Email pour les plans payants
+// 📩 Email pour les plans payants (Essential et Professional)
 const getPaidPlanEmail = (firstName: string) => `
   <!DOCTYPE html>
   <html lang="fr">
@@ -160,10 +160,30 @@ const getPaidPlanEmail = (firstName: string) => `
     <meta charset="UTF-8">
     <title>Bienvenue sur Manamind</title>
   </head>
-  <body>
-    <h2>Bienvenue sur Manamind, ${firstName} !</h2>
-    <p>Votre compte est en cours de paramétrage et sera configuré sous 24 heures ouvrées.</p>
-    <p>Merci pour votre confiance !</p>
+  <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 0; margin: 0;">
+    
+    <table align="center" width="100%" style="max-width: 600px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
+      
+      <tr>
+        <td align="center" style="padding-bottom: 20px;">
+          <img src="https://your-public-url.com/logo.png" alt="Manamind Logo" width="150">
+        </td>
+      </tr>
+
+      <tr>
+        <td align="center" style="color: #0c3d5e; font-size: 24px; font-weight: bold;">
+          Bienvenue sur Manamind, ${firstName} !
+        </td>
+      </tr>
+
+      <tr>
+        <td style="padding: 20px; background-color: #f9f9f9; border-radius: 8px;">
+          <p style="color: #0c3d5e; font-size: 18px; font-weight: bold;">🛠️ Paramétrage en cours...</p>
+          <p>Si vous avez finalisé votre paiement, votre compte sera configuré sous 24 heures ouvrées.</p>
+        </td>
+      </tr>
+      
+    </table>
   </body>
   </html>
 `;
