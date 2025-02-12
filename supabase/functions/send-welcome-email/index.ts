@@ -130,7 +130,7 @@ const getStarterEmail = (firstName: string) => `
       <tr>
         <td align="center" style="padding: 20px 0; font-size: 14px; color: #666;">
           Besoin d’aide ? Contactez-nous à 
-          <a href="mailto:contact@mana.fr" style="color: #71c088;">contact@mana.fr</a>.
+          <a href="mailto:support_manamind@mana.fr" style="color: #71c088;">support_manamind@mana.fr</a>.
         </td>
       </tr>
 
@@ -173,8 +173,8 @@ const getPaidPlanEmail = (firstName: string) => `
       <tr>
         <td style="padding: 20px; background-color: #f9f9f9; border-radius: 8px;">
           <p style="color: #0c3d5e; font-size: 18px; font-weight: bold;">🛠️ Paramétrage en cours...</p>
-          <p>Si vous avez finalisé votre paiement, votre compte est en cours de configuration et sera paramétré sous 24 heures ouvrées.</p>
-          <p>Vous recevrez un email contenant votre lien d'accès pour débuter votre expérience Manamind.</p>
+          <p>Dès réception de votre paiement, vous recevrez un mail d'accès à la plateforme pour créer votre compte et configurer votre espace.</p>
+          <p>En attendant, pour débuter l'expérience Manamind, vous pouvez naviguer dans le Centre de Ressources où vous trouverez des tutos de prise en main à la plateforme, des contenus pédagogiques et de nombreux modèles prêts à l'usage.</p>
         </td>
       </tr>
 
@@ -188,7 +188,7 @@ const getPaidPlanEmail = (firstName: string) => `
       <tr>
         <td align="center" style="padding: 20px 0; font-size: 14px; color: #666;">
           Besoin d’aide ? Contactez-nous à 
-          <a href="mailto:contact@mana.fr" style="color: #71c088;">contact@mana.fr</a>.
+          <a href="mailto:support_manamind@mana.fr" style="color: #71c088;">support_manamind@mana.fr</a>.
         </td>
       </tr>
 
