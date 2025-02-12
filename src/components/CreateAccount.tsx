@@ -18,7 +18,6 @@ export const CreateAccount = () => {
     lastName: "",
     email: "",
   });
-  const [acceptTerms, setAcceptTerms] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,15 +36,6 @@ export const CreateAccount = () => {
       toast({
         title: "Champs requis",
         description: "Veuillez remplir tous les champs",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    if (!acceptTerms) {
-      toast({
-        title: "Conditions d'utilisation requises",
-        description: "Vous devez accepter les conditions d'utilisation pour continuer",
         variant: "destructive",
       });
       return;
@@ -273,23 +263,6 @@ export const CreateAccount = () => {
                     className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#71c088] focus:border-transparent"
                     required
                   />
-                </div>
-                <div>
-                  <label className="flex items-center space-x-2">
-                    <input
-                      type="checkbox"
-                      checked={acceptTerms}
-                      onChange={(e) => setAcceptTerms(e.target.checked)}
-                      className="h-4 w-4 text-[#71c088] border-gray-300 rounded focus:ring-[#71c088]"
-                      required
-                    />
-                    <span className="text-gray-700">
-                      J'accepte les{" "}
-                      <a href="https://www.manamindconditions.fr" target="_blank" className="text-[#71c088] underline">
-                        conditions d'utilisation de Manamind
-                      </a>
-                    </span>
-                  </label>
                 </div>
                 <div className="flex gap-4 pt-4">
                   <Button
