@@ -99,20 +99,20 @@ const getStarterEmail = (firstName: string) => `
       </tr>
 
       <tr>
-        <td align="center" style="color: #0c3d5e; font-size: 24px; font-weight: bold;">
+        <td align="center" style="color: #000000; font-size: 24px; font-weight: bold;">
           Bienvenue sur Manamind, ${firstName} !
         </td>
       </tr>
 
       <tr>
         <td style="padding: 20px; background-color: #f9f9f9; border-radius: 8px;">
-          <p style="color: #0c3d5e; font-size: 18px; font-weight: bold;">🛠️ Paramétrage en cours...</p>
+          <p style="color: #000000; font-size: 18px; font-weight: bold;">🛠️ Paramétrage en cours...</p>
           <p>Vous allez recevoir un mail d'accès à la plateforme pour créer votre compte et configurer votre espace Starter.</p>
           <p>💡 Bonne nouvelle ! Avec le Plan Starter, vous bénéficiez gratuitement de toutes les fonctionnalités essentielles :</p>
           <ul>
-            <li>✔️ 1 parcours interactif</li>
-            <li>✔️ Jusqu'à 50 participants</li>
-            <li>✔️ Accès aux outils d'édition et d'animation</li>
+            <li>1 parcours interactif</li>
+            <li>Jusqu'à 50 participants</li>
+            <li>Accès aux outils d'édition et d'animation</li>
           </ul>
           <p>100% gratuit et sans engagement – parfait pour tester Manamind en toute liberté ! 🚀</p>
         </td>
@@ -136,7 +136,7 @@ const getStarterEmail = (firstName: string) => `
 
       <tr>
         <td align="center" style="padding-top: 10px; font-size: 14px; color: #333;">
-          🔹 Merci pour votre confiance, et bienvenue dans l’univers Manamind !  
+          Merci pour votre confiance, et bienvenue dans l’univers Manamind !  
           <br><strong>L’équipe Manamind</strong>
         </td>
       </tr>
@@ -165,14 +165,14 @@ const getPaidPlanEmail = (firstName: string) => `
       </tr>
 
       <tr>
-        <td align="center" style="color: #0c3d5e; font-size: 24px; font-weight: bold;">
+        <td align="center" style="color: #000000; font-size: 24px; font-weight: bold;">
           Bienvenue sur Manamind, ${firstName} !
         </td>
       </tr>
 
       <tr>
         <td style="padding: 20px; background-color: #f9f9f9; border-radius: 8px;">
-          <p style="color: #0c3d5e; font-size: 18px; font-weight: bold;">🛠️ Paramétrage en cours...</p>
+          <p style="color: #000000; font-size: 18px; font-weight: bold;">🛠️ Paramétrage en cours...</p>
           <p>Dès réception de votre paiement, vous recevrez un mail d'accès à la plateforme pour créer votre compte et configurer votre espace.</p>
           <p>En attendant, pour débuter l'expérience Manamind, vous pouvez naviguer dans le Centre de Ressources où vous trouverez des tutos de prise en main à la plateforme, des contenus pédagogiques et de nombreux modèles prêts à l'usage.</p>
         </td>
@@ -194,7 +194,7 @@ const getPaidPlanEmail = (firstName: string) => `
 
       <tr>
         <td align="center" style="padding-top: 10px; font-size: 14px; color: #333;">
-          🔹 Merci pour votre confiance, et bienvenue dans l’univers Manamind !  
+          Merci pour votre confiance, et bienvenue dans l’univers Manamind !  
           <br><strong>L’équipe Manamind</strong>
         </td>
       </tr>
