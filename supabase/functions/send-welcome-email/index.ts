@@ -115,6 +115,8 @@ const getStarterEmail = (firstName: string) => `
             <li>Accès aux outils d'édition et d'animation</li>
           </ul>
           <p>100% gratuit et sans engagement – parfait pour tester Manamind en toute liberté ! 🚀</p>
+          <p>En attendant, pour débuter l'expérience Manamind, vous pouvez naviguer dans le Centre de Ressources où vous trouverez des tutos de prise en main à la plateforme, des contenus pédagogiques et de nombreux modèles prêts à l'usage.</p>
+
         </td>
       </tr>
 
