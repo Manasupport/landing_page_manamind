@@ -32,7 +32,7 @@ export const ConsultationSection = () => {
               size="lg"
               className="bg-[#71c088] hover:bg-[#5ea374] text-white px-6 py-3 rounded-lg shadow-md transition-shadow duration-300 hover:shadow-lg"
               onClick={() =>
-                window.open("https://calendar.app.google/8PzSHhTa8sLE9XWf7", "_blank")
+                window.open("https://calendar.app.google/bXWyNmH4ouZ5YXAr7", "_blank")
               }
             >
               Je réserve un rendez-vous
