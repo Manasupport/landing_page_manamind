@@ -8,7 +8,7 @@ import { Slider } from "./ui/slider";
 
 const getEssentialPaymentLink = (courses: number, isAnnual: boolean) => {
   const linkMap = {
-    1: { monthly: "https://buy.stripe.com/dR64hv4wo0bm5444gu", yearly: "https://buy.stripe.com/14kdS5gf6e2c8gg7sB" },
+    1: { monthly: "https://buy.stripe.com/14kcO15Ase2cgMMcN1", yearly: "https://buy.stripe.com/14kdS5gf6e2c8gg7sB" },
     2: { monthly: "https://buy.stripe.com/3cseW96Ew8HS400007", yearly: "https://buy.stripe.com/4gw7tHfb26zKeEE9AK" },
     3: { monthly: "https://buy.stripe.com/7sIeW91kc3nyeEE7sy", yearly: "https://buy.stripe.com/3csaFT1kcbU47cc28j" },
     4: { monthly: "https://buy.stripe.com/fZe8xL6Ew6zK6887sx", yearly: "https://buy.stripe.com/28og0de6Ye2cfII9AM" },
