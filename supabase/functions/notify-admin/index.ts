@@ -48,7 +48,7 @@ const handler = async (req: Request): Promise<Response> => {
       },
       body: JSON.stringify({
         from: "Manamind <onboarding@resend.dev>",
-        to: ["support_manamind@manadvise.fr"],
+        to: ["yanis@manadvise.fr"],
         subject: "Nouvel utilisateur Manamind",
         html: emailHtml,
       }),
