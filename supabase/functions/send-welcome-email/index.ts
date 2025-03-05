@@ -182,7 +182,7 @@ const getPaidPlanEmail = (firstName: string) => `
 
       <tr>
         <td align="center">
-          <a href="https://manamind.notion.site" style="background-color: #71c088; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none;">
+          <a href="https://manamind.notion.site/c9d8acd29d8f464e9cbf786d4ab6fb95?v=aa38325d3c854f74b277cf850267d4a7" style="background-color: #71c088; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none;">
             📚 Découvrir le Centre de Ressources
           </a>
         </td>
