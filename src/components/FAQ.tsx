@@ -91,7 +91,7 @@ export const FAQ = () => {
                 <strong>Comment faire ?</strong>
                 <ul className="list-disc pl-6 mt-2 space-y-2">
                   <li>📩 Via le chat directement depuis la plateforme Manamind.</li>
-                  <li>📧 Par e-mail à <a href="mailto:support_manamind@mana.fr" className="text-[#71c088] font-semibold hover:underline">support_manamind@manadvise.fr</a>.</li>
+                  <li>📧 Par e-mail à <a href="mailto:support_manamind@mana.fr" className="text-[#71c088] font-semibold hover:underline">support_manamind@mana.fr</a>.</li>
                 </ul>
                 <br />
                 Notre équipe vous accompagnera dans la transition et s’assurera que toutes vos données (parcours, participants, tableaux de bords...) restent intactes. 🚀
