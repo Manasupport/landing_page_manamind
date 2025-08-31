@@ -61,6 +61,16 @@ export const StickyNav = () => {
           >
             Contactez-nous
           </Button>
+
+          {/* Nouveau bouton Ressources */}
+          <Button
+            variant="ghost"
+            onClick={() => navigate("/ressources")}
+            className="text-white font-bold hover:underline hover:bg-transparent hover:text-white"
+          >
+            Ressources
+          </Button>
+
           <Button
             variant="ghost"
             onClick={() => scrollToSection("faq")}
