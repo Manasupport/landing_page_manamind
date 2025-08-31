@@ -25,9 +25,8 @@ const Ressources = () => {
     <div className="min-h-screen bg-background text-[#0c3d5e]">
       <StickyNav />
 
-      {/* Hero */}
+      {/* Hero (laisse tel quel) */}
       <section className="relative overflow-hidden pt-32 pb-24">
-        {/* Halos */}
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -top-40 -left-32 w-[42rem] h-[42rem] rounded-full bg-gradient-to-br from-manamind to-manamind-dark opacity-30 blur-3xl" />
           <div className="absolute -bottom-32 -right-40 w-[40rem] h-[40rem] rounded-full bg-gradient-to-tr from-manacademy to-secondary opacity-20 blur-3xl" />
@@ -66,18 +65,19 @@ const Ressources = () => {
         </div>
       </section>
 
-      {/* Cards */}
+      {/* Cartes */}
       <section className="py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-10">
             {/* Tutoriels */}
             <Card
-              className="group relative overflow-hidden rounded-3xl border border-[#0c3d5e]/10 bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 shadow-lg hover:shadow-xl transition-all duration-500"
+              className="group relative overflow-hidden rounded-3xl border border-black/5 bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 shadow-[0_10px_30px_-10px_rgba(12,61,94,0.15)] hover:shadow-[0_18px_40px_-12px_rgba(12,61,94,0.25)] transition-all duration-500"
             >
-              {/* soft gradient glow */}
-              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(12,61,94,0.10),transparent)]" />
+              {/* glow subtil */}
+              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(70%_70%_at_50%_0%,rgba(16,185,129,0.10),transparent)]" />
               <CardHeader className="relative z-10 text-center pb-6">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-manacademy to-manacademy-dark flex items-center justify-center shadow-lg ring-1 ring-white/30">
+                {/* pastille verte, icône blanche */}
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center shadow-lg ring-1 ring-white/40">
                   <BookOpen className="h-8 w-8 text-white" aria-hidden="true" />
                 </div>
                 <CardTitle className="text-2xl">Tutoriels pour Manamind</CardTitle>
@@ -89,9 +89,8 @@ const Ressources = () => {
                 <Button
                   asChild
                   size="lg"
-                  className="w-full bg-gradient-to-r from-[#0c3d5e] via-manamind to-secondary text-white hover:opacity-90"
+                  className="w-full h-11 rounded-xl font-semibold shadow-sm active:scale-[0.99] transition-transform bg-gradient-to-r from-[#0c3d5e] via-manamind to-secondary text-white hover:opacity-90"
                 >
-                  {/* ⬇️ vers /tutorials */}
                   <Link to="/tutorials" aria-label="Parcourir les tutoriels">
                     Parcourir les tutoriels
                   </Link>
@@ -101,11 +100,11 @@ const Ressources = () => {
 
             {/* Webinaire */}
             <Card
-              className="group relative overflow-hidden rounded-3xl border border-[#0c3d5e]/10 bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 shadow-lg hover:shadow-xl transition-all duration-500"
+              className="group relative overflow-hidden rounded-3xl border border-black/5 bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 shadow-[0_10px_30px_-10px_rgba(12,61,94,0.15)] hover:shadow-[0_18px_40px_-12px_rgba(12,61,94,0.25)] transition-all duration-500"
             >
-              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(16,185,129,0.10),transparent)]" />
+              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(70%_70%_at_50%_0%,rgba(12,61,94,0.10),transparent)]" />
               <CardHeader className="relative z-10 text-center pb-6">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-manamind to-manamind-dark flex items-center justify-center shadow-lg ring-1 ring-white/30">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-manamind to-manamind-dark flex items-center justify-center shadow-lg ring-1 ring-white/40">
                   <Video className="h-8 w-8 text-white" aria-hidden="true" />
                 </div>
                 <CardTitle className="text-2xl">Webinaire</CardTitle>
@@ -117,9 +116,8 @@ const Ressources = () => {
                 <Button
                   asChild
                   size="lg"
-                  className="w-full bg-gradient-to-r from-[#0c3d5e] via-manamind to-secondary text-white hover:opacity-90"
+                  className="w-full h-11 rounded-xl font-semibold shadow-sm active:scale-[0.99] transition-transform bg-gradient-to-r from-[#0c3d5e] via-manamind to-secondary text-white hover:opacity-90"
                 >
-                  {/* ⬇️ vers /webinaires */}
                   <Link to="/webinaires" aria-label="Voir les webinaires">
                     Voir les webinaires
                   </Link>
@@ -129,10 +127,10 @@ const Ressources = () => {
 
             {/* Ressources Mana (full width) */}
             <Card
-              className="md:col-span-2 group relative overflow-hidden rounded-3xl border border-[#0c3d5e]/10 bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 shadow-lg hover:shadow-xl transition-all duration-500"
+              className="md:col-span-2 group relative overflow-hidden rounded-3xl border border-black/5 bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 shadow-[0_10px_30px_-10px_rgba(12,61,94,0.15)] hover:shadow-[0_18px_40px_-12px_rgba(12,61,94,0.25)] transition-all duration-500"
             >
               <CardHeader className="relative z-10 text-center pb-6">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-manamind to-manamind-dark flex items-center justify-center shadow-lg ring-1 ring-white/30">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-manamind to-manamind-dark flex items-center justify-center shadow-lg ring-1 ring-white/40">
                   <Sparkles className="h-8 w-8 text-white" aria-hidden="true" />
                 </div>
                 <CardTitle className="text-2xl">Les ressources Mana</CardTitle>
@@ -144,9 +142,8 @@ const Ressources = () => {
                 <Button
                   asChild
                   size="lg"
-                  className="w-full bg-gradient-to-r from-[#0c3d5e] via-manamind to-secondary text-white hover:opacity-90"
+                  className="w-full h-11 rounded-xl font-semibold shadow-sm active:scale-[0.99] transition-transform bg-gradient-to-r from-[#0c3d5e] via-manamind to-secondary text-white hover:opacity-90"
                 >
-                  {/* ⬇️ lib externe + nouveau libellé */}
                   <a
                     href="https://mana.fr/resources"
                     target="_blank"
@@ -158,7 +155,7 @@ const Ressources = () => {
                 </Button>
               </CardContent>
 
-              {/* voile déco discret */}
+              {/* voile décor léger */}
               <div className="pointer-events-none absolute inset-0 opacity-10 bg-[radial-gradient(80%_80%_at_50%_0%,theme(colors.manamind/.25),transparent)]" />
             </Card>
           </div>
