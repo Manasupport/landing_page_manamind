@@ -13,7 +13,8 @@ import { Success } from "./pages/Success";
 import AboutPage from "./pages/About";
 import Ressources from "./pages/ressources";
 import Tutorials from "./pages/tutorials";
-import StudentTutorials from "./pages/student-tutorials"; // ✅ corrigé
+import StudentTutorials from "./pages/student-tutorials";
+import TeacherTutorials from "./pages/teacher-tutorials"; // ✅ nouveau
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/ressources" element={<Ressources />} />
           <Route path="/tutorials" element={<Tutorials />} />
           <Route path="/tutorials/student" element={<StudentTutorials />} />
+          <Route path="/tutorials/teacher" element={<TeacherTutorials />} /> {/* ✅ ajout */}
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
