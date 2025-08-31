@@ -1,8 +1,7 @@
 // src/pages/ressources.tsx
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+import { StickyNav } from "@/components/StickyNav";
 import {
   Card,
   CardContent,
@@ -18,16 +17,15 @@ const Ressources = () => {
   const handleOpenPdf = (path: string) => setOpenPdf(path);
   const badges = ["Designed for clarity", "Actionable resources", "Always up to date"];
 
-  // équivalent <Head> pour une SPA
   useEffect(() => {
     document.title = "Centre de ressources Manamind";
   }, []);
 
   return (
     <div className="min-h-screen bg-background text-[#0c3d5e]">
-      <Navigation />
+      <StickyNav />
 
-      {/* Hero Section */}
+      {/* Hero */}
       <section className="relative overflow-hidden pt-32 pb-24">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -top-40 -left-32 w-[42rem] h-[42rem] rounded-full bg-gradient-to-br from-manamind to-manamind-dark opacity-30 blur-3xl" />
@@ -67,11 +65,11 @@ const Ressources = () => {
         </div>
       </section>
 
-      {/* Main Cards */}
+      {/* Cards */}
       <section className="py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-10">
-            {/* Tutoriels pour Manamind */}
+            {/* Tutoriels */}
             <Card className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
               <CardHeader className="relative z-10 text-center pb-6">
                 <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-manacademy to-manacademy-dark flex items-center justify-center shadow-md">
@@ -79,16 +77,11 @@ const Ressources = () => {
                 </div>
                 <CardTitle className="text-2xl">Tutoriels pour Manamind</CardTitle>
                 <CardDescription className="text-base text-[#0c3d5e]/80">
-                  Pas à pas pour configurer vos parcours, suivre les acquis et piloter vos
-                  sessions.
+                  Pas à pas pour configurer vos parcours, suivre les acquis et piloter vos sessions.
                 </CardDescription>
               </CardHeader>
               <CardContent className="relative z-10 pt-0">
-                <Button
-                  asChild
-                  size="lg"
-                  className="w-full bg-gradient-to-r from-[#0c3d5e] via-manamind to-secondary text-white hover:opacity-90"
-                >
+                <Button asChild size="lg" className="w-full bg-gradient-to-r from-[#0c3d5e] via-manamind to-secondary text-white hover:opacity-90">
                   <Link to="/resources/academic">Parcourir les tutoriels</Link>
                 </Button>
               </CardContent>
@@ -106,17 +99,13 @@ const Ressources = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="relative z-10 pt-0">
-                <Button
-                  asChild
-                  size="lg"
-                  className="w-full bg-gradient-to-r from-[#0c3d5e] via-manamind to-secondary text-white hover:opacity-90"
-                >
+                <Button asChild size="lg" className="w-full bg-gradient-to-r from-[#0c3d5e] via-manamind to-secondary text-white hover:opacity-90">
                   <Link to="/webinaire">Voir les webinaires</Link>
                 </Button>
               </CardContent>
             </Card>
 
-            {/* Carte pleine largeur : Les ressources Mana */}
+            {/* Ressources Mana (full width) */}
             <Card className="md:col-span-2 group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
               <CardHeader className="relative z-10 text-center pb-6">
                 <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-manamind to-manamind-dark flex items-center justify-center shadow-md">
@@ -128,11 +117,7 @@ const Ressources = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="relative z-10 pt-0">
-                <Button
-                  asChild
-                  size="lg"
-                  className="w-full bg-gradient-to-r from-[#0c3d5e] via-manamind to-secondary text-white hover:opacity-90"
-                >
+                <Button asChild size="lg" className="w-full bg-gradient-to-r from-[#0c3d5e] via-manamind to-secondary text-white hover:opacity-90">
                   <a href="https://mana.fr/resources" target="_blank" rel="noopener noreferrer">
                     Accéder à mana.fr/resources
                   </a>
@@ -144,7 +129,7 @@ const Ressources = () => {
         </div>
       </section>
 
-      {/* Liens légaux simples */}
+      {/* Liens légaux */}
       <section className="py-8 bg-muted/30">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-[#0c3d5e]/80">
@@ -199,8 +184,6 @@ const Ressources = () => {
           </div>
         </div>
       )}
-
-      <Footer />
     </div>
   );
 };
