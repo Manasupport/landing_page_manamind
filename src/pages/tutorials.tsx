@@ -1,20 +1,28 @@
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+// src/pages/tutorials.tsx
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { StickyNav } from "@/components/StickyNav";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { GraduationCap, Users, ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
 
 const ResourcesTutorials = () => {
+  useEffect(() => {
+    document.title = "Tutoriels Manamind";
+  }, []);
+
   return (
     <div className="min-h-screen bg-background text-[#0c3d5e]">
-      <Navigation />
-      
+      <StickyNav />
+
       {/* Breadcrumb */}
       <div className="pt-20 pb-4">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <Button variant="ghost" size="sm" asChild>
-            <Link to="/resources" className="text-[#0c3d5e]/70 hover:text-primary transition-colors">
+            <Link
+              to="/ressources"
+              className="text-[#0c3d5e]/70 hover:text-primary transition-colors"
+            >
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Resources
             </Link>
@@ -43,7 +51,6 @@ const ResourcesTutorials = () => {
       <section className="py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-10 items-stretch">
-            
             {/* Student Tutorials */}
             <Card className="flex flex-col justify-between group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
               <div className="absolute inset-0 bg-gradient-to-br from-manamind/10 to-manamind/5 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -60,25 +67,12 @@ const ResourcesTutorials = () => {
               </CardHeader>
               <CardContent className="relative z-10 flex flex-col flex-grow justify-between">
                 <div className="space-y-3 mb-6 text-sm text-[#0c3d5e]/80">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-green-500" />
-                    <span>Platform navigation</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-green-500" />
-                    <span>Skills assessment</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-green-500" />
-                    <span>Progress tracking</span>
-                  </div>
+                  <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-green-500" /><span>Platform navigation</span></div>
+                  <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-green-500" /><span>Skills assessment</span></div>
+                  <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-green-500" /><span>Progress tracking</span></div>
                 </div>
-                <Button 
-                  asChild 
-                  size="lg" 
-                  className="w-full mt-auto bg-gradient-to-r from-green-400 to-emerald-600 text-white font-medium shadow-md hover:opacity-90"
-                >
-                  <Link to="/resources/tutorials/student">
+                <Button asChild size="lg" className="w-full mt-auto bg-gradient-to-r from-green-400 to-emerald-600 text-white font-medium shadow-md hover:opacity-90">
+                  <Link to="/tutorials/student">
                     Start learning
                     <GraduationCap className="ml-2 h-4 w-4" />
                   </Link>
@@ -102,37 +96,21 @@ const ResourcesTutorials = () => {
               </CardHeader>
               <CardContent className="relative z-10 flex flex-col flex-grow justify-between">
                 <div className="space-y-3 mb-6 text-sm text-[#0c3d5e]/80">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-manadvise" />
-                    <span>Path creation</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-manadvise" />
-                    <span>Student management</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-manadvise" />
-                    <span>Progress monitoring</span>
-                  </div>
+                  <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-manadvise" /><span>Path creation</span></div>
+                  <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-manadvise" /><span>Student management</span></div>
+                  <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-manadvise" /><span>Progress monitoring</span></div>
                 </div>
-                <Button 
-                  asChild 
-                  size="lg" 
-                  className="w-full mt-auto bg-gradient-to-r from-manadvise to-secondary text-white font-medium shadow-md hover:opacity-90"
-                >
-                  <Link to="/resources/tutorials/teacher">
+                <Button asChild size="lg" className="w-full mt-auto bg-gradient-to-r from-manadvise to-secondary text-white font-medium shadow-md hover:opacity-90">
+                  <Link to="/tutorials/teacher">
                     Start teaching
                     <Users className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
               </CardContent>
             </Card>
-
           </div>
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 };
