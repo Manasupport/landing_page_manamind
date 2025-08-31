@@ -27,6 +27,7 @@ const Ressources = () => {
 
       {/* Hero */}
       <section className="relative overflow-hidden pt-32 pb-24">
+        {/* Halos */}
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -top-40 -left-32 w-[42rem] h-[42rem] rounded-full bg-gradient-to-br from-manamind to-manamind-dark opacity-30 blur-3xl" />
           <div className="absolute -bottom-32 -right-40 w-[40rem] h-[40rem] rounded-full bg-gradient-to-tr from-manacademy to-secondary opacity-20 blur-3xl" />
@@ -70,10 +71,14 @@ const Ressources = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-10">
             {/* Tutoriels */}
-            <Card className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+            <Card
+              className="group relative overflow-hidden rounded-3xl border border-[#0c3d5e]/10 bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 shadow-lg hover:shadow-xl transition-all duration-500"
+            >
+              {/* soft gradient glow */}
+              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(12,61,94,0.10),transparent)]" />
               <CardHeader className="relative z-10 text-center pb-6">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-manacademy to-manacademy-dark flex items-center justify-center shadow-md">
-                  <BookOpen className="h-8 w-8 text-white" />
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-manacademy to-manacademy-dark flex items-center justify-center shadow-lg ring-1 ring-white/30">
+                  <BookOpen className="h-8 w-8 text-white" aria-hidden="true" />
                 </div>
                 <CardTitle className="text-2xl">Tutoriels pour Manamind</CardTitle>
                 <CardDescription className="text-base text-[#0c3d5e]/80">
@@ -81,17 +86,27 @@ const Ressources = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="relative z-10 pt-0">
-                <Button asChild size="lg" className="w-full bg-gradient-to-r from-[#0c3d5e] via-manamind to-secondary text-white hover:opacity-90">
-                  <Link to="/resources/academic">Parcourir les tutoriels</Link>
+                <Button
+                  asChild
+                  size="lg"
+                  className="w-full bg-gradient-to-r from-[#0c3d5e] via-manamind to-secondary text-white hover:opacity-90"
+                >
+                  {/* ⬇️ vers /tutorials */}
+                  <Link to="/tutorials" aria-label="Parcourir les tutoriels">
+                    Parcourir les tutoriels
+                  </Link>
                 </Button>
               </CardContent>
             </Card>
 
             {/* Webinaire */}
-            <Card className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+            <Card
+              className="group relative overflow-hidden rounded-3xl border border-[#0c3d5e]/10 bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 shadow-lg hover:shadow-xl transition-all duration-500"
+            >
+              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(16,185,129,0.10),transparent)]" />
               <CardHeader className="relative z-10 text-center pb-6">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-manamind to-manamind-dark flex items-center justify-center shadow-md">
-                  <Video className="h-8 w-8 text-white" />
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-manamind to-manamind-dark flex items-center justify-center shadow-lg ring-1 ring-white/30">
+                  <Video className="h-8 w-8 text-white" aria-hidden="true" />
                 </div>
                 <CardTitle className="text-2xl">Webinaire</CardTitle>
                 <CardDescription className="text-base text-[#0c3d5e]/80">
@@ -99,17 +114,26 @@ const Ressources = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="relative z-10 pt-0">
-                <Button asChild size="lg" className="w-full bg-gradient-to-r from-[#0c3d5e] via-manamind to-secondary text-white hover:opacity-90">
-                  <Link to="/webinaire">Voir les webinaires</Link>
+                <Button
+                  asChild
+                  size="lg"
+                  className="w-full bg-gradient-to-r from-[#0c3d5e] via-manamind to-secondary text-white hover:opacity-90"
+                >
+                  {/* ⬇️ vers /webinaires */}
+                  <Link to="/webinaires" aria-label="Voir les webinaires">
+                    Voir les webinaires
+                  </Link>
                 </Button>
               </CardContent>
             </Card>
 
             {/* Ressources Mana (full width) */}
-            <Card className="md:col-span-2 group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+            <Card
+              className="md:col-span-2 group relative overflow-hidden rounded-3xl border border-[#0c3d5e]/10 bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 shadow-lg hover:shadow-xl transition-all duration-500"
+            >
               <CardHeader className="relative z-10 text-center pb-6">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-manamind to-manamind-dark flex items-center justify-center shadow-md">
-                  <Sparkles className="h-8 w-8 text-white" />
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-manamind to-manamind-dark flex items-center justify-center shadow-lg ring-1 ring-white/30">
+                  <Sparkles className="h-8 w-8 text-white" aria-hidden="true" />
                 </div>
                 <CardTitle className="text-2xl">Les ressources Mana</CardTitle>
                 <CardDescription className="text-base text-[#0c3d5e]/80">
@@ -117,13 +141,25 @@ const Ressources = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="relative z-10 pt-0">
-                <Button asChild size="lg" className="w-full bg-gradient-to-r from-[#0c3d5e] via-manamind to-secondary text-white hover:opacity-90">
-                  <a href="https://mana.fr/resources" target="_blank" rel="noopener noreferrer">
-                    Accéder à mana.fr/resources
+                <Button
+                  asChild
+                  size="lg"
+                  className="w-full bg-gradient-to-r from-[#0c3d5e] via-manamind to-secondary text-white hover:opacity-90"
+                >
+                  {/* ⬇️ lib externe + nouveau libellé */}
+                  <a
+                    href="https://mana.fr/resources"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Explorer les ressources sur mana.fr"
+                  >
+                    J’explore
                   </a>
                 </Button>
               </CardContent>
-              <div className="pointer-events-none absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-manamind via-transparent to-transparent" />
+
+              {/* voile déco discret */}
+              <div className="pointer-events-none absolute inset-0 opacity-10 bg-[radial-gradient(80%_80%_at_50%_0%,theme(colors.manamind/.25),transparent)]" />
             </Card>
           </div>
         </div>
