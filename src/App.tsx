@@ -12,7 +12,8 @@ import { CreateAccount } from "./components/CreateAccount";
 import { Success } from "./pages/Success";
 import AboutPage from "./pages/About";
 import Ressources from "./pages/ressources";
-import Tutorials from "./pages/tutorials"; // <-- AJOUT
+import Tutorials from "./pages/tutorials";
+import StudentTutorials from "./pages/tutorials-student"; // <-- AJOUT
 
 const queryClient = new QueryClient();
 
@@ -28,11 +29,12 @@ const App = () => (
           <Route path="/success" element={<Success />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/ressources" element={<Ressources />} />
-          <Route path="/tutorials" element={<Tutorials />} /> {/* <-- AJOUT */}
+          <Route path="/tutorials" element={<Tutorials />} />
+          <Route path="/tutorials/student" element={<StudentTutorials />} /> {/* <-- nouvelle route */}
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
-    <Analytics /> {/* Vercel Analytics */}
+    <Analytics />
   </QueryClientProvider>
 );
 
