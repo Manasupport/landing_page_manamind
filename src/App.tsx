@@ -11,7 +11,8 @@ import Index from "./pages/Index";
 import { CreateAccount } from "./components/CreateAccount";
 import { Success } from "./pages/Success";
 import AboutPage from "./pages/About";
-import Ressources from "./pages/ressources"; // Nouvelle page Ressources
+import Ressources from "./pages/ressources";
+import Tutorials from "./pages/tutorials"; // <-- AJOUT
 
 const queryClient = new QueryClient();
 
@@ -26,7 +27,8 @@ const App = () => (
           <Route path="/create-account" element={<CreateAccount />} />
           <Route path="/success" element={<Success />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/ressources" element={<Ressources />} /> {/* Nouvelle route */}
+          <Route path="/ressources" element={<Ressources />} />
+          <Route path="/tutorials" element={<Tutorials />} /> {/* <-- AJOUT */}
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
