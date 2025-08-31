@@ -28,7 +28,7 @@ const WEBINARS: Webinar[] = [
   },
 ];
 
-const BRAND = "#0c3d5e";
+const BRAND = "#71c088"; // ✅ vert brand
 
 const getThumb = (ytId: string) =>
   `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;
@@ -49,12 +49,12 @@ export default function Webinaires() {
       {/* Hero */}
       <section className="relative overflow-hidden pt-32 pb-10">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-40 -left-32 w-[42rem] h-[42rem] rounded-full bg-gradient-to-br from-manamind to-manamind-dark opacity-25 blur-3xl" />
+          <div className="absolute -top-40 -left-32 w-[42rem] h-[42rem] rounded-full bg-gradient-to-br from-[#71c088] to-manamind-dark opacity-25 blur-3xl" />
           <div className="absolute -bottom-32 -right-40 w-[40rem] h-[40rem] rounded-full bg-gradient-to-tr from-manacademy to-secondary opacity-15 blur-3xl" />
         </div>
 
         <div className="relative mx-auto max-w-4xl px-4 text-center">
-          <div className="inline-flex items-center gap-2 bg-manamind/10 text-manamind-dark px-4 py-2 rounded-full text-sm font-medium mb-6">
+          <div className="inline-flex items-center gap-2 bg-[#71c088]/10 text-[#71c088] px-4 py-2 rounded-full text-sm font-medium mb-6">
             <Video className="h-4 w-4" />
             <span>Webinaires Manamind</span>
           </div>
@@ -75,7 +75,7 @@ export default function Webinaires() {
           {WEBINARS.map((w) => (
             <Card
               key={w.id}
-              className="group overflow-hidden rounded-3xl border border-black/5 bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 shadow-[0_10px_30px_-10px_rgba(12,61,94,0.15)] hover:shadow-[0_18px_40px_-12px_rgba(12,61,94,0.25)] transition-all duration-500"
+              className="group overflow-hidden rounded-3xl border border-black/5 bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 shadow-[0_10px_30px_-10px_rgba(12,61,94,0.15)] hover:shadow-[0_18px_40px_-12px_rgba(113,192,136,0.3)] transition-all duration-500"
             >
               {/* vignette */}
               <div className="aspect-video relative overflow-hidden">
@@ -100,8 +100,7 @@ export default function Webinaires() {
                   aria-label={`Lire ${w.title}`}
                 >
                   <span
-                    className="w-16 h-16 rounded-full flex items-center justify-center shadow-xl transition-all
-                               hover:scale-105"
+                    className="w-16 h-16 rounded-full flex items-center justify-center shadow-xl transition-all hover:scale-105"
                     style={{ backgroundColor: BRAND }}
                   >
                     <Play className="h-8 w-8 text-white ml-1" />
@@ -135,7 +134,7 @@ export default function Webinaires() {
       <Dialog open={!!openVideoId} onOpenChange={() => setOpenVideoId(null)}>
         <DialogContent className="max-w-5xl p-0 overflow-hidden">
           <DialogHeader className="px-6 pt-6">
-            <DialogTitle className="text-[#0c3d5e]">Webinaire Manamind</DialogTitle>
+            <DialogTitle className="text-[#71c088]">Webinaire Manamind</DialogTitle>
           </DialogHeader>
           <div className="aspect-video w-full">
             {openVideoId && (
