@@ -133,9 +133,9 @@ const Ressources = () => {
                 <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-manamind to-manamind-dark flex items-center justify-center shadow-lg ring-1 ring-white/40">
                   <Sparkles className="h-8 w-8 text-white" aria-hidden="true" />
                 </div>
-                <CardTitle className="text-2xl">Les ressources Mana</CardTitle>
+                <CardTitle className="text-2xl">Fiches outils &amp; Contenus académiques</CardTitle>
                 <CardDescription className="text-base text-[#0c3d5e]/80">
-                  Analyses, méthodes et publications sélectionnées par l’équipe Mana.
+                  Templates, fiches pratiques et supports d'apprentissage complets
                 </CardDescription>
               </CardHeader>
               <CardContent className="relative z-10 pt-0">
@@ -145,12 +145,12 @@ const Ressources = () => {
                   className="w-full h-11 rounded-xl font-semibold shadow-sm active:scale-[0.99] transition-transform bg-gradient-to-r from-[#0c3d5e] via-manamind to-secondary text-white hover:opacity-90"
                 >
                   <a
-                    href="https://preview--mana-glow-collective.lovable.app/resources"
+                    href="https://www.mana.fr/resources/academic"
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="Explorer les ressources sur mana.fr"
+                    aria-label="Parcourir les ressources académiques sur mana.fr"
                   >
-                    J’explore
+                    Parcourir les ressources
                   </a>
                 </Button>
               </CardContent>
