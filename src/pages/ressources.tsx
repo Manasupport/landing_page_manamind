@@ -145,7 +145,7 @@ const Ressources = () => {
                   className="w-full h-11 rounded-xl font-semibold shadow-sm active:scale-[0.99] transition-transform bg-gradient-to-r from-[#0c3d5e] via-manamind to-secondary text-white hover:opacity-90"
                 >
                   <a
-                    href="https://www.mana.fr/resources/academic"
+                    href="https://preview--mana-glow-collective.lovable.app/resources/academic"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Parcourir les ressources académiques sur mana.fr"
